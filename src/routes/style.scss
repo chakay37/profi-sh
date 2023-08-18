@@ -1,0 +1,259 @@
+$logo-color: #9a8d63;
+$blue: #63709a;
+$turq: #63a8a8;
+$black: #1e2124;
+
+* {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.logo-color {
+    color: $logo-color;
+}
+.blue-color {
+    color: $blue;
+}
+.turq-color {
+    color: $turq;
+}
+header {
+    padding: 10px;
+}
+body {
+    background-color: $black;
+    color: white;
+    margin: 0px;
+    font-family: "Open Sans", sans-serif;
+}
+
+main {
+    padding: 5px;
+}
+
+button {
+    margin-top: 2px;
+    color: white;
+    background-color: $black;
+    border: black 2px solid;
+    border-radius: 6px;
+    padding-block: 6px;
+    padding-inline: 12px;
+}
+
+//NAV
+
+#toggle {
+    display: none;
+}
+
+.hamburger {
+    position: absolute;
+    top: 5em;
+    right: 10%;
+    margin-left: -2em;
+    margin-top: -45px;
+    width: 2em;
+    height: 45px;
+    z-index: 5;
+    div {
+        position: relative;
+        width: 3em;
+        height: 7px;
+        border-radius: 3px;
+        background-color: $logo-color;
+        margin-top: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+/**
+  Nav Styles
+  **/
+.nav {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    background: $black;
+    background: linear-gradient(44deg, $black 50%, $blue 150%);
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0);
+}
+.nav-wrapper {
+    position: relative;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+}
+nav {
+    text-align: left;
+    margin-top: 20%;
+    margin-left: 5%;
+}
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 2em;
+    display: inline-block;
+    margin-top: 1.25em;
+    transition: color 0.2s ease-in-out;
+    letter-spacing: 1px;
+}
+nav a:before {
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 0.25em;
+    background-color: $logo-color;
+    left: -0.5em;
+    transition: all 0.2s ease-in-out;
+}
+nav a:hover {
+    color: $logo-color;
+}
+nav a:hover:before {
+    height: 100%;
+}
+
+/**
+  Animations
+  **/
+#toggle:checked + .hamburger .top-bun {
+    transform: rotate(-45deg);
+    margin-top: 25px;
+}
+#toggle:checked + .hamburger .bottom-bun {
+    opacity: 0;
+    transform: rotate(45deg);
+}
+#toggle:checked + .hamburger .meat {
+    transform: rotate(45deg);
+    margin-top: -7px;
+}
+
+#toggle:checked + .hamburger + .nav {
+    top: 0;
+    transform: scale(1);
+}
+
+//TITLE
+.title {
+    color: saturate($color: $blue, $amount: 10);
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+    background-image: url('$lib/main-img/title-bg.png');
+    padding-top: 190px;
+    font-size: 18px;
+    height: 200px;
+    margin-top: -130px;
+
+    h1,
+    h2 {
+        font-family: "Poiret One";
+    }
+}
+
+//NEWS
+
+.news-header {
+    text-align: center;
+    background-color: $logo-color;
+    padding: 10px;
+}
+
+.news {
+    background-color: $logo-color;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    padding: 5px;
+    padding-bottom: 25px;
+    .item {
+        height: 150px;
+        width: 90%;
+        background: rgb(99, 168, 168);
+        background: linear-gradient(
+            125deg,
+            rgba(99, 168, 168, 1) 0%,
+            rgba(99, 112, 154, 1) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 5px 5px black;
+        border: black solid 6px;
+    }
+}
+
+.content > div {
+    margin-top: 50px;
+    margin-inline: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: $blue;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    h1,
+    p {
+        margin-bottom: 10px;
+    }
+    button {
+        margin-top: 10px;
+    }
+}
+
+.locations {
+    iframe {
+        border-radius: 3px;
+    }
+}
+
+.newsletter {
+    input,
+    select,
+    option {
+        width: 200px;
+        height: 30px;
+        background-color: $black;
+        color: white;
+        padding: 0px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+}
+
+.socials {
+    .links {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        margin-top: 15px;
+        svg {
+            path {
+                fill: white;
+            }
+        }
+        /*.facebook,
+        .instagram {
+            background-color: $black;
+            padding: 5px;
+            border-radius: 5px;
+            width: 100px;
+        }*/
+        padding-bottom: 25px;
+    }
+}
