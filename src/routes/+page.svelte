@@ -1,6 +1,6 @@
 <script>
     import './style.css';
-    import logo from '$lib/main-img/logo.png'
+    import logo from '$lib/main-img/logoNoText.png'
 </script>
 
 <!DOCTYPE html>
