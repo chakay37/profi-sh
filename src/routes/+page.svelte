@@ -1,13 +1,32 @@
 <script lang="ts">
 	import './style.css';
-	import logo from '$lib/main-img/logoNoText.png';
+	import logo from '$lib/main-img/logo.png';
 	import firstShowcase from '$lib/main-img/1.jpg';
 	import secondShowcase from '$lib/main-img/2.jpg';
 	import thirdShowcase from '$lib/main-img/3.jpg';
 	import staticImage from '$lib/main-img/4.jpg';
+	/*const staticImage = new URL(
+		'https://cdn.atomix.vg/wp-content/uploads/2015/07/super-mario-maker-facebook.jpg'
+	);*/
 	import linkIcon from '$lib/main-img/link-icon.png';
 	import facebookIcon from '$lib/main-img/facebook.svg';
 	import instagramIcon from '$lib/main-img/instagram.svg';
+	import branch1 from '$lib/main-img/branch1.svg';
+	import branch2 from '$lib/main-img/branch2.svg';
+	import branch3 from '$lib/main-img/branch3.svg';
+	import fb1 from '$lib/main-img/fb1.jpg';
+	import fb2 from '$lib/main-img/fb2.jpg';
+	import fb3 from '$lib/main-img/fb3.jpg';
+	import ig1 from '$lib/main-img/ig1.jpg';
+	import ig2 from '$lib/main-img/ig2.jpg';
+	import ig3 from '$lib/main-img/ig3.jpg';
+	import ig4 from '$lib/main-img/ig4.jpg';
+	/*import axios from 'axios';
+
+	onMount(async function () {
+		const response = await axios.get();
+		console.log(response.data);
+	});*/
 
 	let citiesArr: string[] = [
 		'Děčín - Plzeňská',
@@ -25,7 +44,6 @@
 	];
 </script>
 
-<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -50,7 +68,7 @@
 	</head>
 	<body>
 		<header>
-			<img src={logo} alt="logo" />
+			<a href="" class="logo-container"><img src={logo} alt="logo" class="logo" /></a>
 
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container-fluid">
@@ -68,43 +86,46 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="#">Kde nás najdete</a>
+								<a class="nav-link" href="">Kde nás najdete</a>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">E-shop</a>
+								<a class="nav-link" href="">E-shop</a>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Blog</a>
+								<a class="nav-link" href="">Blog</a>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Napište nám</a>
+								<a class="nav-link" href="">Napište nám</a>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">Kontakty</a>
+								<a class="nav-link" href="">Kontakty</a>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><img class="facebook" src={facebookIcon} alt="" /></a>
+								<a class="nav-link" href="https://www.facebook.com/profisecondhand"
+									><img class="facebook" src={facebookIcon} alt="" /></a
+								>
 							</li>
 							<li class="nav-item circle-container">
 								<div class="circle" />
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><img class="instagram" src={instagramIcon} alt="" /></a
+								<a class="nav-link" href="https://www.instagram.com/profi_second_hand/"
+									><img class="instagram" src={instagramIcon} alt="" /></a
 								>
 							</li>
 						</ul>
@@ -210,7 +231,141 @@
 						</table>
 					</div>
 				</section>
-				<section class="about-sect" />
+				<section class="about-sect">
+					<img src={staticImage} alt="obrázek oblečení" />
+					<div class="text">
+						<div class="sect-title">
+							<h2><strong>O nás</strong></h2>
+						</div>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, in dolor. Nobis,
+							reprehenderit expedita velit voluptatum magnam obcaecati modi provident a alias
+							dolorum, minus doloremque maxime deserunt itaque labore molestias.
+						</p>
+					</div>
+				</section>
+				<section class="blog-sect">
+					<div class="container">
+						<div class="sect-title"><h2><strong> Second Hand a ekologie</strong></h2></div>
+						<p>
+							Rychlá móda má dopad na planetu. Zajímáte se o ekologii? Nyní máte možnost zjisti
+							více. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým
+							výběrem.
+						</p>
+						<div class="shadow" />
+						<button>Zjistit více </button>
+						<img src={branch1} alt="větev" id="branch1" />
+						<img src={branch2} alt="větev" id="branch2" />
+						<img src={branch3} alt="větev" id="branch3" />
+					</div>
+				</section>
+				<section class="notification-sect">
+					<div class="info">
+						<div class="sect-title">
+							<h1><strong>Dostávejte upozornění na akce a slevy</strong></h1>
+						</div>
+						<p>
+							Chcete být informováni o akcích ve Vašem okolí pomocí E-Mailu a SMS? Zaregistrujte se!
+						</p>
+					</div>
+					<form action="" method="get">
+						<div class="mb-3">
+							<label class="form-label"
+								>E-mail
+								<input type="email" class="form-control" placeholder="jannovak@seznam.cz" />
+							</label>
+						</div>
+						<div class="mb-3">
+							<label class="form-label"
+								>Tel. číslo
+								<input type="phone" class="form-control" placeholder="+420 777 645 189" />
+							</label>
+						</div>
+						<div class="mb-3">
+							<label class="form-label"
+								>Město
+								<select class="form-select">
+									{#each citiesArr as city, i}
+										<option value={i + 1}>{city}</option>
+									{/each}
+								</select>
+							</label>
+						</div>
+						<button type="submit">Potvrdit</button>
+					</form>
+				</section>
+				<section class="socials-sect">
+					<div class="sect-title"><h1><strong>Sociální sítě</strong></h1></div>
+					<div class="socials-row">
+						<div class="item-container fb">
+							<a href="https://www.facebook.com/profisecondhand">
+								<img src={fb1} alt="facebook profi sh" />
+								<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+							</a>
+						</div>
+						<div class="item-container ig">
+							<a href="https://www.instagram.com/profi_second_hand/">
+								<img src={ig1} alt="instagram profi sh" />
+								<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+							</a>
+						</div>
+						<div class="item-container fb">
+							<a href="https://www.facebook.com/profisecondhand">
+								<img src={fb2} alt="facebook profi sh" />
+								<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+							</a>
+						</div>
+					</div>
+					<div class="socials-row">
+						<div class="item-container ig">
+							<a href="https://www.instagram.com/profi_second_hand/">
+								<img src={ig2} alt="facebook profi sh" />
+								<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+							</a>
+						</div>
+						<div class="item-container fb">
+							<a href="https://www.facebook.com/profisecondhand">
+								<img src={fb3} alt="facebook profi sh" />
+								<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+							</a>
+						</div>
+						<div class="item-container ig">
+							<a href="https://www.instagram.com/profi_second_hand/">
+								<img src={ig3} alt="facebook profi sh" />
+								<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+							</a>
+						</div>
+						<div class="item-container ig">
+							<a href="https://www.instagram.com/profi_second_hand/">
+								<img src={ig4} alt="facebook profi sh" />
+								<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+							</a>
+						</div>
+					</div>
+				</section>
+				<footer>
+					<div>
+						<h2><strong>Odkazy</strong></h2>
+						<ul>
+							<li><a href="">Kde nás najdete </a></li>
+							<li><a href="a">E-shop</a></li>
+							<li><a href="a">Blog</a></li>
+							<li><a href="">Napište nám </a></li>
+							<li><a href="a">Kontakty</a></li>
+						</ul>
+					</div>
+					<div>
+						<h2><strong>Socialní sítě</strong></h2>
+						<div class="images">
+							<a href="https://www.facebook.com/profisecondhand"
+								><img src={facebookIcon} alt="facebook profi sh" class="facebook" /></a
+							>
+							<a href="https://www.instagram.com/profi_second_hand/"
+								><img src={instagramIcon} alt="instagram profi sh" class="instagram" /></a
+							>
+						</div>
+					</div>
+				</footer>
 			</div>
 		</main>
 		<script

@@ -4,7 +4,9 @@ declare module "sst/node/config" {
     APP: string;
     STAGE: string;
   }
-}import "sst/node/site";
+}
+
+import "sst/node/site";
 declare module "sst/node/site" {
   export interface SvelteKitSiteResources {
     "site": {
@@ -12,3 +14,4 @@ declare module "sst/node/site" {
     }
   }
 }
+

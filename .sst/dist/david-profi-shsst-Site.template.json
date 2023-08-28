@@ -46,7 +46,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "f7128edbe4a34b9aebfdf045c1007be7087e0b2b92f7baa3d6764a69277a46ef.zip"
+     "S3Key": "12b43c09742b568c50e0566c3103ee2522ae7511d8d702314585e51206c62cdb.zip"
     },
     "Handler": "index.handler",
     "MemorySize": 1024,
@@ -73,41 +73,20 @@
     "CustomResourceHandlerServiceRole41AEC181"
    ]
   },
-  "siteServerFunctionRole1F8F4FAC": {
-   "Type": "AWS::IAM::Role",
+  "siteS3Bucket2B2851F3": {
+   "Type": "AWS::S3::Bucket",
    "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "AWS": {
-         "Fn::Join": [
-          "",
-          [
-           "arn:",
-           {
-            "Ref": "AWS::Partition"
-           },
-           ":iam::448400283798:root"
-          ]
-         ]
-        }
-       }
-      },
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "lambda.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
     },
-    "MaxSessionDuration": 43200,
     "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     },
      {
       "Key": "sst:app",
       "Value": "profi-shsst"
@@ -117,7 +96,105 @@
       "Value": "david"
      }
     ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteS3BucketPolicyBB4DF05F": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "siteS3Bucket2B2851F3"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Principal": {
+        "CanonicalUser": {
+         "Fn::GetAtt": [
+          "siteDistributionOrigin2S3Origin49B86EE9",
+          "S3CanonicalUserId"
+         ]
+        }
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "siteS3Bucket2B2851F3",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
    }
+  },
+  "siteS3BucketAutoDeleteObjectsCustomResource3E10A2DE": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "siteS3Bucket2B2851F3"
+    }
+   },
+   "DependsOn": [
+    "siteS3BucketPolicyBB4DF05F"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
   },
   "siteServerFunctionAssetReplacerPolicy304BF125": {
    "Type": "AWS::IAM::Policy",
@@ -164,7 +241,7 @@
      ]
     },
     "bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-    "key": "148b123c622aff3347c3e70ab72eb338da22ebbac3c09b15b04d4d3a111b5f10.zip",
+    "key": "a998aaad26ed0588249660513c390f6c4f5fedcf4ac079450c60b8062deaa853.zip",
     "replacements": []
    },
    "DependsOn": [
@@ -172,6 +249,106 @@
    ],
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
+  },
+  "siteServerFunctionServiceRole8328A688": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ]
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunctionServiceRoleDefaultPolicy6EA49472": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteServerFunctionServiceRoleDefaultPolicy6EA49472",
+    "Roles": [
+     {
+      "Ref": "siteServerFunctionServiceRole8328A688"
+     }
+    ]
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
   },
   "siteServerFunction6DFA6F1B": {
    "Type": "AWS::Lambda::Function",
@@ -181,9 +358,9 @@
     ],
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "148b123c622aff3347c3e70ab72eb338da22ebbac3c09b15b04d4d3a111b5f10.zip"
+     "S3Key": "a998aaad26ed0588249660513c390f6c4f5fedcf4ac079450c60b8062deaa853.zip"
     },
-    "Description": "Server handler placeholder",
+    "Description": "Server handler for SvelteKit",
     "Environment": {
      "Variables": {
       "SST_APP": "profi-shsst",
@@ -191,11 +368,11 @@
       "SST_SSM_PREFIX": "/sst/profi-shsst/david/"
      }
     },
-    "Handler": "index.handler",
+    "Handler": ".svelte-kit/svelte-kit-sst/server/lambda-handler/index.handler",
     "MemorySize": 1024,
     "Role": {
      "Fn::GetAtt": [
-      "siteServerFunctionRole1F8F4FAC",
+      "siteServerFunctionServiceRole8328A688",
       "Arn"
      ]
     },
@@ -214,7 +391,8 @@
    },
    "DependsOn": [
     "siteServerFunctionAssetReplacer9A11D516",
-    "siteServerFunctionRole1F8F4FAC"
+    "siteServerFunctionServiceRoleDefaultPolicy6EA49472",
+    "siteServerFunctionServiceRole8328A688"
    ]
   },
   "siteServerFunctionLogRetention7123678D": {
@@ -243,6 +421,715 @@
     "siteServerFunctionAssetReplacer9A11D516"
    ]
   },
+  "siteServerFunctionFunctionUrl1B09C490": {
+   "Type": "AWS::Lambda::Url",
+   "Properties": {
+    "AuthType": "NONE",
+    "TargetFunctionArn": {
+     "Fn::GetAtt": [
+      "siteServerFunction6DFA6F1B",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunctioninvokefunctionurlEABB57E1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunctionUrl",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "siteServerFunction6DFA6F1B",
+      "Arn"
+     ]
+    },
+    "FunctionUrlAuthType": "NONE",
+    "Principal": "*"
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteCloudFrontFunctionE91DD486": {
+   "Type": "AWS::CloudFront::Function",
+   "Properties": {
+    "AutoPublish": true,
+    "FunctionCode": "\nfunction handler(event) {\n  var request = event.request;\n  request.headers[\"x-forwarded-host\"] = request.headers.host;\n  \n        for (var key in request.querystring) {\n          if (key.includes(\"/\")) {\n            request.querystring[encodeURIComponent(key)] = request.querystring[key];\n            delete request.querystring[key];\n          }\n        }\n      \n  return request;\n}",
+    "FunctionConfig": {
+     "Comment": "us-east-1davidprofishsstSitesiteCloudFrontFunction30C09219",
+     "Runtime": "cloudfront-js-1.0"
+    },
+    "Name": "us-east-1davidprofishsstSitesiteCloudFrontFunction30C09219"
+   }
+  },
+  "siteServerCacheDD54ACDF": {
+   "Type": "AWS::CloudFront::CachePolicy",
+   "Properties": {
+    "CachePolicyConfig": {
+     "Comment": "SST server response cache policy",
+     "DefaultTTL": 0,
+     "MaxTTL": 31536000,
+     "MinTTL": 0,
+     "Name": "davidprofishsstSitesiteServerCache378B34A9-us-east-1",
+     "ParametersInCacheKeyAndForwardedToOrigin": {
+      "CookiesConfig": {
+       "CookieBehavior": "none"
+      },
+      "EnableAcceptEncodingBrotli": true,
+      "EnableAcceptEncodingGzip": true,
+      "HeadersConfig": {
+       "HeaderBehavior": "none"
+      },
+      "QueryStringsConfig": {
+       "QueryStringBehavior": "all"
+      }
+     }
+    }
+   }
+  },
+  "siteDistribution706F5265": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "Aliases": [],
+     "CacheBehaviors": [
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "PathPattern": "favicon.png",
+       "TargetOriginId": "davidprofishsstSitesiteDistributionOrigin256836DD6",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      },
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "PathPattern": "_app/*",
+       "TargetOriginId": "davidprofishsstSitesiteDistributionOrigin256836DD6",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      }
+     ],
+     "DefaultCacheBehavior": {
+      "AllowedMethods": [
+       "GET",
+       "HEAD",
+       "OPTIONS",
+       "PUT",
+       "PATCH",
+       "POST",
+       "DELETE"
+      ],
+      "CachePolicyId": {
+       "Ref": "siteServerCacheDD54ACDF"
+      },
+      "CachedMethods": [
+       "GET",
+       "HEAD",
+       "OPTIONS"
+      ],
+      "Compress": true,
+      "FunctionAssociations": [
+       {
+        "EventType": "viewer-request",
+        "FunctionARN": {
+         "Fn::GetAtt": [
+          "siteCloudFrontFunctionE91DD486",
+          "FunctionARN"
+         ]
+        }
+       }
+      ],
+      "LambdaFunctionAssociations": [],
+      "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+      "TargetOriginId": "davidprofishsstSitesiteDistributionOrigin175F49355",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "https-only",
+        "OriginReadTimeout": 10,
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         0,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "//",
+               {
+                "Fn::GetAtt": [
+                 "siteServerFunctionFunctionUrl1B09C490",
+                 "FunctionUrl"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "davidprofishsstSitesiteDistributionOrigin175F49355"
+      },
+      {
+       "DomainName": {
+        "Fn::GetAtt": [
+         "siteS3Bucket2B2851F3",
+         "RegionalDomainName"
+        ]
+       },
+       "Id": "davidprofishsstSitesiteDistributionOrigin256836DD6",
+       "OriginPath": "",
+       "S3OriginConfig": {
+        "OriginAccessIdentity": {
+         "Fn::Join": [
+          "",
+          [
+           "origin-access-identity/cloudfront/",
+           {
+            "Ref": "siteDistributionOrigin2S3Origin49B86EE9"
+           }
+          ]
+         ]
+        }
+       }
+      }
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ]
+   }
+  },
+  "siteDistributionOrigin2S3Origin49B86EE9": {
+   "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+   "Properties": {
+    "CloudFrontOriginAccessIdentityConfig": {
+     "Comment": "Identity for davidprofishsstSitesiteDistributionOrigin256836DD6"
+    }
+   }
+  },
+  "siteServerFunctionInvalidatorPolicy004B2ED1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "cloudfront:CreateInvalidation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":cloudfront::448400283798:distribution/",
+          {
+           "Ref": "siteDistribution706F5265"
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteServerFunctionInvalidatorPolicy004B2ED1",
+    "Roles": [
+     {
+      "Ref": "siteServerFunctionServiceRole8328A688"
+     }
+    ]
+   }
+  },
+  "siteAwsCliLayer359A0EF0": {
+   "Type": "AWS::Lambda::LayerVersion",
+   "Properties": {
+    "Content": {
+     "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
+     "S3Key": "e2277687077a2abf9ae1af1cc9565e6715e2ebb62f79ec53aa75a1af9298f642.zip"
+    },
+    "Description": "/opt/awscli/aws"
+   }
+  },
+  "siteS3UploaderServiceRole973F5A0B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ]
+   }
+  },
+  "siteS3UploaderServiceRoleDefaultPolicy8BA893D3": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-448400283798-us-east-1"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-448400283798-us-east-1/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteS3UploaderServiceRoleDefaultPolicy8BA893D3",
+    "Roles": [
+     {
+      "Ref": "siteS3UploaderServiceRole973F5A0B"
+     }
+    ]
+   }
+  },
+  "siteS3Uploader2837C218": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
+     "S3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+    },
+    "Handler": "s3-upload.handler",
+    "Layers": [
+     {
+      "Ref": "siteAwsCliLayer359A0EF0"
+     }
+    ],
+    "MemorySize": 1024,
+    "Role": {
+     "Fn::GetAtt": [
+      "siteS3UploaderServiceRole973F5A0B",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.7",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ],
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "siteS3UploaderServiceRoleDefaultPolicy8BA893D3",
+    "siteS3UploaderServiceRole973F5A0B"
+   ]
+  },
+  "siteS3HandlerServiceRole6D2CC8E3": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ]
+   }
+  },
+  "siteS3HandlerServiceRoleDefaultPolicy1BD27252": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Uploader2837C218",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Uploader2837C218",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteS3HandlerServiceRoleDefaultPolicy1BD27252",
+    "Roles": [
+     {
+      "Ref": "siteS3HandlerServiceRole6D2CC8E3"
+     }
+    ]
+   }
+  },
+  "siteS3Handler84D19388": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
+     "S3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "UPLOADER_FUNCTION_NAME": {
+       "Ref": "siteS3Uploader2837C218"
+      }
+     }
+    },
+    "Handler": "s3-handler.handler",
+    "Layers": [
+     {
+      "Ref": "siteAwsCliLayer359A0EF0"
+     }
+    ],
+    "MemorySize": 1024,
+    "Role": {
+     "Fn::GetAtt": [
+      "siteS3HandlerServiceRole6D2CC8E3",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.7",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "profi-shsst"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "david"
+     }
+    ],
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "siteS3HandlerServiceRoleDefaultPolicy1BD27252",
+    "siteS3HandlerServiceRole6D2CC8E3"
+   ]
+  },
+  "siteS3DeploymentB932FFDB": {
+   "Type": "Custom::SSTBucketDeployment",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "siteS3Handler84D19388",
+      "Arn"
+     ]
+    },
+    "Sources": [
+     {
+      "BucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
+      "ObjectKey": "3e0f613692b27d20f9eeb148284aa77e86b4ffd5c01ae42ca79d07ebdcdcb080.zip"
+     }
+    ],
+    "DestinationBucketName": {
+     "Ref": "siteS3Bucket2B2851F3"
+    },
+    "FileOptions": [
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "favicon.png",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "_app/*",
+      "--cache-control",
+      "public,max-age=31536000,immutable"
+     ]
+    ],
+    "ReplaceValues": []
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteCloudFrontInvalidatorPolicyEE18C654": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "cloudfront:GetInvalidation",
+        "cloudfront:CreateInvalidation"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":cloudfront::448400283798:distribution/",
+          {
+           "Ref": "siteDistribution706F5265"
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteCloudFrontInvalidatorPolicyEE18C654",
+    "Roles": [
+     {
+      "Ref": "CustomResourceHandlerServiceRole41AEC181"
+     }
+    ]
+   }
+  },
+  "siteCloudFrontInvalidator18BEA866": {
+   "Type": "Custom::CloudFrontInvalidator",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomResourceHandlerE8FB56BA",
+      "Arn"
+     ]
+    },
+    "buildId": "1693242828850",
+    "distributionId": {
+     "Ref": "siteDistribution706F5265"
+    },
+    "paths": [
+     "/*"
+    ]
+   },
+   "DependsOn": [
+    "siteCloudFrontInvalidatorPolicyEE18C654"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
   "siteParameterurl3D1716BC": {
    "Type": "AWS::SSM::Parameter",
    "Properties": {
@@ -252,8 +1139,77 @@
      "sst:stage": "david"
     },
     "Type": "String",
-    "Value": "localhost"
+    "Value": {
+     "Fn::Join": [
+      "",
+      [
+       "https://",
+       {
+        "Fn::GetAtt": [
+         "siteDistribution706F5265",
+         "DomainName"
+        ]
+       }
+      ]
+     ]
+    }
    }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
+     "S3Key": "a657308e723bb9460b800cb3b47dadb74e28243edfe246bf7755c45ec312eb97.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "siteS3Bucket2B2851F3"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ]
   },
   "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
    "Type": "AWS::IAM::Role",
@@ -353,12 +1309,35 @@
   }
  },
  "Outputs": {
+  "url": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "siteDistribution706F5265",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
   "SSTMetadata": {
    "Value": {
     "Fn::Join": [
      "",
      [
-      "{\"app\":\"profi-shsst\",\"stage\":\"david\",\"version\":\"2.24.2\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8d4df60491cc8a46e8e62d604424237628a7571dd\",\"stack\":\"david-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"placeholder\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"server\":\"",
+      "{\"app\":\"profi-shsst\",\"stage\":\"david\",\"version\":\"2.24.14\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8d4df60491cc8a46e8e62d604424237628a7571dd\",\"stack\":\"david-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"deployed\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"url\":\"https://",
+      {
+       "Fn::GetAtt": [
+        "siteDistribution706F5265",
+        "DomainName"
+       ]
+      },
+      "\",\"server\":\"",
       {
        "Fn::GetAtt": [
         "siteServerFunction6DFA6F1B",
@@ -372,7 +1351,7 @@
         "Arn"
        ]
       },
-      "\",\"runtime\":\"nodejs18.x\",\"handler\":\"index.handler\",\"localId\":\"c8e099cb3cfc7cb03880b20e7ac8f4ea0071c8ff55\",\"secrets\":[]}}]}"
+      "\",\"runtime\":\"nodejs18.x\",\"handler\":\".svelte-kit\\\\svelte-kit-sst\\\\server\\\\lambda-handler\\\\index.handler\",\"localId\":\"c8e099cb3cfc7cb03880b20e7ac8f4ea0071c8ff55\",\"secrets\":[]}}]}"
      ]
     ]
    }
