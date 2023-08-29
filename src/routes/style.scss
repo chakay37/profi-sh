@@ -51,15 +51,20 @@ body {
 	font-weight: 300;
 }
 
+.offcanvas-backdrop.show {
+	opacity: 0;
+}
+
 header {
+	background-color: $white;
+	width: 100%;
+	height: 100px;
 	display: flex;
 	justify-content: space-between;
-	background-color: $white;
 	.logo-container {
-		height: 80px;
-		width: 170px;
-		margin: 10px;
-		margin-left: 7%;
+		width: 200px;
+		padding-top: 10px;
+		margin-left: 6%;
 	}
 	.logo {
 		object-fit: cover;
@@ -77,8 +82,8 @@ header {
 			background-color: $white;
 		}
 	}
-	.bg-body-tertiary {
-		background-color: $logo-color !important;
+	.desktop-navbar {
+		background-color: $logo-color;
 		border-bottom-left-radius: 10px;
 		height: 100px;
 		padding: 25px;
@@ -86,6 +91,10 @@ header {
 		top: 0;
 		right: 0;
 		z-index: 1030;
+		ul {
+			list-style-type: none;
+			display: flex;
+		}
 	}
 	nav .nav-link {
 		color: $white;
@@ -121,8 +130,19 @@ header {
 	.nav-link:hover .facebook {
 		background-color: #4267b2;
 	}
-}
 
+	.mobile-navbar {
+		display: none;
+	}
+	.nav-container {
+		display: none;
+	}
+
+	.nav-button {
+		cursor: pointer;
+		font-size: 20px;
+	}
+}
 main {
 	display: flex;
 	flex-direction: column;
@@ -171,45 +191,55 @@ main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	font-size: 14px;
 	.table-container {
+		width: 100%;
+		overflow-x: auto;
 		margin-top: 30px;
 		color: $white;
-		width: 100%;
 
 		tr {
-			height: 60px;
-			th {
-				width: 200px;
+			height: 55px;
+			.corner {
+				outline: white 1px solid;
+				position: sticky;
+				left: 0px;
 			}
 			td,
 			th {
+				min-width: 160px;
 				background-color: $logo-color-light;
 				color: $white;
 				text-align: center;
 				vertical-align: middle;
 			}
+
+			th,
+			p {
+				margin: 0px;
+				padding: 0px;
+			}
 		}
 		tbody {
 			th {
-				border-right: $logo-color-dark 1px solid;
+				outline: white 1px solid;
+				position: sticky;
+				left: 0px;
 			}
 		}
 
 		.table-item {
 			background-color: $logo-color-dark;
-			height: 45px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			gap: 8px;
 			border-radius: 3px;
+			height: 40px;
 			p {
-				margin-bottom: 0px;
 				text-align: center;
-				margin-right: 5px;
-				margin: 8px;
 			}
 			a {
-				margin: 8px;
 				color: white;
 				img {
 					width: 10px;
@@ -260,10 +290,10 @@ main {
 		position: relative;
 		padding: 25px;
 		background-color: $logo-color;
-		left: -20%;
+		left: -200px;
 		top: 0px;
-		width: 150%;
-		max-width: 150%;
+		width: 156%;
+		max-width: 156%;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
@@ -310,18 +340,18 @@ main {
 		position: absolute;
 	}
 	#branch1 {
-		right: -70px;
+		left: 75%;
 		top: 80px;
 		width: 450px;
 		rotate: 10deg;
 	}
 	#branch2 {
-		left: 0px;
+		left: -50px;
 		top: -50px;
 		rotate: 15deg;
 	}
 	#branch3 {
-		left: 0px;
+		left: -60px;
 		top: 200px;
 	}
 	margin-bottom: 50px;
@@ -336,7 +366,7 @@ main {
 		align-items: center;
 		flex-direction: column;
 		gap: 25px;
-		h1,
+		h2,
 		p {
 			text-align: center;
 		}
@@ -475,5 +505,194 @@ footer {
 @keyframes hvr-pulse-grow {
 	100% {
 		transform: scale(1.02);
+	}
+}
+@media (max-width: 1400px) {
+	.only-desktop {
+		display: none;
+	}
+	#only-desktop {
+		display: none;
+	}
+
+	header {
+		.desktop-navbar {
+			display: none;
+		}
+
+		.mobile-navbar {
+			display: block;
+			position: fixed;
+			top: 0;
+			transform: translateX(37.5%);
+			width: 100%;
+			border-bottom-left-radius: 10px;
+			height: 60px;
+			background-color: $logo-color;
+			color: white;
+			display: flex;
+			align-items: center;
+			padding: 0 20px;
+			z-index: 10;
+			.show-navbar {
+				align-items: center;
+				background-color: $logo-color-dark;
+				border: 3px solid $white;
+				border-radius: 8px;
+				box-sizing: border-box;
+				color: $white;
+				font-size: 16px;
+				height: 40px;
+				padding: 0 20px;
+				position: relative;
+				text-align: center;
+				text-decoration: none;
+			}
+		}
+
+		.logo {
+			object-fit: cover;
+			height: 100%;
+			width: 100%;
+		}
+		.circle-container {
+			display: flex;
+			align-items: center;
+			.circle {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				margin: 20px;
+				background-color: $white;
+			}
+		}
+		.logo-container {
+			height: 100px;
+			width: 150px;
+			margin-left: 0px;
+			padding: 0px;
+		}
+		.nav-container {
+			position: fixed;
+			top: 50px;
+			display: block;
+			transform: translateX(150%);
+			transition: transform 0.3s ease-in-out;
+			width: 75%;
+			height: 100%;
+			background-color: $logo-color;
+			animation: slideIn 0.3s ease-in-out;
+			z-index: 5;
+		}
+		.nav-container.open {
+			transform: translateX(50%);
+		}
+		@keyframes slideIn {
+			from {
+				transform: translateX(150%);
+			}
+			to {
+				transform: translateX(50%);
+			}
+		}
+
+		.nav-list {
+			list-style: none;
+			padding: 20px;
+		}
+
+		.nav-item {
+			margin-bottom: 30px;
+			font-size: 18px;
+			cursor: pointer;
+			color: white;
+		}
+
+		.close-navbar {
+			position: relative;
+			top: 10px;
+			right: -50px;
+			cursor: pointer;
+			color: white;
+			font-size: 18px;
+			z-index: 1000;
+			text-decoration: none;
+			font-size: 30px;
+			font-weight: 900;
+			padding-bottom: 20px;
+		}
+		.social-container {
+			display: flex;
+			gap: 20px;
+		}
+	}
+	.sect-title h2 {
+		font-size: 30px;
+	}
+	.title-sect {
+		flex-direction: column;
+		justify-content: start;
+		height: auto;
+		.title h1 {
+			font-size: 40px;
+		}
+		.carousel-container {
+			width: 100%;
+			height: 300px;
+			.carousel {
+				height: 100%;
+			}
+			img {
+				height: 300px;
+			}
+		}
+	}
+	.deals-sect {
+		.table-container tr th {
+			min-width: 100px;
+		}
+	}
+	.about-sect {
+		text-align: center;
+
+		.text {
+			width: 100%;
+			p {
+				font-size: 22px;
+			}
+		}
+	}
+	.blog-sect {
+		width: 140vw;
+		margin-top: 20px;
+		.container {
+			left: -20%;
+			text-align: start;
+			min-width: 400px;
+			width: 100%;
+		}
+	}
+	.notification-sect {
+		flex-direction: column;
+		.info p {
+			font-size: 22px;
+		}
+	}
+	.socials-sect {
+		.socials-row {
+			flex-wrap: wrap;
+			justify-content: start;
+			.ig {
+				width: 300px;
+			}
+			.fb {
+				width: 500px;
+			}
+		}
+	}
+	footer {
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
 	}
 }
