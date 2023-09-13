@@ -1,0 +1,44 @@
+$logo-color: #a7996b;
+$logo-color-dark: #8f8054;
+$logo-color-light: #b6a771;
+$white: #f1f1ee;
+
+main {
+	section {
+		display: flex;
+		gap: 100px;
+		padding-top: 100px;
+		.select-article {
+			flex: 1;
+			input[type='radio'] {
+				display: none;
+			}
+			.radio-item {
+				background-color: $logo-color-light;
+				border: black 2px solid;
+				border-radius: 10px;
+				color: white;
+				display: block;
+				padding: 10px;
+				height: 75px;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin-bottom: 10px;
+			}
+			input[type='radio']:checked + label {
+				background-color: $logo-color;
+			}
+			h3,
+			p {
+				display: inline;
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+		}
+		.article {
+			flex: 3;
+		}
+	}
+}

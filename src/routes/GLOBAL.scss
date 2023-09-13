@@ -1,0 +1,130 @@
+$logo-color: #a7996b;
+$logo-color-dark: #8f8054;
+$logo-color-light: #b6a771;
+$white: #f1f1ee;
+
+* {
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+	font-family: 'Quicksand', 'Open Sans', sans-serif;
+}
+
+#logo-color {
+	color: $logo-color;
+}
+
+#logo-bgcolor {
+	background-color: $logo-color;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: $white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: $logo-color;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: $logo-color-dark;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background-color: $white;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.sect-title h2 {
+	font-size: 48px;
+	font-weight: 300;
+}
+
+.offcanvas-backdrop.show {
+	opacity: 0;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: $white;
+	min-height: 80vh;
+}
+
+section {
+	width: 86%;
+}
+
+p {
+	font-size: 22px;
+}
+
+.primary-button {
+	align-items: center;
+	background-color: $logo-color-dark;
+	border: 3px solid $white;
+	border-radius: 8px;
+	box-sizing: border-box;
+	color: $white;
+	font-size: 16px;
+	height: 48px;
+	padding: 0 40px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+}
+.primary-button:hover {
+	background-color: $logo-color;
+}
+.primary-button:active {
+	box-shadow: 0px 0px 0px 0px;
+	top: 5px;
+	left: 5px;
+}
+.secondary-button {
+	align-items: center;
+	background-color: $white;
+	border: 3px solid $logo-color-dark;
+	border-radius: 8px;
+	box-sizing: border-box;
+	color: $logo-color-dark;
+	font-size: 16px;
+	height: 48px;
+	padding: 0 40px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+}
+.secondary-button:hover {
+	background-color: lighten($color: $logo-color-light, $amount: 30);
+}
+.secondary-button:active {
+	box-shadow: 0px 0px 0px 0px;
+	top: 5px;
+	left: 5px;
+}
+@media (max-width: 1400px) {
+	.only-desktop {
+		display: none;
+	}
+	#only-desktop {
+		display: none;
+	}
+	.sect-title h2 {
+		font-size: 30px;
+	}
+}

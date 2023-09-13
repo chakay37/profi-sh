@@ -1,0 +1,58 @@
+$logo-color: #a7996b;
+$logo-color-dark: #8f8054;
+$logo-color-light: #b6a771;
+$white: #f1f1ee;
+
+footer {
+	margin-top: 150px;
+	padding-top: 50px;
+	background-color: darken($color: $logo-color-dark, $amount: 10);
+	width: 120%;
+	position: relative;
+	left: -10%;
+	display: flex;
+	justify-content: center;
+	gap: 200px;
+	color: white;
+	padding: 50px;
+	h2 {
+		text-align: center;
+	}
+	img {
+		width: 100px;
+		height: 100px;
+	}
+	img:hover {
+		background-color: $logo-color;
+	}
+	.facebook {
+		border-radius: 15px;
+	}
+	.instagram {
+		border-radius: 25px;
+	}
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	a:hover {
+		text-decoration: underline;
+		color: white;
+	}
+	a:visited {
+		text-decoration: none;
+		color: $logo-color-light;
+	}
+	.images {
+		display: flex;
+		gap: 50px;
+		margin-top: 25px;
+	}
+}
+@media (max-width: 1400px) {
+	footer {
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
+	}
+}
