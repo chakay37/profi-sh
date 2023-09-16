@@ -31,17 +31,22 @@ $white: #f1f1ee;
 		margin-top: 30px;
 		color: $white;
 
+		table {
+			border-spacing: 0px;
+		}
+
 		tr {
 			height: 55px;
+			background-color: $logo-color-light;
 			.corner {
 				outline: white 1px solid;
 				position: sticky;
+				background-color: $logo-color;
 				left: 0px;
 			}
 			td,
 			th {
 				min-width: 160px;
-				background-color: $logo-color-light;
 				color: $white;
 				text-align: center;
 				vertical-align: middle;
@@ -53,9 +58,18 @@ $white: #f1f1ee;
 				padding: 0px;
 			}
 		}
+		thead {
+			th {
+				background-color: $logo-color;
+			}
+		}
 		tbody {
+			tr:nth-child(even) {
+				background-color: $logo-color;
+			}
 			th {
 				outline: white 1px solid;
+				background-color: $logo-color;
 				position: sticky;
 				left: 0px;
 			}

@@ -56,8 +56,8 @@
 	<section class="deals-sect">
 		<SectTitle>Nové akce</SectTitle>
 
-		<div class="table-container table-responsive">
-			<table class="table table-striped table-hover">
+		<div class="table-container">
+			<table>
 				<thead>
 					<tr>
 						<th class="corner" scope="col" />
