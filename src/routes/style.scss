@@ -14,20 +14,8 @@ $white: #f1f1ee;
 			font-size: 70px;
 		}
 	}
-	.carousel-container {
-		width: 45%;
-		img,
-		div {
-			height: 400px;
-		}
-		img {
-			object-fit: cover;
-			border: black 2px solid;
-			border-radius: 10px;
-		}
-		button {
-			opacity: 1;
-		}
+	.carousel-bs {
+		width: 55%;
 	}
 }
 
@@ -188,9 +176,19 @@ $white: #f1f1ee;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: 25px;
+
 		input,
 		select,
 		option {
+			width: 100%;
+			border-radius: 5px;
+			border: black 2px solid;
+			padding: 10px;
+			display: block;
+			box-sizing: border-box;
+		}
+		label {
 			width: 300px;
 		}
 	}
@@ -198,6 +196,9 @@ $white: #f1f1ee;
 .socials-sect {
 	margin-top: 100px;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0px;
 	.socials-row {
 		display: flex;
 		justify-content: space-between;
@@ -253,17 +254,10 @@ $white: #f1f1ee;
 		justify-content: start;
 		height: auto;
 		.title h1 {
-			font-size: 40px;
+			font-size: 38px;
 		}
-		.carousel-container {
+		.carousel-bs {
 			width: 100%;
-			height: 300px;
-			.carousel {
-				height: 100%;
-			}
-			img {
-				height: 300px;
-			}
 		}
 	}
 	.deals-sect {

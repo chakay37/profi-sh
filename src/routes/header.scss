@@ -54,6 +54,7 @@ header {
 			var(--bg-h);
 		transition: background-size 400ms;
 		--bg-h: 100%;
+		padding: 5px;
 	}
 	nav .nav-link:hover {
 		color: $white;
@@ -66,7 +67,7 @@ header {
 		margin: 0px;
 		border-radius: 8px;
 	}
-	.nav-link:hover .instagram {
+	.nav-item:hover .instagram {
 		background-color: #d6249f;
 		background-image: radial-gradient(
 			circle at 30% 107%,
@@ -78,7 +79,7 @@ header {
 		);
 		box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
 	}
-	.nav-link:hover .facebook {
+	.nav-item:hover .facebook {
 		background-color: #4267b2;
 	}
 
@@ -105,7 +106,7 @@ header {
 			position: fixed;
 			top: 0;
 			right: 0;
-			width: 100px;
+			width: 75px;
 			border-bottom-left-radius: 10px;
 			height: 60px;
 			background-color: $logo-color;

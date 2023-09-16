@@ -36,14 +36,21 @@ $white: #f1f1ee;
 ::-webkit-scrollbar-thumb:hover {
 	background: $logo-color-dark;
 }
-
+html {
+	overflow-x: hidden;
+}
 body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	background-color: $white;
-	max-width: 100%;
 	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+strong {
+	font-weight: bolder;
 }
 
 .sect-title h2 {
