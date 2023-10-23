@@ -9,7 +9,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
+<body style="border-radius: 10px;">
 	<div class="carousel-container">
 		<div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
 			<div class="carousel-inner">
@@ -55,7 +55,7 @@
 	.carousel-container {
 		width: 100%;
 		overflow-y: hidden;
-		height: 350px;
+		height: 400px;
 		div {
 			height: 100%;
 		}
@@ -67,8 +67,8 @@
 			width: 100%;
 			object-fit: cover;
 			border: black 2px solid;
-			box-sizing: border-box;
 			border-radius: 10px;
+			box-sizing: border-box;
 		}
 		button {
 			opacity: 1;

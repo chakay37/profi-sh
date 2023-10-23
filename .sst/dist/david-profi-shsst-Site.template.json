@@ -164,7 +164,7 @@
      ]
     },
     "bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-    "key": "0a62b99eaab0c6e7b2d398efb659804b99429f77a300884b45c51e7aa364d839.zip",
+    "key": "700b7d5dbbaefc7f1c02dd9ae3a462de81f4ee53a1c281e11b0f6b2d86cbf190.zip",
     "replacements": []
    },
    "DependsOn": [
@@ -181,7 +181,7 @@
     ],
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "0a62b99eaab0c6e7b2d398efb659804b99429f77a300884b45c51e7aa364d839.zip"
+     "S3Key": "700b7d5dbbaefc7f1c02dd9ae3a462de81f4ee53a1c281e11b0f6b2d86cbf190.zip"
     },
     "Description": "Server handler placeholder",
     "Environment": {
@@ -359,7 +359,7 @@
     "Fn::Join": [
      "",
      [
-      "{\"app\":\"profi-shsst\",\"stage\":\"david\",\"version\":\"2.25.2\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8d4df60491cc8a46e8e62d604424237628a7571dd\",\"stack\":\"david-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"placeholder\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"server\":\"",
+      "{\"app\":\"profi-shsst\",\"stage\":\"david\",\"version\":\"2.25.6\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8d4df60491cc8a46e8e62d604424237628a7571dd\",\"stack\":\"david-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"placeholder\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"server\":\"",
       {
        "Fn::GetAtt": [
         "siteServerFunction6DFA6F1B",

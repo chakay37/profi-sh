@@ -1,42 +1,60 @@
 <script lang="ts">
 	import './blog.scss';
+	import leavesbg from '$lib/main-img/leaves-bg.jpg';
 	import Title from '$lib/components/Title.svelte';
 </script>
 
-<main>
+<div class="blog-page">
 	<section>
-		<div class="select-article">
-			<input type="radio" name="clanek" id="1" checked />
-			<label class="radio-item" for="1">
+		<div class="card">
+			<div class="img-container">
+				<img src={leavesbg} alt="Obrázek článku" />
+				<div class="gradient" />
+			</div>
+			<div class="text">
 				<h3>O Ekologii</h3>
 				<p>2.8.2023</p>
-			</label>
-			<input type="radio" name="clanek" id="2" />
-			<label class="radio-item" for="2">
-				<h3>O Ekologii</h3>
-				<p>2.8.2023</p>
-			</label>
-			<input type="radio" name="clanek" id="3" />
-			<label class="radio-item" for="3">
-				<h3>O Ekologii</h3>
-				<p>2.8.2023</p>
-			</label>
-			<input type="radio" name="clanek" id="4" />
-			<label class="radio-item" for="4">
-				<h3>O Ekologii</h3>
-				<p>2.8.2023</p>
-			</label>
+			</div>
 		</div>
-		<div class="article">
-			<Title>O Ekologii</Title>
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, voluptatem explicabo
-				voluptates nisi perspiciatis est mollitia, natus laboriosam adipisci libero omnis vel, quae
-				vero quia et provident facilis vitae repudiandae! Lorem, ipsum dolor sit amet consectetur
-				adipisicing elit. Mollitia perspiciatis debitis ratione illum corporis? Omnis repellat fuga
-				autem similique! Voluptas quam, explicabo illo voluptatum voluptatem repudiandae accusamus
-				et soluta beatae.
-			</p>
+		<div class="card">
+			<div class="img-container">
+				<img src={leavesbg} alt="Obrázek článku" />
+				<div class="gradient" />
+			</div>
+			<div class="text">
+				<h3>O Ekologii</h3>
+				<p>2.8.2023</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="img-container">
+				<img src={leavesbg} alt="Obrázek článku" />
+				<div class="gradient" />
+			</div>
+			<div class="text">
+				<h3>O Ekologii</h3>
+				<p>2.8.2023</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="img-container">
+				<img src={leavesbg} alt="Obrázek článku" />
+				<div class="gradient" />
+			</div>
+			<div class="text">
+				<h3>O Ekologii</h3>
+				<p>2.8.2023</p>
+			</div>
+		</div>
+		<div class="card">
+			<div class="img-container">
+				<img src={leavesbg} alt="Obrázek článku" />
+				<div class="gradient" />
+			</div>
+			<div class="text">
+				<h3>O Ekologii</h3>
+				<p>2.8.2023</p>
+			</div>
 		</div>
 	</section>
-</main>
+</div>
