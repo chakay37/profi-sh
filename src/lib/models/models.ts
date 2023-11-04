@@ -9,13 +9,3 @@ export class Users {
         this.cityId = cityId;
     }
 }
-
-export class Photos {
-    public name: string;
-    public file: string;
-
-    public constructor(name: string, file: string) {
-        this.name = name;
-        this.file = file;
-    }
-}
