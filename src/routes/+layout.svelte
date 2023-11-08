@@ -37,6 +37,10 @@
 	<nav class="desktop-navbar">
 		<ul>
 			<li class="nav-item">
+				<a class="nav-link" href="/">Hlavní stránka</a>
+			</li>
+			<li class="nav-item circle-container"><div class="circle" /></li>
+			<li class="nav-item">
 				<a class="nav-link" href="prodejny">Prodejny</a>
 			</li>
 			<li class="nav-item circle-container">
@@ -83,6 +87,9 @@
 	{#if !init}
 		<nav class="nav-container" class:open={isNavOpen}>
 			<ul class="nav-list">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Hlavní stránka</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="prodejny">Prodejny</a>
 				</li>

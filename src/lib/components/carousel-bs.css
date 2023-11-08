@@ -144,14 +144,20 @@
 .carousel-caption {
 	position: absolute;
 	right: 15%;
-	bottom: 1.25rem;
+	bottom: 5%;
 	left: 15%;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
-	color: #fff;
+	padding-top: 0.5rem;
+	color: #f1f1ee;
+	background-color: #3d361f;
 	text-align: center;
+	height: 3.5rem !important;
 }
 
+.carousel-caption p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 100%;
+}
 .visually-hidden,
 .visually-hidden-focusable:not(:focus):not(:focus-within) {
 	width: 1px !important;

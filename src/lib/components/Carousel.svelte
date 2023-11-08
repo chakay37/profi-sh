@@ -15,6 +15,12 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active" data-bs-interval="4000">
 					<img src={firstShowcase} class="d-block w-100 img-fluid" alt="obrázek oblečení" />
+					<div class="carousel-caption d-none d-md-block">
+						<p>
+							Titulek např. na odkaz k prodeji. max 100 znaků. Lorem ipsum dolor sit, amet
+							consectetur adipisicing elit.
+						</p>
+					</div>
 				</div>
 				<div class="carousel-item" data-bs-interval="4000">
 					<img src={secondShowcase} class="d-block w-100 img-fluid" alt="obrázek oblečení" />

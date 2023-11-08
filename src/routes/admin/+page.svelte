@@ -4,8 +4,9 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 	import process from 'process';
 	import { encode, decode } from 'js-base64';
+	import { compress } from 'image-conversion';
+	import './style.scss';
 
-	let photosOut: Photos[] = [];
 	let photosURL: string[] = [];
 	//SF/4OVvE5KvU57QNjYz4y0IlMMx7IhhvFbFSO5WY
 	const dontReadThisPls = encode('SF/4OVvE5KvU57QNjYz4y0IlMMx7IhhvFbFSO5WY');
@@ -15,6 +16,16 @@
 
 		const formData = new FormData(e.target as HTMLFormElement);
 		const file = formData.get('file') as Blob;
+
+		// Assuming 'file' is your PNG image file
+		let jpgBlob: Blob;
+		await compress(file, {
+			quality: 0.8,
+			type: 'image/jpeg'
+		}).then((res: Blob) => {
+			console.log(res);
+			jpgBlob = res;
+		});
 
 		AWS.config.update({
 			accessKeyId: 'AKIAWQZV5LCLPYYRFKGN',
@@ -26,8 +37,8 @@
 
 		const params = {
 			Bucket: 'file-upload-sh',
-			Key: 'image.png',
-			Body: file
+			Key: 'image.jpg',
+			Body: jpgBlob
 		};
 
 		s3.upload(params, (err, data) => {
@@ -66,7 +77,7 @@
 
 	onMount(async () => {
 		try {
-			const response = await fetch('https://file-upload-sh.s3.amazonaws.com/image.png');
+			const response = await fetch('https://file-upload-sh.s3.amazonaws.com/image.jpg');
 			const blob = await response.blob();
 			//let photoOut = await response.json();
 
@@ -80,12 +91,19 @@
 		}
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
 	});
+
+	let aaa: FileList;
 </script>
 
 <body>
 	<section>
 		<form on:submit|preventDefault={handleSubmit}>
-			<input name="file" type="file" accept="image/png, image/jpeg" />
+			<label class="aaa secondary-button"
+				>{#if aaa == undefined}
+					Změň obrázek
+				{/if}{#if aaa != undefined}Obrázek vybrán ✔️{/if}
+				<input name="file" type="file" accept="image/png, image/jpeg" bind:files={aaa} />
+			</label>
 			<button type="submit">Upload</button>
 		</form>
 		{#each photosURL as photoURL}

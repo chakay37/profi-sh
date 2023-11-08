@@ -1,0 +1,21 @@
+2023-11-08T09:23:57.090Z  +2973ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"david","ssmPrefix":"/sst/profi-shsst/david/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1699435434137.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"C:\\Users\\david\\Desktop\\profi-sh sst\\sst.config.ts","root":"C:\\Users\\david\\Desktop\\profi-sh sst","out":"C:\\Users\\david\\Desktop\\profi-sh sst\\.sst","artifacts":"C:\\Users\\david\\Desktop\\profi-sh sst\\.sst\\artifacts"}}
+2023-11-08T09:23:58.398Z  +1308ms [debug] Using AWS profile 
+2023-11-08T09:23:58.451Z    +53ms [debug] Created AWS client IoTClient
+2023-11-08T09:23:58.451Z     +0ms [debug] Getting IoT endpoint
+2023-11-08T09:23:58.868Z   +417ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
+2023-11-08T09:23:58.869Z     +1ms [debug] Initializing bootstrap context
+2023-11-08T09:23:58.870Z     +1ms [debug] Created AWS client CloudFormationClient
+2023-11-08T09:23:59.382Z   +512ms [debug] Loaded bootstrap status
+2023-11-08T09:23:59.382Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.2","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
+2023-11-08T09:23:59.383Z     +1ms [debug] Created AWS client S3Client
+2023-11-08T09:23:59.452Z    +69ms [debug] Synthesizing stacks...
+2023-11-08T09:23:59.473Z    +21ms [debug] Created AWS client STSClient
+2023-11-08T09:23:59.926Z   +453ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
+2023-11-08T09:23:59.931Z     +5ms [debug] IoT connected
+2023-11-08T09:24:00.047Z   +116ms [debug] Generating types in C:\Users\david\Desktop\profi-sh sst\.sst\types
+2023-11-08T09:24:00.050Z     +3ms [debug] Running 1 deferred tasks with concurrency: 7
+2023-11-08T09:24:00.247Z   +197ms [debug] 
+2023-11-08T09:24:00.247Z     +0ms [debug] Loading v2 AWS SDK
+2023-11-08T09:24:00.247Z     +0ms [debug] Finished synthesizing
+2023-11-08T09:24:00.798Z   +551ms [debug] Created AWS client LambdaClient
+2023-11-08T09:24:01.454Z   +656ms [debug] Failed to assume arn:aws:iam::448400283798:role/david-profi-shsst-Site-siteServerFunctionServiceRo-SVYR3W3I8S47. {"name":"AccessDenied","$fault":"client","$metadata":{"httpStatusCode":403,"requestId":"53e14dab-4df0-4b7e-9c41-0d5b5660098f","attempts":1,"totalRetryDelay":0},"Type":"Sender","Code":"AccessDenied","message":"User: arn:aws:iam::448400283798:user/admin is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::448400283798:role/david-profi-shsst-Site-siteServerFunctionServiceRo-SVYR3W3I8S47"}

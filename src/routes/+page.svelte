@@ -2,7 +2,7 @@
 	import './style.scss';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { browser } from '$app/environment';
-	import { scrollto } from "svelte-scrollto";
+	import { scrollto } from 'svelte-scrollto';
 
 	import staticImage from '$lib/main-img/4.jpg';
 	/*const staticImage = new URL(
@@ -26,16 +26,16 @@
 	import { onMount } from 'svelte';
 	import { json } from '@sveltejs/kit';
 
-	import { get } from '$lib/db'
+	import { get } from '$lib/db';
 
 	let shops = [
-	{id:-1, name: ''},
-	{id:-1, name: ''},
-	{id:-1, name: ''},
-	{id:-1, name: ''},
-	{id:-1, name: ''},];
-	let cities:object[] = [];
-
+		{ id: -1, name: '' },
+		{ id: -1, name: '' },
+		{ id: -1, name: '' },
+		{ id: -1, name: '' },
+		{ id: -1, name: '' }
+	];
+	let cities: object[] = [];
 
 	onMount(async () => {
 		shops = await get('shops');
@@ -43,15 +43,11 @@
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
 	});
 
-	function postUser() {
-
-	}
+	function postUser() {}
 
 	import { Users } from '$lib/models/models';
-	let user: Users = new Users('','',0)
-	
+	let user: Users = new Users('', '', 0);
 </script>
-
 
 <main>
 	<section class="title-sect">
@@ -120,17 +116,17 @@
 		<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />
 		<div class="info">
 			<SectTitle>Dostávejte upozornění na akce</SectTitle>
-			<form  on:submit={postUser} method="post">
+			<form on:submit={postUser} method="post">
 				<label
 					>E-mail
 					<input bind:value={user.email} type="email" placeholder="jannovak@seznam.cz" />
 				</label>
-	
+
 				<label
 					>Tel. číslo
 					<input bind:value={user.phone} type="phone" placeholder="+420 777 645 189" />
 				</label>
-	
+
 				<label
 					>Město
 					<select bind:value={user.cityId}>
@@ -139,14 +135,12 @@
 						{/each}
 					</select>
 				</label>
-	
+
 				<button class="secondary-button" type="submit">Potvrdit</button>
 			</form>
 		</div>
-		
 	</section>
 	<section class="blog-sect">
-		
 		<SectTitle>Second Hand a ekologie</SectTitle>
 		<p>
 			Rychlá móda má dopad na planetu. Zajímáte se o ekologii? Nyní máte možnost zjisti více. Second
@@ -160,7 +154,6 @@
 	</section>
 
 	<section class="socials-sect">
-		
 		<SectTitle>Sociální sítě</SectTitle>
 		<div class="socials-row" id="only-desktop">
 			<div class="item-container fb">
