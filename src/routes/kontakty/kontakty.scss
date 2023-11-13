@@ -6,26 +6,26 @@ $white: #f1f1ee;
 .kontakty-page {
 	display: flex;
 	justify-content: center;
-    width: 100%;
-    min-height: 50vh;
-    section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        table {
-            .title {
-                padding-bottom: 30px;
-            }
-            th {
-                text-align: right;
-                border-right: $logo-color-dark 2px solid;
-            }
-            th,td {
-                padding: 10px;
-            }
-        }
-        
-    }
+	width: 100%;
+	min-height: 50vh;
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		.title {
+			padding-bottom: 30px;
+			padding-right: 100px;
+		}
+		table {
+			th {
+				text-align: right;
+				border-right: $logo-color-dark 2px solid;
+			}
+			th,
+			td {
+				padding: 10px;
+			}
+		}
+	}
 }

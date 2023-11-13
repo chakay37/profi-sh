@@ -49,6 +49,13 @@
 	let user: Users = new Users('', '', 0);
 </script>
 
+<head>
+	<meta
+		name="description"
+		content="Profi Second Hand. Ekologicky smýšlející second hand. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem."
+	/>
+</head>
+
 <main>
 	<section class="title-sect">
 		<div class="title">
