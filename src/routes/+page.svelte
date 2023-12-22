@@ -1,7 +1,6 @@
 <script lang="ts">
 	import './style.scss';
 	import Carousel from '$lib/components/Carousel.svelte';
-	import { browser } from '$app/environment';
 	import { scrollto } from 'svelte-scrollto';
 
 	import staticImage from '$lib/main-img/4.jpg';
@@ -27,21 +26,34 @@
 	import { json } from '@sveltejs/kit';
 
 	import { get } from '$lib/db';
+	import type { Deals } from '$lib/models/models';
+	import DealsRow from '$lib/components/Deals-row.svelte';
 
-	let shops = [
-		{ id: -1, name: '' },
-		{ id: -1, name: '' },
-		{ id: -1, name: '' },
-		{ id: -1, name: '' },
-		{ id: -1, name: '' }
-	];
+	let shops: object[] = [];
 	let cities: object[] = [];
-
+	let deals: Deals[] = [];
 	onMount(async () => {
 		shops = await get('shops');
 		cities = await get('cities');
+		deals = await get('deals');
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
+		
+		for (let i = 0; i < deals.length; i++) {
+			let date = new Date(deals[i].date)
+			deals[i].dateStr = dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth()+1) + '.';
+		}
+		
 	});
+
+	let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
+	let dates: string[] = [];
+	for (let i = 0; i < 21; i++) {
+		let date: Date = new Date();
+		date.setDate(new Date().getDate() + i);
+		dates.push(dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth()+1) + '.');
+		
+	}
+	
 
 	function postUser() {}
 
@@ -60,6 +72,12 @@
 	<section class="title-sect">
 		<div class="title">
 			<h1>Profi Second Hand</h1>
+			<p>
+				Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA.
+Častá OBMĚNA ZBOŽÍ, unikátní systém SLEV A VÝPRODEJŮ.
+Dlouholetá tradice, česká značka, 11 prodejen pro celé ČR.
+Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
+			</p>
 			<div class="buttons">
 				<button use:scrollto={'#akce'} class="secondary-button">Akce a Slevy</button>
 				<button use:scrollto={'#sms'} class="secondary-button">Dostávejte upozornění SMS</button>
@@ -68,52 +86,27 @@
 		<div class="carousel-bs"><Carousel /></div>
 	</section>
 	<section class="deals-sect" id="akce">
-		<SectTitle>Nové akce</SectTitle>
-
+		<div class="title">
+		<SectTitle >Nové akce</SectTitle>
+	</div>
 		<div class="table-container">
 			<table>
 				<thead>
 					<tr>
 						<th class="corner" scope="col" />
-						<th scope="col">Dnes</th>
-						<th scope="col">Zítra</th>
-						<th scope="col">So 26.8.</th>
-						<th scope="col">Ne 27.8.</th>
-						<th scope="col">Po 28.8.</th>
-						<th scope="col">Út 29.8.</th>
-						<th scope="col">St 30.8.</th>
-						<th scope="col">Čt 1.9.</th>
-						<th scope="col">Pá 2.9.</th>
-						<th scope="col">So 3.9.</th>
-						<th scope="col">Ne 4.9.</th>
+						{#each shops as shop}
+							<th scope="col">{shop['name']}</th>
+						{/each}
 					</tr>
 				</thead>
 				<tbody>
-					{#each shops as shop}
-						<tr>
-							<th scope="row">{shop['name']}</th>
-							<td
-								><div class="table-item">
-									<p>-30%</p>
-									<a href="">Zjistit více <img src={linkIcon} alt="Odkaz na akci" /></a>
-								</div></td
-							>
-							<td
-								><div class="table-item">
-									<p>-20%</p>
-									<a href="">Zjistit více <img src={linkIcon} alt="Odkaz na akci" /></a>
-								</div></td
-							>
-							<td />
-							<td />
-							<td />
-							<td />
-							<td />
-							<td />
-							<td />
-							<td />
-							<td />
-						</tr>
+					{#each dates as date}
+						{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
+						<DealsRow weekend={true} deals={deals} shops={shops} date={date} />
+						{/if}
+						{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
+						<DealsRow weekend={false} deals={deals} shops={shops} date={date} />
+						{/if}
 					{/each}
 				</tbody>
 			</table>
