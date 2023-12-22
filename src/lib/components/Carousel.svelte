@@ -92,4 +92,16 @@
 			}
 		}
 	}
+	@media (min-width: 800px) {
+		.carousel-container {
+			width: 100%;
+			height: 300px;
+			div {
+				height: 100%;
+			}
+			img {
+				height: 100%;
+			}
+		}
+	}
 </style>

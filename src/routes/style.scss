@@ -278,7 +278,13 @@ $white: #f1f1ee;
 			font-size: 38px;
 		}
 		.carousel-bs {
+			margin-top: 30px;
 			width: 100%;
+		}
+		.buttons {
+			button {
+				padding: 0 20px;
+			}
 		}
 	}
 	.deals-sect {
@@ -322,6 +328,13 @@ $white: #f1f1ee;
 			.fb {
 				width: 500px;
 			}
+		}
+	}
+}
+@media (min-width: 800px) {
+	.title-sect {
+		.carousel-bs {
+			min-height: 300px;
 		}
 	}
 }
