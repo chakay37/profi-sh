@@ -9,3 +9,10 @@ export class Users {
         this.cityId = cityId;
     }
 }
+export type Deals = {
+     value: number
+     type: number
+     date: string
+     shopId: number
+     dateStr: string
+}
