@@ -95,7 +95,7 @@
 	@media (min-width: 800px) {
 		.carousel-container {
 			width: 100%;
-			height: 300px;
+			height: 350px;
 			div {
 				height: 100%;
 			}

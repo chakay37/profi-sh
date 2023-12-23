@@ -41,25 +41,25 @@
 			</li>
 			<li class="nav-item circle-container"><div class="circle" /></li>
 			<li class="nav-item">
-				<a class="nav-link" href="prodejny">Prodejny</a>
+				<a class="nav-link" href="/prodejny">Prodejny</a>
 			</li>
 			<li class="nav-item circle-container">
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="eshop">E-shop</a>
+				<a class="nav-link" href="/eshop">E-shop</a>
 			</li>
 			<li class="nav-item circle-container">
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="blog">Blog</a>
+				<a class="nav-link" href="/blog">Blog</a>
 			</li>
 			<li class="nav-item circle-container">
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="kontakty">Kontakty</a>
+				<a class="nav-link" href="/kontakty">Kontakty</a>
 			</li>
 			<li class="nav-item circle-container">
 				<div class="circle" />
@@ -91,19 +91,19 @@
 					<a class="nav-link" href="/">Hlavní stránka</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="prodejny">Prodejny</a>
+					<a class="nav-link" href="/prodejny">Prodejny</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="eshop">E-shop</a>
+					<a class="nav-link" href="/eshop">E-shop</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="blog">Blog</a>
+					<a class="nav-link" href="/blog">Blog</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="kontakty">Kontakty</a>
+					<a class="nav-link" href="/kontakty">Kontakty</a>
 				</li>
 
 				<li class="nav-item social-container">
@@ -126,11 +126,11 @@
 	<div>
 		<h2><strong>Odkazy</strong></h2>
 		<ul>
-			<li><a href="">Prodejny </a></li>
-			<li><a href="a">E-shop</a></li>
-			<li><a href="a">Blog</a></li>
-			<li><a href="">Upozornění SMS</a></li>
-			<li><a href="a">Kontakty</a></li>
+			<li><a href="/">Hlavní stránka</a></li>
+			<li><a href="/prodejny">Prodejny </a></li>
+			<li><a href="/eshop">E-shop</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="/kontakty">Kontakty</a></li>
 		</ul>
 	</div>
 	<div>

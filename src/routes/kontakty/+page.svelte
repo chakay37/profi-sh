@@ -9,7 +9,7 @@
 		<table>
 			<tr>
 				<th>Firma</th>
-				<td>Jakub Pýcha</td>
+				<td>Profi Second Hand s.r.o.</td>
 			</tr>
 			<tr>
 				<th>IČO</th>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>e-mail</th>
-				<td>jakub@pycha.cz</td>
+				<td>info@profi-sh.cz</td>
 			</tr>
 		</table>
 	</section>
