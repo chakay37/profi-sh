@@ -25,24 +25,41 @@
 	import { onMount } from 'svelte';
 	import { json } from '@sveltejs/kit';
 
-	import { get } from '$lib/db';
+	import { get, postObj, postString } from '$lib/db';
 	import type { Deals } from '$lib/models/models';
 	import DealsRow from '$lib/components/Deals-row.svelte';
 
 	let shops: object[] = [];
 	let cities: object[] = [];
 	let deals: Deals[] = [];
+
+	let shopsNames: string[] = [
+		'Děčín - Plzeňská',
+		'Děčín - Průtah',
+		'Mladá Boleslav',
+		'Most',
+		'Pardubice',
+		'Písek',
+		'Praha 8',
+		'Tábor',
+		'Teplice',
+		'Ústí nad Labem',
+		'Plzeň'
+	];
 	onMount(async () => {
 		shops = await get('shops');
 		cities = await get('cities');
 		deals = await get('deals');
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
-		
+
+		shopsNames = [];
+		shops.forEach((shop) => shopsNames.push(shop.name));
+
 		for (let i = 0; i < deals.length; i++) {
-			let date = new Date(deals[i].date)
-			deals[i].dateStr = dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth()+1) + '.';
+			let date = new Date(deals[i].date);
+			deals[i].dateStr =
+				dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
 		}
-		
 	});
 
 	let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
@@ -50,15 +67,17 @@
 	for (let i = 0; i < 21; i++) {
 		let date: Date = new Date();
 		date.setDate(new Date().getDate() + i);
-		dates.push(dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth()+1) + '.');
-		
+		dates.push(
+			dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.'
+		);
 	}
-	
-
-	function postUser() {}
 
 	import { Users } from '$lib/models/models';
 	let user: Users = new Users('', '', 0);
+
+	async function postUser() {
+		await postObj('users', user);
+	}
 </script>
 
 <head>
@@ -73,10 +92,9 @@
 		<div class="title">
 			<h1>Profi Second Hand</h1>
 			<p>
-				Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA.
-Častá OBMĚNA ZBOŽÍ, unikátní systém SLEV A VÝPRODEJŮ.
-Dlouholetá tradice, česká značka, 11 prodejen pro celé ČR.
-Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
+				Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA. Častá OBMĚNA ZBOŽÍ,
+				unikátní systém SLEV A VÝPRODEJŮ. Dlouholetá tradice, česká značka, 11 prodejen pro celé ČR.
+				Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
 			</p>
 			<div class="buttons">
 				<button use:scrollto={'#akce'} class="secondary-button">Akce a Slevy</button>
@@ -87,25 +105,25 @@ Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
 	</section>
 	<section class="deals-sect" id="akce">
 		<div class="title">
-		<SectTitle >Nové akce</SectTitle>
-	</div>
+			<SectTitle>Nové akce</SectTitle>
+		</div>
 		<div class="table-container">
 			<table>
 				<thead>
 					<tr>
 						<th class="corner" scope="col" />
-						{#each shops as shop}
-							<th scope="col">{shop['name']}</th>
+						{#each shopsNames as shop}
+							<th scope="col">{shop}</th>
 						{/each}
 					</tr>
 				</thead>
 				<tbody>
 					{#each dates as date}
 						{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
-						<DealsRow weekend={true} deals={deals} shops={shops} date={date} />
+							<DealsRow weekend={true} {deals} {shops} {date} />
 						{/if}
 						{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
-						<DealsRow weekend={false} deals={deals} shops={shops} date={date} />
+							<DealsRow weekend={false} {deals} {shops} {date} />
 						{/if}
 					{/each}
 				</tbody>
@@ -130,8 +148,8 @@ Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
 				<label
 					>Město
 					<select bind:value={user.cityId}>
-						{#each cities as city, i}
-							<option value={i + 1}>{city.name}</option>
+						{#each cities as city}
+							<option value={city.id}>{city.name}</option>
 						{/each}
 					</select>
 				</label>
