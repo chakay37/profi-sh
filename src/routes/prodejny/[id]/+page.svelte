@@ -64,5 +64,6 @@
 				</table>
 			</div>
 		</div>
+		<a href="/prodejny"> <button class="secondary-button">Zpět</button></a>
 	</section>
 </div>

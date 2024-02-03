@@ -30,7 +30,7 @@
 					<p>{article.text}</p>
 				{/if}
 			</div>
-			<button class="primary-button">Zpět</button>
+			<a href="/blog"> <button class="primary-button">Zpět</button></a>
 		</div>
 	</section>
 </div>
