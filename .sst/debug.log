@@ -1,0 +1,20 @@
+2024-02-03T15:47:14.020Z  +3571ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"david","ssmPrefix":"/sst/profi-shsst/david/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1706975230472.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"C:\\Users\\david\\Desktop\\profi-sh sst\\sst.config.ts","root":"C:\\Users\\david\\Desktop\\profi-sh sst","out":"C:\\Users\\david\\Desktop\\profi-sh sst\\.sst","artifacts":"C:\\Users\\david\\Desktop\\profi-sh sst\\.sst\\artifacts"}}
+2024-02-03T15:47:15.349Z  +1329ms [debug] Using AWS profile 
+2024-02-03T15:47:15.388Z    +39ms [debug] Created AWS client IoTClient
+2024-02-03T15:47:15.388Z     +0ms [debug] Getting IoT endpoint
+2024-02-03T15:47:15.785Z   +397ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
+2024-02-03T15:47:15.785Z     +0ms [debug] Initializing bootstrap context
+2024-02-03T15:47:15.786Z     +1ms [debug] Created AWS client CloudFormationClient
+2024-02-03T15:47:16.289Z   +503ms [debug] Loaded bootstrap status
+2024-02-03T15:47:16.289Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.2","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
+2024-02-03T15:47:16.291Z     +2ms [debug] Created AWS client S3Client
+2024-02-03T15:47:16.353Z    +62ms [debug] Synthesizing stacks...
+2024-02-03T15:47:16.366Z    +13ms [debug] Created AWS client STSClient
+2024-02-03T15:47:16.832Z   +466ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
+2024-02-03T15:47:16.970Z   +138ms [debug] Generating types in C:\Users\david\Desktop\profi-sh sst\.sst\types
+2024-02-03T15:47:16.973Z     +3ms [debug] Running 1 deferred tasks with concurrency: 7
+2024-02-03T15:47:17.194Z   +221ms [debug] 
+2024-02-03T15:47:17.194Z     +0ms [debug] Loading v2 AWS SDK
+2024-02-03T15:47:17.195Z     +1ms [debug] Finished synthesizing
+2024-02-03T15:47:17.210Z    +15ms [debug] IoT connected
+2024-02-03T15:47:17.741Z   +531ms [debug] Created AWS client LambdaClient

@@ -26,6 +26,7 @@ $white: #f1f1ee;
 			display: inline;
 			justify-content: space-around;
 			align-items: center;
+			text-decoration: none;
 
 			.img-container {
 				width: 100%;
@@ -53,13 +54,11 @@ $white: #f1f1ee;
 		}
 		.text {
 			padding: 25px;
-			display: flex;
-			justify-content: space-between;
+			
 			h3,
 			p {
-				display: inline;
 				margin-top: 0px;
-				margin-bottom: 0px;
+				margin-bottom: 5px;
 			}
 			h3 {
 				font-size: 26px;

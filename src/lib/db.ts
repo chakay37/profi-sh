@@ -5,8 +5,15 @@ export async function get(table: string)
 	const obj = await response.json();
 	return obj;
 } 
-export async function postObj(table: string, body: object) 
+export async function getId(table: string, id: number)
 {
+	const response = await fetch(LINK + table + '/' + id)
+	const obj = await response.json();
+	return obj;
+} 
+export async function post(table: string, body: object) 
+{
+  console.log(JSON.stringify(body))
 	const response = await fetch(LINK + table, {
     method: 'POST',
     headers: {
@@ -15,17 +22,4 @@ export async function postObj(table: string, body: object)
     },
     body: JSON.stringify(body)
   });
-  const content = await response.json();
-}
-export async function postString(table: string, body: string) 
-{
-	const response = await fetch(LINK + table, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/text',
-      'Content-Type': 'application/text'
-    },
-    body: body
-  });
-  const content = await response.json();
 }

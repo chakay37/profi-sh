@@ -6,4 +6,79 @@ $white: #f1f1ee;
 	display: flex;
 	justify-content: center;
 	min-height: 80vh;
+	section {
+		width: 60%;
+	}
+
+	.name-container {
+		border: solid 2px black;
+		border-radius: 10px;
+		background-color: $logo-color-light;
+		color: white;
+	}
+	
+	.shop-name-container,
+	.info-container {
+		display: flex;
+		justify-content: space-between;
+		gap: 50px;
+		margin-top: 50px;
+
+		p {
+			padding: 10px;
+		}
+		img {
+			width: 700px;
+			height: 300px;
+			border: solid 2px black;
+			border-radius: 10px;
+		}
+		iframe {
+			width: 100%;
+			height: 300px;
+			border-radius: 10px;
+		}
+		.opening,
+		.map {
+			border: solid 2px black;
+			border-radius: 10px;
+			padding: 10px;
+			background-color: $logo-color-light;
+			color: white;
+		}
+		.opening {
+			width: 30%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.map {
+			width: 70%;
+		}
+		
+
+		.name-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+		}
+	}
+
+	table {
+		display: flex;
+		border-collapse: collapse;
+		th,
+		td {
+			background-color: $logo-color;
+			border: $logo-color-dark 1px solid;
+			padding: 10px;
+			color: white;
+		}
+		thead tr,
+		tbody tr {
+			display: inline-flex;
+			flex-direction: column;
+		}
+	}
 }

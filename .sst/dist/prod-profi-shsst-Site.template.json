@@ -275,7 +275,7 @@
      ]
     },
     "bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-    "key": "e82e044f8c9eef759c81192374c89a721248318e074091866e820263bc3d57e1.zip",
+    "key": "30dd2d45dff37dd829760a8fcd29de002dac544bfd09180526680cf5b75afa0a.zip",
     "replacements": []
    },
    "DependsOn": [
@@ -392,7 +392,7 @@
     ],
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "e82e044f8c9eef759c81192374c89a721248318e074091866e820263bc3d57e1.zip"
+     "S3Key": "30dd2d45dff37dd829760a8fcd29de002dac544bfd09180526680cf5b75afa0a.zip"
     },
     "Description": "Server handler for SvelteKit",
     "Environment": {
@@ -544,7 +544,7 @@
        ],
        "Compress": true,
        "FunctionAssociations": [],
-       "PathPattern": "_app/*",
+       "PathPattern": "favicon.png",
        "TargetOriginId": "prodprofishsstSitesiteDistributionOrigin2FD8DB7F0",
        "ViewerProtocolPolicy": "redirect-to-https"
       },
@@ -562,7 +562,7 @@
        ],
        "Compress": true,
        "FunctionAssociations": [],
-       "PathPattern": "favicon.png",
+       "PathPattern": "_app/*",
        "TargetOriginId": "prodprofishsstSitesiteDistributionOrigin2FD8DB7F0",
        "ViewerProtocolPolicy": "redirect-to-https"
       }
@@ -1076,7 +1076,7 @@
     "Sources": [
      {
       "BucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
-      "ObjectKey": "71fe83c0fd154b7ca7270afdbfae9ac54eff6043d8f5b7c911dba36c20a14d68.zip"
+      "ObjectKey": "ff662049201bf470c6776f30fa4d2eacfabe82e2dad822a8b308f284761f9122.zip"
      }
     ],
     "DestinationBucketName": {
@@ -1087,17 +1087,17 @@
       "--exclude",
       "*",
       "--include",
-      "_app/*",
+      "favicon.png",
       "--cache-control",
-      "public,max-age=31536000,immutable"
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
      ],
      [
       "--exclude",
       "*",
       "--include",
-      "favicon.png",
+      "_app/*",
       "--cache-control",
-      "public,max-age=0,s-maxage=31536000,must-revalidate"
+      "public,max-age=31536000,immutable"
      ]
     ],
     "ReplaceValues": []
@@ -1152,7 +1152,7 @@
       "Arn"
      ]
     },
-    "buildId": "1700597210263",
+    "buildId": "1706974395822",
     "distributionId": {
      "Ref": "siteDistribution706F5265"
     },
@@ -1388,7 +1388,7 @@
         "Arn"
        ]
       },
-      "\",\"runtime\":\"nodejs18.x\",\"handler\":\".svelte-kit/svelte-kit-sst/server/lambda-handler/index.handler\",\"localId\":\"c88a703dca30b9349045aeffc8c70807817be6afa3\",\"secrets\":[]}}]}"
+      "\",\"runtime\":\"nodejs18.x\",\"handler\":\".svelte-kit\\\\svelte-kit-sst\\\\server\\\\lambda-handler\\\\index.handler\",\"localId\":\"c88a703dca30b9349045aeffc8c70807817be6afa3\",\"secrets\":[]}}]}"
      ]
     ]
    }

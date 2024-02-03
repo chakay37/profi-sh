@@ -13,15 +13,15 @@
 <div class="prodejny-page">
 	<section>
 		{#each shops as shop}
-		<a href="/prodejny/{shop.id}" class="card" >
-					<div class="img-container">
-						<img src={img} alt="Obrázek prodejny" />
-						<div class="gradient" />
-					</div>
-					<div class="text">
-						<h3>{shop.name}</h3>
-					</div>
-				</a>
+			<a href="/prodejny/{shop.id}" class="card">
+				<div class="img-container">
+					<img src={img} alt="Obrázek prodejny" />
+					<div class="gradient" />
+				</div>
+				<div class="text">
+					<h3>{shop.name}</h3>
+				</div>
+			</a>
 		{/each}
 	</section>
 </div>

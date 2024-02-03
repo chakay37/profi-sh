@@ -1,0 +1,32 @@
+$logo-color: #a7996b;
+$logo-color-dark: #8f8054;
+$logo-color-light: #b6a771;
+$white: #f1f1ee;
+.article-page {
+	display: flex;
+	justify-content: center;
+	min-height: 80vh;
+
+	section {
+		width: 60%;
+
+		.article-container {
+			background-color: $logo-color;
+			border-radius: 10px;
+			margin-top: 50px;
+			color: white;
+			padding: 30px;
+			min-height: 50%;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			p {
+				margin-top: 20px;
+			}
+			button {
+				width: 150px;
+			}
+			
+		}
+	}
+}

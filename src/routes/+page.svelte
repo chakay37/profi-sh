@@ -25,7 +25,7 @@
 	import { onMount } from 'svelte';
 	import { json } from '@sveltejs/kit';
 
-	import { get, postObj, postString } from '$lib/db';
+	import { get, post } from '$lib/db';
 	import type { Deals } from '$lib/models/models';
 	import DealsRow from '$lib/components/Deals-row.svelte';
 
@@ -70,13 +70,6 @@
 		dates.push(
 			dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.'
 		);
-	}
-
-	import { Users } from '$lib/models/models';
-	let user: Users = new Users('', '', 0);
-
-	async function postUser() {
-		await postObj('users', user);
 	}
 </script>
 
@@ -134,27 +127,27 @@
 		<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />
 		<div class="info">
 			<SectTitle>Dostávejte upozornění na akce</SectTitle>
-			<form on:submit={postUser} method="post">
+			<form action="?/user" method="post">
 				<label
 					>E-mail
-					<input bind:value={user.email} type="email" placeholder="jannovak@seznam.cz" />
+					<input name="email" type="email" placeholder="jannovak@seznam.cz" />
 				</label>
 
 				<label
 					>Tel. číslo
-					<input bind:value={user.phone} type="phone" placeholder="+420 777 645 189" />
+					<input name="phone" type="phone" placeholder="+420 777 645 189" />
 				</label>
 
 				<label
 					>Město
-					<select bind:value={user.cityId}>
+					<select name="cityId">
 						{#each cities as city}
 							<option value={city.id}>{city.name}</option>
 						{/each}
 					</select>
 				</label>
 
-				<button class="secondary-button" type="submit">Potvrdit</button>
+				<button class="secondary-button" formaction="?/user">Potvrdit</button>
 			</form>
 		</div>
 	</section>
