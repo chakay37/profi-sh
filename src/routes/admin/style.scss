@@ -1,11 +1,63 @@
-form {
+$logo-color: #a7996b;
+$logo-color-dark: #8f8054;
+$logo-color-light: #b6a771;
+$white: #f1f1ee;
+
+section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: space-around;
+}
+
+.card {
+	background-color: $logo-color;
+	color: white;
+	height: 600px;
+	width: 500px;
+	border: black 2px solid;
+	border-radius: 10px;
 	padding: 10px;
-	height: 150px;
-}
-.aaa {
-	cursor: pointer;
-	input {
-		display: none;
+	margin-top: 20px;
+	form {
+		padding: 10px;
+		
 	}
-	margin: 10px;
+	button {
+		background-color: $logo-color-dark;
+		color: $white;
+		border-radius: 5px;
+		height: 30px;
+		margin: 10px;
+	}
+	img {
+		width: 100%;
+		height: 300px;
+		object-fit: contain;
+	}
+	.imageSelector {
+		cursor: pointer;
+		input {
+			display: none;
+		}
+		margin: 10px;
+	}
+	.desc {
+		margin-top: 5px;
+		background-color: $logo-color-dark;
+		color: $white;
+		border: lightgray 1px solid;
+		width: 100%;
+		height: 50px;
+		font-size: 15px;
+		display: block;
+	}
+	input {
+		font-size: 15px;
+		color: $white;
+		background-color: $logo-color-dark;
+		border: lightgray 1px solid;
+	}
+
 }
+
