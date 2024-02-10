@@ -3,18 +3,37 @@ $logo-color-dark: #8f8054;
 $logo-color-light: #b6a771;
 $white: #f1f1ee;
 
-section {
+.admin-page { 
 	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: space-around;
+	justify-content: center;
+	section {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 50px;
+	}
+	textarea {
+		background-color: $logo-color-dark;
+		color: $white;
+		border: lightgray 1px solid;
+		width: 100%;
+		height: 70px;
+		font-size: 15px;
+		display: block;
+	}
+}
+
+.card.akce {
+	label {
+		display: block;
+		margin-top: 5px;
+	}
 }
 
 .card {
 	background-color: $logo-color;
 	color: white;
 	height: 600px;
-	width: 500px;
+	width: 400px;
 	border: black 2px solid;
 	border-radius: 10px;
 	padding: 10px;
@@ -44,15 +63,17 @@ section {
 	}
 	.desc {
 		margin-top: 5px;
-		background-color: $logo-color-dark;
-		color: $white;
-		border: lightgray 1px solid;
-		width: 100%;
 		height: 50px;
-		font-size: 15px;
 		display: block;
 	}
 	input {
+		margin-top: 5px;
+		font-size: 15px;
+		color: $white;
+		background-color: $logo-color-dark;
+		border: lightgray 1px solid;
+	}
+	select {
 		font-size: 15px;
 		color: $white;
 		background-color: $logo-color-dark;

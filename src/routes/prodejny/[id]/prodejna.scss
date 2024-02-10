@@ -13,6 +13,7 @@ $white: #f1f1ee;
 	.name-container {
 		border: solid 2px black;
 		border-radius: 10px;
+		min-height: 100px;
 		background-color: $logo-color-light;
 		color: white;
 	}
@@ -85,4 +86,14 @@ $white: #f1f1ee;
 	button {
 		margin-top: 30px;
 	}
+}
+@media (max-width: 1400px) {
+	.prodejna-page {
+	.info-container {
+		flex-direction: column;
+		.map,
+		.opening {
+			width: 100%;
+		}
+	}}
 }

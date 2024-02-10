@@ -9,10 +9,20 @@ export class Users {
         this.cityId = cityId;
     }
 }
-export type Deals = {
-     value: number
-     type: number
-     date: string
-     shopId: number
-     dateStr: string
+export class Deals {
+    public date: Date;
+    public enddate: Date;
+    public shopId: number;
+    public value: string;
+    public type: number;
+    public text: string;
+
+    public constructor(date: Date, endDate: Date, shopId: number, value: string, type: number, text: string) {
+        this.date = date;
+        this.enddate = endDate;
+        this.shopId = shopId;
+        this.value = value;
+        this.type = type;
+        this.text = text;
+    }
 }

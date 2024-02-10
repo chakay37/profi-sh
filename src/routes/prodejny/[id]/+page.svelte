@@ -24,7 +24,7 @@
 					</Title>
 				{/if}
 			</div>
-			<img src={img} alt="" />
+			<img class="only-desktop" src={img} alt="" />
 		</div>
 		<div class="info-container">
 			<div class="map">
