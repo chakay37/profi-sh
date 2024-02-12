@@ -19,17 +19,25 @@
 		<slot />
 		<hr />
 		<!-- svelte-ignore a11y-autofocus -->
-		<button autofocus on:click={() => dialog.close()}>close modal</button>
+		<button class="primary-button" autofocus on:click={() => dialog.close()}>Zavřít</button>
 	</div>
 </dialog>
 
-<style>
+<style lang="scss">
+	$logo-color: #a7996b;
+	$logo-color-dark: #8f8054;
+	$logo-color-light: #b6a771;
+	$white: #f1f1ee;
+
 	dialog {
 		max-width: 32em;
-		border-radius: 0.2em;
+		border-radius: 10px;
 		border: none;
 		padding: 0;
-		margin-top: 30vh;
+		margin-top: 40vh;
+		background-color: $logo-color-dark;
+		border: $white solid 2px;
+		color: $white;
 	}
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.3);
@@ -60,6 +68,8 @@
 		}
 	}
 	button {
+		padding-inline: 20px;
 		display: block;
+		margin-top: 10px;
 	}
 </style>
