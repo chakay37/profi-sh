@@ -73,144 +73,146 @@
 	}
 </script>
 
-<head>
-	<meta
-		name="description"
-		content="Profi Second Hand. Ekologicky smýšlející second hand. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem."
-	/>
-</head>
+<body>
+	<head>
+		<meta
+			name="description"
+			content="Profi Second Hand. Ekologicky smýšlející second hand. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem."
+		/>
+	</head>
 
-<main>
-	<section class="title-sect">
-		<div class="title">
-			<h1>Profi Second Hand</h1>
+	<main>
+		<section class="title-sect">
+			<div class="title">
+				<h1>Profi Second Hand</h1>
+				<p>
+					Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA. Častá OBMĚNA ZBOŽÍ,
+					unikátní systém SLEV A VÝPRODEJŮ. Dlouholetá tradice, česká značka, 11 prodejen pro celé
+					ČR. Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
+				</p>
+				<div class="buttons">
+					<button use:scrollto={'#akce'} class="secondary-button">Akce a Slevy</button>
+					<button use:scrollto={'#sms'} class="secondary-button">Dostávejte upozornění SMS</button>
+				</div>
+			</div>
+			<div class="carousel-bs"><Carousel /></div>
+		</section>
+		<section class="deals-sect" id="akce">
+			<div class="title">
+				<SectTitle>Nové akce</SectTitle>
+			</div>
+			<div class="table-container">
+				<table>
+					<thead>
+						<tr>
+							<th class="corner" scope="col" />
+							{#each shopsNames as shop}
+								<th scope="col">{shop}</th>
+							{/each}
+						</tr>
+					</thead>
+					<tbody>
+						{#each dates as date}
+							{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
+								<DealsRow weekend={true} {deals} {shops} {date} />
+							{/if}
+							{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
+								<DealsRow weekend={false} {deals} {shops} {date} />
+							{/if}
+						{/each}
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section class="notification-sect" id="sms">
+			<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />
+			<div class="info">
+				<SectTitle>Dostávejte upozornění na akce</SectTitle>
+				<form action="?/user" method="post">
+					<label
+						>E-mail
+						<input name="email" type="email" placeholder="jannovak@seznam.cz" />
+					</label>
+
+					<label
+						>Tel. číslo
+						<input name="phone" type="phone" placeholder="+420 777 645 189" />
+					</label>
+
+					<label
+						>Město
+						<select name="cityId">
+							{#each cities as city}
+								<option value={city.id}>{city.name}</option>
+							{/each}
+						</select>
+					</label>
+
+					<button class="secondary-button" formaction="?/user">Potvrdit</button>
+				</form>
+			</div>
+		</section>
+		<section class="blog-sect">
+			<SectTitle>Second Hand a ekologie</SectTitle>
 			<p>
-				Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA. Častá OBMĚNA ZBOŽÍ,
-				unikátní systém SLEV A VÝPRODEJŮ. Dlouholetá tradice, česká značka, 11 prodejen pro celé ČR.
-				Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
+				Rychlá móda má dopad na planetu. Zajímáte se o ekologii? Nyní máte možnost zjisti více.
+				Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem.
 			</p>
-			<div class="buttons">
-				<button use:scrollto={'#akce'} class="secondary-button">Akce a Slevy</button>
-				<button use:scrollto={'#sms'} class="secondary-button">Dostávejte upozornění SMS</button>
-			</div>
-		</div>
-		<div class="carousel-bs"><Carousel /></div>
-	</section>
-	<section class="deals-sect" id="akce">
-		<div class="title">
-			<SectTitle>Nové akce</SectTitle>
-		</div>
-		<div class="table-container">
-			<table>
-				<thead>
-					<tr>
-						<th class="corner" scope="col" />
-						{#each shopsNames as shop}
-							<th scope="col">{shop}</th>
-						{/each}
-					</tr>
-				</thead>
-				<tbody>
-					{#each dates as date}
-						{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
-							<DealsRow weekend={true} {deals} {shops} {date} />
-						{/if}
-						{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
-							<DealsRow weekend={false} {deals} {shops} {date} />
-						{/if}
-					{/each}
-				</tbody>
-			</table>
-		</div>
-	</section>
-	<section class="notification-sect" id="sms">
-		<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />
-		<div class="info">
-			<SectTitle>Dostávejte upozornění na akce</SectTitle>
-			<form action="?/user" method="post">
-				<label
-					>E-mail
-					<input name="email" type="email" placeholder="jannovak@seznam.cz" />
-				</label>
+			<div class="shadow" />
+			<a href="blog"><button class="primary-button">Zjistit více </button></a>
+			<img src={branch1} alt="větev" id="branch1" class="only-desktop" />
+			<img src={branch2} alt="větev" id="branch2" class="only-desktop" />
+			<img src={branch3} alt="větev" id="branch3" class="only-desktop" />
+		</section>
 
-				<label
-					>Tel. číslo
-					<input name="phone" type="phone" placeholder="+420 777 645 189" />
-				</label>
-
-				<label
-					>Město
-					<select name="cityId">
-						{#each cities as city}
-							<option value={city.id}>{city.name}</option>
-						{/each}
-					</select>
-				</label>
-
-				<button class="secondary-button" formaction="?/user">Potvrdit</button>
-			</form>
-		</div>
-	</section>
-	<section class="blog-sect">
-		<SectTitle>Second Hand a ekologie</SectTitle>
-		<p>
-			Rychlá móda má dopad na planetu. Zajímáte se o ekologii? Nyní máte možnost zjisti více. Second
-			hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem.
-		</p>
-		<div class="shadow" />
-		<a href="blog"><button class="primary-button">Zjistit více </button></a>
-		<img src={branch1} alt="větev" id="branch1" class="only-desktop" />
-		<img src={branch2} alt="větev" id="branch2" class="only-desktop" />
-		<img src={branch3} alt="větev" id="branch3" class="only-desktop" />
-	</section>
-
-	<section class="socials-sect">
-		<SectTitle>Sociální sítě</SectTitle>
-		<div class="socials-row" id="only-desktop">
-			<div class="item-container fb">
-				<a href="https://www.facebook.com/profisecondhand">
-					<img src={fb1} alt="facebook profi sh" />
-					<img src={facebookIcon} alt="facebook profi sh" class="icon" />
-				</a>
+		<section class="socials-sect">
+			<SectTitle>Sociální sítě</SectTitle>
+			<div class="socials-row" id="only-desktop">
+				<div class="item-container fb">
+					<a href="https://www.facebook.com/profisecondhand">
+						<img src={fb1} alt="facebook profi sh" />
+						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container ig">
+					<a href="https://www.instagram.com/profi_second_hand/">
+						<img src={ig1} alt="instagram profi sh" />
+						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container fb">
+					<a href="https://www.facebook.com/profisecondhand">
+						<img src={fb2} alt="facebook profi sh" />
+						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+					</a>
+				</div>
 			</div>
-			<div class="item-container ig">
-				<a href="https://www.instagram.com/profi_second_hand/">
-					<img src={ig1} alt="instagram profi sh" />
-					<img src={instagramIcon} alt="instagram profi sh" class="icon" />
-				</a>
+			<div class="socials-row">
+				<div class="item-container ig">
+					<a href="https://www.instagram.com/profi_second_hand/">
+						<img src={ig2} alt="facebook profi sh" />
+						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container fb">
+					<a href="https://www.facebook.com/profisecondhand">
+						<img src={fb3} alt="facebook profi sh" />
+						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container ig">
+					<a href="https://www.instagram.com/profi_second_hand/">
+						<img src={ig3} alt="facebook profi sh" />
+						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container ig">
+					<a href="https://www.instagram.com/profi_second_hand/">
+						<img src={ig4} alt="facebook profi sh" />
+						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+					</a>
+				</div>
 			</div>
-			<div class="item-container fb">
-				<a href="https://www.facebook.com/profisecondhand">
-					<img src={fb2} alt="facebook profi sh" />
-					<img src={facebookIcon} alt="facebook profi sh" class="icon" />
-				</a>
-			</div>
-		</div>
-		<div class="socials-row">
-			<div class="item-container ig">
-				<a href="https://www.instagram.com/profi_second_hand/">
-					<img src={ig2} alt="facebook profi sh" />
-					<img src={instagramIcon} alt="instagram profi sh" class="icon" />
-				</a>
-			</div>
-			<div class="item-container fb">
-				<a href="https://www.facebook.com/profisecondhand">
-					<img src={fb3} alt="facebook profi sh" />
-					<img src={facebookIcon} alt="facebook profi sh" class="icon" />
-				</a>
-			</div>
-			<div class="item-container ig">
-				<a href="https://www.instagram.com/profi_second_hand/">
-					<img src={ig3} alt="facebook profi sh" />
-					<img src={instagramIcon} alt="instagram profi sh" class="icon" />
-				</a>
-			</div>
-			<div class="item-container ig">
-				<a href="https://www.instagram.com/profi_second_hand/">
-					<img src={ig4} alt="facebook profi sh" />
-					<img src={instagramIcon} alt="instagram profi sh" class="icon" />
-				</a>
-			</div>
-		</div>
-	</section>
-</main>
+		</section>
+	</main>
+</body>

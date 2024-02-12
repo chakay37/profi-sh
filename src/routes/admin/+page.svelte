@@ -49,6 +49,7 @@
 	});
 
 	let aaa: FileList;
+	let dealType: number;
 </script>
 
 <body>
@@ -60,17 +61,26 @@
 					<h3>Nová akce</h3>
 					<label
 						>Typ akce:
-						<select name="type">
-							<option value="0">Sleva</option>
+						<select name="type" bind:value={dealType}>
+							<option value="0">Sleva (procenta)</option>
 							<option value="1">Nové zboží</option>
-							<option value="2">Svátek</option>
-							<option value="3">Jiné</option>
+							<option value="2">Sleva (koruny)</option>
+							<option value="3">Svátek</option>
+							<option value="4">Jiné</option>
 						</select>
 					</label>
-					<label
-						>Hodnota slevy: (např. "40%" nebo "50 Kč")
-						<input type="text" name="value" />
-					</label>
+					{#if dealType == 0}
+						<label
+							>Hodnota slevy: (např. "40" %)
+							<input type="number" name="value" />
+						</label>
+					{/if}
+					{#if dealType == 2}
+						<label
+							>Hodnota slevy: (např. "50" Kč)
+							<input type="number" name="value" />
+						</label>
+					{/if}
 					<label
 						>Výběr obchodu:
 						<select name="shopId">
@@ -100,7 +110,7 @@
 				<form on:submit|preventDefault={SubmitFirst}>
 					<label class="imageSelector primary-button"
 						>{#if aaa == undefined}
-							Změň obrázek
+							Změnit obrázek
 						{/if}{#if aaa != undefined}Obrázek vybrán ✔️{/if}
 						<input name="file" type="file" accept="image/png, image/jpeg" bind:files={aaa} />
 					</label>
