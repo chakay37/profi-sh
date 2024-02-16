@@ -322,7 +322,7 @@
                             ],
                             "code": {
                               "s3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-                              "s3Key": "700b7d5dbbaefc7f1c02dd9ae3a462de81f4ee53a1c281e11b0f6b2d86cbf190.zip"
+                              "s3Key": "8e5affbe9f42f9e667ddfc8f67c208d4effa11d9e04d8acbb26feedc04666876.zip"
                             },
                             "description": "Server handler placeholder",
                             "environment": {

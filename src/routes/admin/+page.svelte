@@ -28,6 +28,8 @@
 
 	let photos: object[] = [{}];
 	let shops: object[] = [];
+	let deals: object[] = [];
+	let selectDeals: object[] = [];
 	onMount(async () => {
 		try {
 			for (let i = 1; i < 6; i++) {
@@ -35,7 +37,6 @@
 				const blob = await response.blob();
 				//let photoOut = await response.json();
 
-				console.log(blob);
 				photosURL.push(URL.createObjectURL(blob));
 			}
 		} catch (error) {
@@ -43,13 +44,34 @@
 		}
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
 		photosURL = photosURL;
-		console.log(photosURL);
 		photos = await get('photos');
 		shops = await get('shops');
+		deals = await get('deals');
+
+		for (let index = 0; index < deals.length; index++) {
+			if (
+				deals[index].date != null &&
+				deals[index].enddate != null &&
+				deals[index].shopId != null
+			) {
+				let startDate = new Date(deals[index].date);
+				let endDate = new Date(deals[index].enddate);
+
+				let startDateStr = startDate.getDate() + '.' + (startDate.getMonth() + 1) + '.';
+				let endDateStr = endDate.getDate() + '.' + (endDate.getMonth() + 1) + '.';
+
+				for (let j = 0; j < shops.length; j++) {
+					if (shops[j].id === deals[index].shopId) {
+						deals[index].selectText = startDateStr + ' - ' + endDateStr + ' | ' + shops[j].name;
+					}
+				}
+			}
+		}
 	});
 
 	let aaa: FileList;
 	let dealType: number;
+	let dealToChange: object;
 </script>
 
 <body>
@@ -103,7 +125,61 @@
 					</label>
 					<button type="submit">Přidat akci</button>
 				</form>
-				<h3>Změna akcí</h3>
+			</div>
+			<div class="card akce">
+				<h1>Akce a slevy</h1>
+				<h3>Změna akce</h3>
+				<select bind:value={dealToChange}>
+					{#each deals as deal}
+						{#if deal.selectText != undefined}
+							<option value={deal.id}>{deal.selectText}</option>
+						{/if}
+					{/each}
+				</select>
+					<label
+						>Typ akce:
+						<select name="type" bind:value={dealType}>
+							<option value="0">Sleva (procenta)</option>
+							<option value="1">Nové zboží</option>
+							<option value="2">Sleva (koruny)</option>
+							<option value="3">Svátek</option>
+							<option value="4">Jiné</option>
+						</select>
+					</label>
+					{#if dealType == 0}
+						<label
+							>Hodnota slevy: (např. "40" %)
+							<input type="number" name="value" />
+						</label>
+					{/if}
+					{#if dealType == 2}
+						<label
+							>Hodnota slevy: (např. "50" Kč)
+							<input type="number" name="value" />
+						</label>
+					{/if}
+					<label
+						>Výběr obchodu:
+						<select name="shopId">
+							{#each shops as shop}
+								<option value={shop.id}>{shop.name}</option>
+							{/each}
+						</select>
+					</label>
+					<label
+						>Akce OD:
+						<input type="date" name="date" />
+					</label>
+					<label
+						>Akce DO:
+						<input type="date" name="enddate" />
+					</label>
+					<label
+						>Pár vět o akci:
+						<textarea name="text" />
+					</label>
+					<button type="submit">Změnit akci</button>
+				
 			</div>
 			<div class="card">
 				<h1>Kolotoč obrázek 1</h1>
