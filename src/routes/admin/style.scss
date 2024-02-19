@@ -27,6 +27,12 @@ $white: #f1f1ee;
 		display: block;
 		margin-top: 5px;
 	}
+	.delete-deal {
+		background-color: #8b4545;
+	}
+	h3 {
+		margin-top: 10px;
+	}
 }
 
 .card {
@@ -36,12 +42,9 @@ $white: #f1f1ee;
 	width: 400px;
 	border: black 2px solid;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 20px;
 	margin-top: 20px;
-	form {
-		padding: 10px;
-		
-	}
+
 	button {
 		background-color: $logo-color-dark;
 		color: $white;

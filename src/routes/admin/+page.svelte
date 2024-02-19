@@ -31,6 +31,7 @@
 	let deals: object[] = [];
 	let selectDeals: object[] = [];
 	onMount(async () => {
+
 		try {
 			for (let i = 1; i < 6; i++) {
 				const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + i + '.jpg');
@@ -69,9 +70,14 @@
 		}
 	});
 
+	function changeSelect(event: any) {
+		dealToChange.type = event.target.value;
+    	console.log(dealToChange.type);
+	}
 	let aaa: FileList;
 	let dealType: number;
 	let dealToChange: object;
+	
 </script>
 
 <body>
@@ -79,7 +85,7 @@
 		<section>
 			<div class="card akce">
 				<h1>Akce a slevy</h1>
-				<form action="?/deal" method="post">
+				<form action="?/dealPost" method="post">
 					<h3>Nová akce</h3>
 					<label
 						>Typ akce:
@@ -132,54 +138,82 @@
 				<select bind:value={dealToChange}>
 					{#each deals as deal}
 						{#if deal.selectText != undefined}
-							<option value={deal.id}>{deal.selectText}</option>
+							<option value={deal}>{deal.selectText}</option>
 						{/if}
 					{/each}
 				</select>
-					<label
-						>Typ akce:
-						<select name="type" bind:value={dealType}>
-							<option value="0">Sleva (procenta)</option>
-							<option value="1">Nové zboží</option>
-							<option value="2">Sleva (koruny)</option>
-							<option value="3">Svátek</option>
-							<option value="4">Jiné</option>
-						</select>
-					</label>
-					{#if dealType == 0}
+				{#if dealToChange != null && dealToChange != undefined}
+					<form action="?/dealPut" method="post">				
+						
+							<label
+								>Typ akce:
+								<select name="type" on:change={changeSelect}>
+									{#if Number(dealToChange.type.toString()) === 0}
+										<option selected value="0">Sleva (procenta)</option>
+									{:else}
+										<option value="0">Sleva (procenta)</option>
+									{/if}
+									{#if Number(dealToChange.type.toString()) === 1}
+										<option selected value="1">Nové zboží</option>
+									{:else}
+										<option value="1">Nové zboží</option>
+									{/if}
+									{#if Number(dealToChange.type.toString()) === 2}
+										<option selected value="2">Sleva (koruny)</option>
+									{:else}
+										<option value="2">Sleva (koruny)</option>
+									{/if}
+									{#if Number(dealToChange.type.toString()) === 3}
+										<option selected value="3">Svátek</option>
+									{:else}
+										<option value="3">Svátek</option>
+									{/if}
+									{#if Number(dealToChange.type.toString()) === 4}
+										<option selected value="4">Jiné</option>
+									{:else}
+										<option value="4">Jiné</option>
+									{/if}
+								</select>
+							</label>
+						{#if dealToChange.type == 0}
+							<label
+								>Hodnota slevy: (např. "40" %)
+								<input type="number" value={dealToChange.value} name="value" />
+							</label>
+						{/if}
+						{#if dealToChange.type == 2}
+							<label
+								>Hodnota slevy: (např. "50" Kč)
+								<input type="number" value={dealToChange.value} name="value" />
+							</label>
+						{/if}
 						<label
-							>Hodnota slevy: (např. "40" %)
-							<input type="number" name="value" />
+							>Výběr obchodu:
+							<select name="shopId">
+								{#each shops as shop}
+									<option value={shop.id}>{shop.name}</option>
+								{/each}
+							</select>
 						</label>
-					{/if}
-					{#if dealType == 2}
+						{dealToChange.enddate}
 						<label
-							>Hodnota slevy: (např. "50" Kč)
-							<input type="number" name="value" />
+							>Akce OD:
+							
+							<input type="date" name="date" value={dealToChange.date.toString().split('T')[0]} />
 						</label>
-					{/if}
-					<label
-						>Výběr obchodu:
-						<select name="shopId">
-							{#each shops as shop}
-								<option value={shop.id}>{shop.name}</option>
-							{/each}
-						</select>
-					</label>
-					<label
-						>Akce OD:
-						<input type="date" name="date" />
-					</label>
-					<label
-						>Akce DO:
-						<input type="date" name="enddate" />
-					</label>
-					<label
-						>Pár vět o akci:
-						<textarea name="text" />
-					</label>
-					<button type="submit">Změnit akci</button>
-				
+						<label
+							>Akce DO:
+							<input type="date" name="enddate" value={dealToChange.enddate.toString().split('T')[0]} />
+						</label>
+						<label
+							>Pár vět o akci:
+							<textarea name="text" value={dealToChange.text} />
+						</label>
+						<button type="submit">Změnit akci</button>
+						<button class="delete-deal" type="button">Smazat akci</button>
+					</form>
+					
+				{/if}
 			</div>
 			<div class="card">
 				<h1>Kolotoč obrázek 1</h1>

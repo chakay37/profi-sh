@@ -23,3 +23,15 @@ export async function post(table: string, body: object)
     body: JSON.stringify(body)
   });
 }
+export async function put(table: string, body: object) 
+{
+  console.log(JSON.stringify(body))
+	const response = await fetch(LINK + table, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+}
