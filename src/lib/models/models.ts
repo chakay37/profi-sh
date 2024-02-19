@@ -10,6 +10,7 @@ export class Users {
     }
 }
 export class Deals {
+    public id: number;
     public date: Date;
     public enddate: Date;
     public shopId: number;
@@ -17,7 +18,8 @@ export class Deals {
     public type: number;
     public text: string;
 
-    public constructor(date: Date, endDate: Date, shopId: number, value: string, type: number, text: string) {
+    public constructor(id: number, date: Date, endDate: Date, shopId: number, value: string, type: number, text: string) {
+        this.id = id;
         this.date = date;
         this.enddate = endDate;
         this.shopId = shopId;

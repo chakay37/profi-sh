@@ -72,7 +72,6 @@
 
 	function changeSelect(event: any) {
 		dealToChange.type = event.target.value;
-    	console.log(dealToChange.type);
 	}
 	let aaa: FileList;
 	let dealType: number;
@@ -144,7 +143,7 @@
 				</select>
 				{#if dealToChange != null && dealToChange != undefined}
 					<form action="?/dealPut" method="post">				
-						
+							<input type="number" name="id" value={dealToChange.id} hidden>
 							<label
 								>Typ akce:
 								<select name="type" on:change={changeSelect}>
@@ -191,14 +190,17 @@
 							>Výběr obchodu:
 							<select name="shopId">
 								{#each shops as shop}
-									<option value={shop.id}>{shop.name}</option>
+									{#if dealToChange.shopId === shop.id}
+									<option selected value={shop.id}>{shop.name}</option>
+										{:else}
+										<option value={shop.id}>{shop.name}</option>
+									{/if}
+									
 								{/each}
 							</select>
 						</label>
-						{dealToChange.enddate}
 						<label
 							>Akce OD:
-							
 							<input type="date" name="date" value={dealToChange.date.toString().split('T')[0]} />
 						</label>
 						<label
