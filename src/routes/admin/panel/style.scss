@@ -45,6 +45,7 @@ $white: #f1f1ee;
 	padding: 20px;
 	margin-top: 20px;
 
+	
 	button {
 		background-color: $logo-color-dark;
 		color: $white;
@@ -68,6 +69,11 @@ $white: #f1f1ee;
 		margin-top: 5px;
 		height: 50px;
 		display: block;
+	}
+	.desc-form {
+		background-color: $logo-color-dark;
+		padding: 10px;
+		border-radius: 5px;
 	}
 	input {
 		margin-top: 5px;

@@ -35,3 +35,9 @@ export async function put(table: string, body: object)
     body: JSON.stringify(body)
   });
 }
+export async function del(table: string, id: number) 
+{
+	const response = await fetch(LINK + table + '/' + id, {
+    method: 'DELETE',
+  });
+}

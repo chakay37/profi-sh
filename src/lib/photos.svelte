@@ -68,7 +68,6 @@
     const responses = await Promise.all(promises);*/
 	};
 </script>
-
 <body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1447.0/aws-sdk.min.js"></script>
 </body>

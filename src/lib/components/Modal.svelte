@@ -1,9 +1,25 @@
-<script>
+<script lang="ts">
+	import { onMount } from "svelte";
+	import { get, del } from "$lib/db";
+
 	export let showModal; // boolean
 
 	let dialog; // HTMLDialogElement
+	export let warning: boolean = false;
+	export let deals: object[];
+	export let dealToChange: object | null;
 
 	$: if (dialog && showModal) dialog.showModal();
+
+	async function delDeal() {
+		if (deals.length > 0 && dealToChange != null) {		
+
+			deals = deals.filter(a => a.id != dealToChange.id);
+			await del('deals', dealToChange.id);
+		}
+		dealToChange = null;
+		dialog.close();
+	}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -19,7 +35,13 @@
 		<slot />
 		<hr />
 		<!-- svelte-ignore a11y-autofocus -->
-		<button class="primary-button" autofocus on:click={() => dialog.close()}>Zavřít</button>
+		<div style="display: flex;">
+			<button class="primary-button" autofocus on:click={() => dialog.close()}>Zavřít</button>
+		{#if warning}
+			<button class="primary-button" on:click={()=> delDeal()}>Potvrdit smazání</button>
+		{/if}
+		</div>
+		
 	</div>
 </dialog>
 
@@ -71,5 +93,9 @@
 		padding-inline: 20px;
 		display: block;
 		margin-top: 10px;
+		margin-right: 20px;
+	}
+	hr {
+		color: white;
 	}
 </style>

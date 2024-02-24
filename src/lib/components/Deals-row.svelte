@@ -48,7 +48,7 @@
 	{/each}
 </tr>
 
-<Modal bind:showModal>
+<Modal bind:showModal warning={false}>
 	<h2 slot="header">{modalHeaderText}</h2>
 
 	<p class="modal-body">{modalBodyText}</p>
