@@ -4,6 +4,16 @@ let deal: Deals = new Deals(0, new Date(), new Date(), 0, '', 0, '');
 let photo: object = {};
 import { get, post, put } from '$lib/db';
 
+export function load({ setHeaders }) {
+    setHeaders({
+        "Pragma-directive": "no-cache",
+        "Cache-directive": "no-cache",
+        "Cache-control": "no-cache",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    });
+}
+
 export const actions = {
     dealPost: async ({ request }) => {
         const data = await request.formData();
@@ -50,7 +60,7 @@ export const actions = {
         const text: FormDataEntryValue | null = data.get('text');
         
         if (id != null && type != null && value != null && shopId != null && date != null && enddate != null && text != null) {
-            deal.id = Number(id.toString())
+            deal.id = Number(id.toString());
             deal.type = Number(type.toString());
             deal.value = value.toString();
             deal.shopId = Number(shopId);
@@ -70,15 +80,17 @@ export const actions = {
     photo: async ({ request }) => {
         const data = await request.formData();
 
+        const id: FormDataEntryValue | null = data.get('id');
         const desc: FormDataEntryValue | null = data.get('desc');
         const url: FormDataEntryValue | null = data.get('url');
         
         
-        if (desc != null && url != null) {
-            photo.desc = desc;
-            photo.url = url;
+        if (id != null && desc != null && url != null) {
+            photo.id = Number(id.toString());
+            photo.desc = desc.toString();
+            photo.url = url.toString();
             
-            await post('photos', photo);
+            await put('photos', photo);
             return { success: true };
         }
         console.log(desc)

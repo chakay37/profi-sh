@@ -4,56 +4,87 @@
 	import process from 'process';
 	import { encode, decode } from 'js-base64';
 	import Title from '$lib/components/Title.svelte';
-	import { handleSubmit } from '$lib/photos.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	import './style.scss';
+	import PhotoAdminCard from '$lib/components/Photo-adminCard.svelte';
 
 	let photosURL: string[] = [];
 	//SF/4OVvE5KvU57QNjYz4y0IlMMx7IhhvFbFSO5WY
 
-	const SubmitFirst = async (e: SubmitEvent) => {
-		await handleSubmit(e, '1');
-	};
-	const SubmitSecond = async (e: SubmitEvent) => {
-		await handleSubmit(e, '2');
-	};
-	const SubmitThird = async (e: SubmitEvent) => {
-		await handleSubmit(e, '3');
-	};
-	const SubmitForth = async (e: SubmitEvent) => {
-		await handleSubmit(e, '4');
-	};
-	const SubmitFifth = async (e: SubmitEvent) => {
-		await handleSubmit(e, '5');
-	};
-
-	let photos: object[] = [{}];
+	let photos: object[] = [];
 	let shops: object[] = [];
 	let deals: object[] = [];
 	let users: object[] = [];
 	let cities: object[] = [];
 	let selectDeals: object[] = [];
 	let usersTable = '';
-	onMount(async () => {
+	let photosLoaded = false;
 
+	onMount(async () => {
+		
+		/*photos = await get('photos');
+		shops = await get('shops');
+		deals = await get('deals');
+		users = await get('users');
+		cities = await get('cities');*/
+
+		let allTables: Promise<any>[] = [];
+		allTables = [get('photos'), get('shops'), get('deals'), get('users'), get('cities')];
+		const res = await Promise.all(allTables);
+		photos = res[0];
+		shops = res[1];
+		deals = res[2];
+		users = res[3];
+		cities = res[4];
+		const shopPhotosNames = [
+			'decinPlzenska',
+			'decinPrutah',
+			'mladaBoleslav',	
+			'most',
+			'pardubice',	
+			'pisek',
+			'praha',	
+			'tabor',	
+			'teplice',	
+			'ustiNadLabem',	
+			'plzen'];
+
+		let orderedPhotos = []
 		try {
 			for (let i = 1; i < 6; i++) {
 				const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + i + '.jpg');
 				const blob = await response.blob();
 				//let photoOut = await response.json();
 
-				photosURL.push(URL.createObjectURL(blob));
+				//photosURL.push(URL.createObjectURL(blob));
+				let photo = photos.filter((a) => a.name === i.toString())[0];
+				photo.photoURL = URL.createObjectURL(blob);
+				photo.type = 0;
+				orderedPhotos.push(photo);
+			}
+			for (let i = 0; i < shopPhotosNames.length; i++) {
+				const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames[i] + '.jpg');
+				const blob = await response.blob();
+				//let photoOut = await response.json();
+
+				//photosURL.push(URL.createObjectURL(blob));
+				console.log(photos)
+				console.log(shopPhotosNames[i])
+				let photo = photos.filter((a) => a.name === shopPhotosNames[i].toString())[0];
+				photo.photoURL = URL.createObjectURL(blob);
+				photo.type = 1;
+				orderedPhotos.push(photo);
+				
 			}
 		} catch (error) {
 			console.error('Error loading images:', error);
 		}
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
-		photosURL = photosURL;
-		photos = await get('photos');
-		shops = await get('shops');
-		deals = await get('deals');
-		users = await get('users');
-		cities = await get('cities');
+		//photosURL = photosURL;
+
+		photos = orderedPhotos;
+		photosLoaded = true;
+		
 		for (let index = 0; index < deals.length; index++) {
 			if (
 				deals[index].date != null &&
@@ -95,7 +126,7 @@
     document.body.removeChild(elemx);
 }
 
-	let aaa: FileList;
+	
 	let dealType: number;
 	let dealToChange: object | null;
 	let showModal = false;
@@ -247,38 +278,13 @@
 				{/if}
 				
 			</div>
-			<div class="card">
-				<h1>Kolotoč obrázek 1</h1>
-				<form on:submit|preventDefault={SubmitFirst}>
-					<label class="imageSelector primary-button"
-						>{#if aaa == undefined}
-							Změnit obrázek
-						{/if}{#if aaa != undefined}Obrázek vybrán ✔️{/if}
-						<input name="file" type="file" accept="image/png, image/jpeg" bind:files={aaa} />
-					</label>
-					<button type="submit">Nahrát obrázek</button>
-				</form>
-
-				<img src={photosURL[0]} alt="" />
-				<div class="desc-form">
-				<p>popisek:</p>
-				{#if photos[0].id != undefined}
-					<form  action="?/photo" method="post">
-						<textarea
-							name="desc"
-							maxlength="100"
-							class="desc"
-							value={photos.filter((a) => a.name === '1')[0].desc}
-						/>
-						<label
-							>odkaz:
-							<input name="url" type="url" value={photos.filter((a) => a.name === '1')[0].url} />
-						</label>
-						<button formaction="?/photo">Potvrdit popisek a odkaz</button>
-					</form>
-				{/if}
-				</div>
-			</div>
+			{#if photosLoaded}
+				{#each photos as p}
+					<PhotoAdminCard photo={p}></PhotoAdminCard>
+				{/each}
+			{/if}
+			
+			
 		</section>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1447.0/aws-sdk.min.js"></script>

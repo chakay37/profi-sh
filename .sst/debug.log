@@ -1,20 +1,20 @@
-2024-02-24T22:31:03.378Z  +1612ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"david","ssmPrefix":"/sst/profi-shsst/david/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1708813861780.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"/home/chakay/Documents/GitHub/profi-sh/sst.config.ts","root":"/home/chakay/Documents/GitHub/profi-sh","out":"/home/chakay/Documents/GitHub/profi-sh/.sst","artifacts":"/home/chakay/Documents/GitHub/profi-sh/.sst/artifacts"}}
-2024-02-24T22:31:04.239Z   +861ms [debug] Using AWS profile 
-2024-02-24T22:31:04.267Z    +28ms [debug] Created AWS client IoTClient
-2024-02-24T22:31:04.267Z     +0ms [debug] Getting IoT endpoint
-2024-02-24T22:31:04.635Z   +368ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
-2024-02-24T22:31:04.635Z     +0ms [debug] Initializing bootstrap context
-2024-02-24T22:31:04.636Z     +1ms [debug] Created AWS client CloudFormationClient
-2024-02-24T22:31:05.215Z   +579ms [debug] Loaded bootstrap status
-2024-02-24T22:31:05.215Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.3","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
-2024-02-24T22:31:05.216Z     +1ms [debug] Created AWS client S3Client
-2024-02-24T22:31:05.272Z    +56ms [debug] Synthesizing stacks...
-2024-02-24T22:31:05.282Z    +10ms [debug] Created AWS client STSClient
-2024-02-24T22:31:05.747Z   +465ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
-2024-02-24T22:31:05.850Z   +103ms [debug] Generating types in /home/chakay/Documents/GitHub/profi-sh/.sst/types
-2024-02-24T22:31:05.852Z     +2ms [debug] Running 1 deferred tasks with concurrency: 7
-2024-02-24T22:31:05.964Z   +112ms [debug] 
-2024-02-24T22:31:05.964Z     +0ms [debug] Loading v2 AWS SDK
-2024-02-24T22:31:05.964Z     +0ms [debug] Finished synthesizing
-2024-02-24T22:31:06.225Z   +261ms [debug] IoT connected
-2024-02-24T22:31:06.491Z   +266ms [debug] Created AWS client LambdaClient
+2024-02-26T09:57:01.824Z  +1967ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"david","ssmPrefix":"/sst/profi-shsst/david/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1708941419875.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"/home/chakay/Documents/GitHub/profi-sh/sst.config.ts","root":"/home/chakay/Documents/GitHub/profi-sh","out":"/home/chakay/Documents/GitHub/profi-sh/.sst","artifacts":"/home/chakay/Documents/GitHub/profi-sh/.sst/artifacts"}}
+2024-02-26T09:57:02.776Z   +952ms [debug] Using AWS profile 
+2024-02-26T09:57:02.823Z    +47ms [debug] Created AWS client IoTClient
+2024-02-26T09:57:02.823Z     +0ms [debug] Getting IoT endpoint
+2024-02-26T09:57:06.212Z  +3389ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
+2024-02-26T09:57:06.212Z     +0ms [debug] Initializing bootstrap context
+2024-02-26T09:57:06.214Z     +2ms [debug] Created AWS client CloudFormationClient
+2024-02-26T09:57:09.787Z  +3573ms [debug] Loaded bootstrap status
+2024-02-26T09:57:09.787Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.3","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
+2024-02-26T09:57:09.790Z     +3ms [debug] Created AWS client S3Client
+2024-02-26T09:57:09.884Z    +94ms [debug] Synthesizing stacks...
+2024-02-26T09:57:09.895Z    +11ms [debug] Created AWS client STSClient
+2024-02-26T09:57:12.790Z  +2895ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
+2024-02-26T09:57:12.966Z   +176ms [debug] Generating types in /home/chakay/Documents/GitHub/profi-sh/.sst/types
+2024-02-26T09:57:12.968Z     +2ms [debug] Running 1 deferred tasks with concurrency: 7
+2024-02-26T09:57:13.105Z   +137ms [debug] 
+2024-02-26T09:57:13.105Z     +0ms [debug] Loading v2 AWS SDK
+2024-02-26T09:57:13.105Z     +0ms [debug] Finished synthesizing
+2024-02-26T09:57:13.114Z     +9ms [debug] IoT connected
+2024-02-26T09:57:15.903Z  +2789ms [debug] Created AWS client LambdaClient
