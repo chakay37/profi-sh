@@ -44,6 +44,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@tinymce/tinymce-svelte": "^2.0.1",
     "aws": "^0.0.3-2",
     "aws-cli": "^0.0.2",
     "axios": "^1.4.0",

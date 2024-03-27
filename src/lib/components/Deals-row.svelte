@@ -5,6 +5,30 @@
 	export let weekend = false;
 	export let shops: object[] = [];
 	export let deals: Deals[] = [];
+
+		for (let i = 0; i < deals.length; i++) {
+		switch (deals[i].type) {
+			case 0:
+				deals[i].tableText = '-' + deals[i]['value'] + '%';
+				break;
+			case 1:
+				deals[i].tableText = 'Nové zboží';
+				break;
+			case 2:
+				deals[i].tableText = 'Vše za '+deals[i]['value']+',- Kč';
+				break;
+			case 3:
+				deals[i].tableText = 'Svátek';
+				break;
+			case 4:
+				deals[i].tableText = 'Jiná akce';
+				break;
+			default:
+				break;
+		}
+	}
+	
+	console.log(deals)
 	export let date: string = '';
 
 	let showModal = false;
@@ -25,25 +49,12 @@
 	<th scope="row" class="head-dates">{date}</th>
 	{#each shops as shop}
 		<td on:click={ShowModal(shop)}>
-			{#each deals as deal}
-				{#if deal.dateStr == date && deal.shopId == shop.id}
-					{#if deal['type'] == 0}
-						-{deal['value']}%
+
+				{#each deals as deal}
+					{#if deal.dateStr == date && deal.shopId == shop.id}
+						<h4 style="cursor: pointer;">{deal.tableText}</h4>
 					{/if}
-					{#if deal['type'] == 1}
-						Nové zboží
-					{/if}
-					{#if deal['type'] == 2}
-						Vše za {deal['value']},- kč
-					{/if}
-					{#if deal['type'] == 3}
-						Svátek
-					{/if}
-					{#if deal['type'] == 4}
-						Jiná akce
-					{/if}
-				{/if}
-			{/each}
+				{/each}
 		</td>
 	{/each}
 </tr>

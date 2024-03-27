@@ -112,14 +112,27 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#each dates as date}
-							{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
-								<DealsRow weekend={true} {deals} {shops} {date} />
-							{/if}
-							{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
-								<DealsRow weekend={false} {deals} {shops} {date} />
-							{/if}
-						{/each}
+						{#if deals.length > 0}
+							{#each dates as date}
+								{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
+									<DealsRow weekend={true} {deals} {shops} {date} />
+								{/if}
+								{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
+									<DealsRow weekend={false} {deals} {shops} {date} />
+								{/if}
+							{/each}
+							{:else}
+							{#each dates as date}
+								<tr>
+									<th scope="row" class="head-dates">{date}</th>
+									{#each shops as s}
+										<td></td>
+									{/each}
+								</tr>
+							{/each}
+						
+						{/if}
+						
 					</tbody>
 				</table>
 			</div>

@@ -4,7 +4,7 @@ let deal: Deals = new Deals(0, new Date(), new Date(), 0, '', 0, '');
 let photo: object = {};
 import { get, post, put } from '$lib/db';
 
-export function load({ setHeaders }) {
+export function load({ setHeaders, cookies }) {
     setHeaders({
         "Pragma-directive": "no-cache",
         "Cache-directive": "no-cache",
@@ -12,6 +12,12 @@ export function load({ setHeaders }) {
         "Pragma": "no-cache",
         "Expires": "0"
     });
+
+    const authenticated = cookies.get('adminLogin');
+    if (authenticated === 'W7CtMKGegq5R6D') {
+        return { authenticated: true };
+    }
+    return { authenticated: false };
 }
 
 export const actions = {

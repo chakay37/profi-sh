@@ -17,8 +17,9 @@ export class Deals {
     public value: string;
     public type: number;
     public text: string;
+    public tableText = '';
 
-    public constructor(id: number, date: Date, endDate: Date, shopId: number, value: string, type: number, text: string) {
+    public constructor(id: number, date: Date, endDate: Date, shopId: number, value: string, type: number, text: string, tableText = '') {
         this.id = id;
         this.date = date;
         this.enddate = endDate;
@@ -26,5 +27,6 @@ export class Deals {
         this.value = value;
         this.type = type;
         this.text = text;
+        this.tableText = tableText;
     }
 }

@@ -45,6 +45,7 @@ body {
 	flex-direction: column;
 	background-color: $white;
 	overflow-x: hidden;
+	overflow-y: visible;
 	margin: 0;
 	padding: 0;
 }
@@ -68,6 +69,7 @@ main {
 	align-items: center;
 	background-color: $white;
 	min-height: 80vh;
+	
 }
 
 section {

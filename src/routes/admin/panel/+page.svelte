@@ -1,6 +1,7 @@
 <script lang="ts" >
 	import { onMount } from 'svelte';
 	import { get, del } from '$lib/db';
+	import { goto } from '$app/navigation';
 	import process from 'process';
 	import { encode, decode } from 'js-base64';
 	import Title from '$lib/components/Title.svelte';
@@ -8,6 +9,7 @@
 	import './style.scss';
 	import PhotoAdminCard from '$lib/components/Photo-adminCard.svelte';
 
+	export let data;
 	let photosURL: string[] = [];
 	//SF/4OVvE5KvU57QNjYz4y0IlMMx7IhhvFbFSO5WY
 
@@ -21,7 +23,10 @@
 	let photosLoaded = false;
 
 	onMount(async () => {
-		
+		if(data.authenticated == false) {
+            goto('/admin');
+        }
+
 		/*photos = await get('photos');
 		shops = await get('shops');
 		deals = await get('deals');

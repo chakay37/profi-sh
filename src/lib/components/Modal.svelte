@@ -18,6 +18,7 @@
 			await del('deals', dealToChange.id);
 		}
 		dealToChange = null;
+		showModal = false;
 		dialog.close();
 	}
 </script>

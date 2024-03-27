@@ -41,3 +41,20 @@ export async function del(table: string, id: number)
     method: 'DELETE',
   });
 }
+
+import process from "process";
+
+process.on('exit', (code) => end_db_pool(pool));
+process.on('SIGINT', () => end_db_pool(pool));
+
+function end_db_pool(pool: any) {
+	pool.getConnection(function (err, connection) {
+		connection.query('select 1 from my_table;', function (err, rows) {
+			connection.release();
+			// pool.end() only works inside getConnection();
+			pool.end((err) => {
+				if (err) log('pool.end err: ' + err);
+			});
+		});
+	});
+}

@@ -17,7 +17,7 @@ $white: #f1f1ee;
 			width: 450px;
 		}
 		.buttons {
-			margin-top: 30px;
+			margin-top: 25px;
 			display: flex;
 			gap: 30px;
 		}
@@ -40,7 +40,7 @@ $white: #f1f1ee;
 
 	.table-container {
 		width: 100%;
-		margin-top: 20px;
+		margin-top: 25px;
 		color: $white;
 		table,td {
 			border-collapse: collapse;
@@ -172,18 +172,26 @@ $white: #f1f1ee;
 	display: flex;
 	flex-direction: column;
 	gap: 0px;
+	padding-bottom: 20px;
 	.socials-row {
 		display: flex;
 		justify-content: space-between;
 		margin-top: 30px;
 		gap: 30px;
+		a {
+			display: block;
+			height: 100%;
+			box-sizing: border-box;
+		}
 		.fb {
 			width: 40%;
 			height: 300px;
+			box-sizing: border-box;
 		}
 		.ig {
 			width: 20%;
 			height: 300px;
+			box-sizing: border-box;
 		}
 		img {
 			border: 5px solid black;
@@ -192,6 +200,7 @@ $white: #f1f1ee;
 			object-fit: fill;
 			width: 100%;
 			height: 100%;
+			box-sizing: border-box;
 		}
 		.icon {
 			width: 100px;
@@ -296,6 +305,7 @@ $white: #f1f1ee;
 		}
 	}
 	.socials-sect {
+		
 		.socials-row {
 			flex-wrap: wrap;
 			justify-content: center;
