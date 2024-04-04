@@ -16,6 +16,9 @@
 
 		deals = await get('deals');
 		deals = deals.filter((deal) => deal.shopId == shop.id);
+
+		deals = deals.slice(0, 7);
+
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 
 		for (let i = 0; i < deals.length; i++) {
@@ -105,8 +108,15 @@
 				{/if}
 			</div>
 			<div class="deals">
+				<p>Akce a slevy</p>
 				{#each deals as d}
-					{d.dateStr}-{d.enddateStr}: {d.tableText}
+					<div class="deal">
+						
+						{#if new Date(d.enddate) > new Date()}
+							<h3>{d.dateStr} - {d.enddateStr}</h3>
+							<h4>{d.tableText}</h4>
+						{/if}
+					</div>
 				{/each}
 			</div>
 		</div>

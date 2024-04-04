@@ -63,13 +63,12 @@
 	});
 
 	let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
-	let dates: string[] = [];
+	let datesObj: object[] = [];
 	for (let i = 0; i < 21; i++) {
 		let date: Date = new Date();
 		date.setDate(new Date().getDate() + i);
-		dates.push(
-			dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.'
-		);
+		datesObj.push({dateStr: dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.',
+						date: date});
 	}
 </script>
 
@@ -113,18 +112,18 @@
 					</thead>
 					<tbody>
 						{#if deals.length > 0}
-							{#each dates as date}
-								{#if date.split(' ')[0] == 'So' || date.split(' ')[0] == 'Ne'}
+							{#each datesObj as date}
+								{#if date.dateStr.split(' ')[0] == 'So' || date.dateStr.split(' ')[0] == 'Ne'}
 									<DealsRow weekend={true} {deals} {shops} {date} />
 								{/if}
-								{#if date.split(' ')[0] != 'So' && date.split(' ')[0] != 'Ne'}
+								{#if date.dateStr.split(' ')[0] != 'So' && date.dateStr.split(' ')[0] != 'Ne'}
 									<DealsRow weekend={false} {deals} {shops} {date} />
 								{/if}
 							{/each}
-							{:else}
-							{#each dates as date}
+						{:else}
+							{#each datesObj as date}
 								<tr>
-									<th scope="row" class="head-dates">{date}</th>
+									<th scope="row" class="head-dates">{date.dateStr}</th>
 									{#each shops as s}
 										<td></td>
 									{/each}
