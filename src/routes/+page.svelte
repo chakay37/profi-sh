@@ -52,6 +52,37 @@
 		deals = await get('deals');
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
 
+		for (let i = 0; i < deals.length; i++) {
+			let date = new Date(deals[i].date)
+			let enddate = new Date(deals[i].enddate)
+			let today = new Date();
+			let utc = Date.UTC(
+				date.getFullYear(),
+				date.getMonth(),
+				date.getDate()
+			);
+			let utcEnd = Date.UTC(
+				enddate.getFullYear(),
+				enddate.getMonth(),
+				enddate.getDate()
+			);
+			let utcToday = Date.UTC(
+				today.getFullYear(),
+				today.getMonth(),
+				today.getDate()
+			);
+			
+			if (utcToday - utc > 0)
+			{
+				let formattedToday: Date = new Date(today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + 'T00:00:00.000Z');
+				deals[i].date = formattedToday
+			}
+			
+		}
+		deals.forEach(d => {
+			console.log(d.text + ' ' + d.date);
+		});
+
 		shopsNames = [];
 		shops.forEach((shop) => shopsNames.push(shop.name));
 

@@ -26,7 +26,7 @@ export const actions = {
 
         const type: FormDataEntryValue | null = data.get('type');
         const value: FormDataEntryValue | null = data.get('value');
-        const shops: FormDataEntryValue | null = data.get('shops');
+        const shops: FormDataEntryValue[] | null = data.getAll('shops');
         const date: FormDataEntryValue | null = data.get('date');
         const enddate: FormDataEntryValue | null = data.get('enddate');
         const text: FormDataEntryValue | null = data.get('text');
@@ -43,8 +43,11 @@ export const actions = {
                 }
                 deal.value = value.toString();
             }
+            for (let i = 0; i < shops.length; i++) {
+                deal.shopId = Number(shops[i]);
+                await post('deals', deal);
+            }
             
-            console.log(shops.toString());
             //await post('deals', deal);
             return { success: true };
         }
