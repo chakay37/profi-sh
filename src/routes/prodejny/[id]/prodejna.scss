@@ -29,7 +29,8 @@ $white: #f1f1ee;
 			padding: 10px;
 		}
 		img {
-			width: 700px;
+			object-fit: cover;
+			width: 600px;
 			height: 300px;
 			border: solid 2px black;
 			border-radius: 10px;
@@ -55,7 +56,7 @@ $white: #f1f1ee;
 			align-items: center;
 		}
 		.map {
-			width: 50%;
+			width: 100%;
 		}
 		
 
@@ -72,6 +73,7 @@ $white: #f1f1ee;
 			flex-direction: column;
 			gap: 10px;
 			text-align: center; 
+			min-width: 200px;
 			.deal {
 				background-color: $logo-color-dark;
 			}
@@ -103,10 +105,11 @@ $white: #f1f1ee;
 	.prodejna-page {
 		.info-container {
 			flex-direction: column;
+			.name-container,
 			.map,
 			.opening,
 			.deals {
-				width: 100%;
+				width: calc(100% - 20px);
 			}
 		}
 	}

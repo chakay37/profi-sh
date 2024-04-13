@@ -1,4 +1,4 @@
-<script lang="ts" >
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { get, del } from '$lib/db';
 	import { goto } from '$app/navigation';
@@ -23,9 +23,9 @@
 	let photosLoaded = false;
 
 	onMount(async () => {
-		if(data.authenticated == false) {
-            goto('/admin');
-        }
+		if (data.authenticated == false) {
+			goto('/admin');
+		}
 
 		/*photos = await get('photos');
 		shops = await get('shops');
@@ -44,17 +44,18 @@
 		const shopPhotosNames = [
 			'decinPlzenska',
 			'decinPrutah',
-			'mladaBoleslav',	
+			'mladaBoleslav',
 			'most',
-			'pardubice',	
+			'pardubice',
 			'pisek',
-			'praha',	
-			'tabor',	
-			'teplice',	
-			'ustiNadLabem',	
-			'plzen'];
+			'praha',
+			'tabor',
+			'teplice',
+			'ustiNadLabem',
+			'plzen'
+		];
 
-		let orderedPhotos = []
+		let orderedPhotos = [];
 		try {
 			for (let i = 1; i < 6; i++) {
 				const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + i + '.jpg');
@@ -68,18 +69,19 @@
 				orderedPhotos.push(photo);
 			}
 			for (let i = 0; i < shopPhotosNames.length; i++) {
-				const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames[i] + '.jpg');
+				const response = await fetch(
+					'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames[i] + '.jpg'
+				);
 				const blob = await response.blob();
 				//let photoOut = await response.json();
 
 				//photosURL.push(URL.createObjectURL(blob));
-				console.log(photos)
-				console.log(shopPhotosNames[i])
+				console.log(photos);
+				console.log(shopPhotosNames[i]);
 				let photo = photos.filter((a) => a.name === shopPhotosNames[i].toString())[0];
 				photo.photoURL = URL.createObjectURL(blob);
 				photo.type = 1;
 				orderedPhotos.push(photo);
-				
 			}
 		} catch (error) {
 			console.error('Error loading images:', error);
@@ -89,7 +91,7 @@
 
 		photos = orderedPhotos;
 		photosLoaded = true;
-		
+
 		for (let index = 0; index < deals.length; index++) {
 			if (
 				deals[index].date != null &&
@@ -109,9 +111,10 @@
 				}
 			}
 		}
-		usersTable = 'email;tel.cislo;město'+'\n';
-		users.forEach(u => {
-			usersTable += u.email+';'+u.phone+';'+cities.find(c => c.id == u.cityid).name+'\n';
+		usersTable = 'email;tel.cislo;město' + '\n';
+		users.forEach((u) => {
+			usersTable +=
+				u.email + ';' + u.phone + ';' + cities.find((c) => c.id == u.cityid).name + '\n';
 		});
 	});
 
@@ -121,17 +124,16 @@
 		}
 	}
 	function dl_as_file_Blob(filename_to_dl: string, data_to_dl: string) {
-    let blobx = new Blob([data_to_dl], { type: 'text/plain' }); // ! Blob
-    let elemx = window.document.createElement('a');
-    elemx.href = window.URL.createObjectURL(blobx); // ! createObjectURL
-    elemx.download = filename_to_dl;
-    elemx.style.display = 'none';
-    document.body.appendChild(elemx);
-    elemx.click();
-    document.body.removeChild(elemx);
-}
+		let blobx = new Blob([data_to_dl], { type: 'text/plain' }); // ! Blob
+		let elemx = window.document.createElement('a');
+		elemx.href = window.URL.createObjectURL(blobx); // ! createObjectURL
+		elemx.download = filename_to_dl;
+		elemx.style.display = 'none';
+		document.body.appendChild(elemx);
+		elemx.click();
+		document.body.removeChild(elemx);
+	}
 
-	
 	let dealType: number;
 	let dealToChange: object | null;
 	let showModal = false;
@@ -157,7 +159,7 @@
 					{#if dealType == 0}
 						<label
 							>Hodnota slevy: (např. "40" %)
-							<input type="number" name="value" required/>
+							<input type="number" name="value" required />
 						</label>
 					{/if}
 					{#if dealType == 2}
@@ -166,25 +168,23 @@
 							<input type="number" name="value" required />
 						</label>
 					{/if}
-					<label
-						>Výběr obchodu:
-						<select name="shopId">
-							{#each shops as shop}
-								<option value={shop.id}>{shop.name}</option>
-							{/each}
-						</select>
-					</label>
+					<label>Výběr obchodu: (ctrl pro více obchodů)</label>
+					<select class="multiselect" multiple name="shops">
+						{#each shops as shop}
+							<option value={shop.id}>{shop.name}</option>
+						{/each}
+					</select>
 					<label
 						>Akce OD:
-						<input type="date" name="date" required/>
+						<input type="date" name="date" required />
 					</label>
 					<label
 						>Akce DO:
-						<input type="date" name="enddate" required/>
+						<input type="date" name="enddate" required />
 					</label>
 					<label
 						>Pár vět o akci:
-						<textarea name="text" required/>
+						<textarea name="text" required />
 					</label>
 					<button type="submit">Přidat akci</button>
 				</form>
@@ -200,38 +200,38 @@
 					{/each}
 				</select>
 				{#if dealToChange != null && dealToChange != undefined}
-					<form action="?/dealPut" method="post">				
-							<input type="number" name="id" value={dealToChange.id} hidden>
-							<label
-								>Typ akce:
-								<select name="type" on:change={changeSelect}>
-									{#if Number(dealToChange.type.toString()) === 0}
-										<option selected value="0">Sleva (procenta)</option>
-									{:else}
-										<option value="0">Sleva (procenta)</option>
-									{/if}
-									{#if Number(dealToChange.type.toString()) === 1}
-										<option selected value="1">Nové zboží</option>
-									{:else}
-										<option value="1">Nové zboží</option>
-									{/if}
-									{#if Number(dealToChange.type.toString()) === 2}
-										<option selected value="2">Sleva (koruny)</option>
-									{:else}
-										<option value="2">Sleva (koruny)</option>
-									{/if}
-									{#if Number(dealToChange.type.toString()) === 3}
-										<option selected value="3">Svátek</option>
-									{:else}
-										<option value="3">Svátek</option>
-									{/if}
-									{#if Number(dealToChange.type.toString()) === 4}
-										<option selected value="4">Jiné</option>
-									{:else}
-										<option value="4">Jiné</option>
-									{/if}
-								</select>
-							</label>
+					<form action="?/dealPut" method="post">
+						<input type="number" name="id" value={dealToChange.id} hidden />
+						<label
+							>Typ akce:
+							<select name="type" on:change={changeSelect}>
+								{#if Number(dealToChange.type.toString()) === 0}
+									<option selected value="0">Sleva (procenta)</option>
+								{:else}
+									<option value="0">Sleva (procenta)</option>
+								{/if}
+								{#if Number(dealToChange.type.toString()) === 1}
+									<option selected value="1">Nové zboží</option>
+								{:else}
+									<option value="1">Nové zboží</option>
+								{/if}
+								{#if Number(dealToChange.type.toString()) === 2}
+									<option selected value="2">Sleva (koruny)</option>
+								{:else}
+									<option value="2">Sleva (koruny)</option>
+								{/if}
+								{#if Number(dealToChange.type.toString()) === 3}
+									<option selected value="3">Svátek</option>
+								{:else}
+									<option value="3">Svátek</option>
+								{/if}
+								{#if Number(dealToChange.type.toString()) === 4}
+									<option selected value="4">Jiné</option>
+								{:else}
+									<option value="4">Jiné</option>
+								{/if}
+							</select>
+						</label>
 						{#if dealToChange.type == 0}
 							<label
 								>Hodnota slevy: (např. "40" %)
@@ -249,11 +249,10 @@
 							<select name="shopId">
 								{#each shops as shop}
 									{#if dealToChange.shopId === shop.id}
-									<option selected value={shop.id}>{shop.name}</option>
-										{:else}
+										<option selected value={shop.id}>{shop.name}</option>
+									{:else}
 										<option value={shop.id}>{shop.name}</option>
 									{/if}
-									
 								{/each}
 							</select>
 						</label>
@@ -263,42 +262,51 @@
 						</label>
 						<label
 							>Akce DO:
-							<input type="date" name="enddate" value={dealToChange.enddate.toString().split('T')[0]} />
+							<input
+								type="date"
+								name="enddate"
+								value={dealToChange.enddate.toString().split('T')[0]}
+							/>
 						</label>
 						<label
 							>Pár vět o akci:
-							<textarea name="text" value={dealToChange.text} required/>
+							<textarea name="text" value={dealToChange.text} required />
 						</label>
 						<button type="submit">Změnit akci</button>
-						<button class="delete-deal" type="button" on:click={() => showModal = true}>Smazat akci</button>
+						<button class="delete-deal" type="button" on:click={() => (showModal = true)}
+							>Smazat akci</button
+						>
 					</form>
-					
 				{/if}
 			</div>
 			<div class="card">
 				<h1>Stažení tabulky uživatelů</h1>
 				{#if users.length > 0 && usersTable != ''}
 					<p>Počet uživatelů: {users.length}</p>
-					<button class="primary-button" on:click={() => dl_as_file_Blob('uzivatele.csv', usersTable)}>Stáhnout</button>
+					<button
+						class="primary-button"
+						on:click={() => dl_as_file_Blob('uzivatele.csv', usersTable)}>Stáhnout</button
+					>
 				{/if}
-				
 			</div>
 			{#if photosLoaded}
 				{#each photos as p}
-					<PhotoAdminCard photo={p}></PhotoAdminCard>
+					<PhotoAdminCard photo={p} />
 				{/each}
 			{/if}
-			
-			
 		</section>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1447.0/aws-sdk.min.js"></script>
 </body>
 {#if dealToChange != null}
-<Modal bind:showModal bind:deals bind:dealToChange warning={true}>
-	<h2 slot="header">Určitě smazat akci?</h2>
-	{#if dealToChange != null}
-		<p class="modal-body">Potvrzením se zmaže akce: {shops.find(a => a.id === dealToChange.shopId).name}, {dealToChange.date.toString().split('T')[0]}</p>
-	{/if}
-</Modal>
+	<Modal bind:showModal bind:deals bind:dealToChange warning={true}>
+		<h2 slot="header">Určitě smazat akci?</h2>
+		{#if dealToChange != null}
+			<p class="modal-body">
+				Potvrzením se zmaže akce: {shops.find((a) => a.id === dealToChange.shopId).name}, {dealToChange.date
+					.toString()
+					.split('T')[0]}
+			</p>
+		{/if}
+	</Modal>
 {/if}

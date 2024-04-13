@@ -34,7 +34,7 @@
 				{#if article.id != null}
 					<Title>{article.name}</Title>
 					<h4>{article.date}</h4>
-					<p>{article.text}</p>
+					<p>{@html article.text}</p>
 				{/if}
 			</div>
 			<a href="/blog"> <button class="primary-button">Zpět</button></a>

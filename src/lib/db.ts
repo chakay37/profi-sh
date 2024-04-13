@@ -43,19 +43,15 @@ export async function del(table: string, id: number)
   });
 }
 
+const controller = new AbortController();
 import process from "process";
+process.on('exit', () => {
+  controller.abort(); // Abort any ongoing fetch requests
+  // Add any additional cleanup logic here
+});
 
-process.on('exit', (code) => end_db_pool(pool));
-process.on('SIGINT', () => end_db_pool(pool));
-
-function end_db_pool(pool: any) {
-	pool.getConnection(function (err, connection) {
-		connection.query('select 1 from my_table;', function (err, rows) {
-			connection.release();
-			// pool.end() only works inside getConnection();
-			pool.end((err) => {
-				if (err) log('pool.end err: ' + err);
-			});
-		});
-	});
-}
+process.on('SIGINT', () => {
+  controller.abort(); // Abort any ongoing fetch requests
+  // Add any additional cleanup logic here
+  process.exit(1);
+});

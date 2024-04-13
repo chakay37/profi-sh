@@ -6,10 +6,25 @@
 	import Title from '$lib/components/Title.svelte';
 	import type { Deals } from '$lib/models/models';
 	import './prodejna.scss';
+	import PhotoAdminCard from '$lib/components/Photo-adminCard.svelte';
 
 	let id = $page.params.id;
 	let shop: object = {};
 	let deals: Deals[] = [];
+	const shopPhotosNames = new Map([
+		[1, 'decinPlzenska'],
+		[2, 'decinPrutah'],
+		[4, 'mladaBoleslav'],
+		[5, 'most'],
+		[6, 'pardubice'],
+		[7, 'pisek'],
+		[8, 'praha'],
+		[9, 'tabor'],
+		[10, 'teplice'],
+		[11, 'ustiNadLabem'],
+		[12, 'plzen']
+	]);
+	let photoURL = '';
 	onMount(async () => {
 		const shops = await getId('shops', Number(id));
 		shop = shops['0'];
@@ -20,6 +35,7 @@
 		deals = deals.slice(0, 7);
 
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
+		
 
 		for (let i = 0; i < deals.length; i++) {
 			switch (deals[i].type) {
@@ -53,7 +69,20 @@
 			if(deals[i].text == null || deals[i].text == undefined) {
 				deals[i].text = '';
 			}
+
+			
 		}
+
+		
+			const response = await fetch(
+				'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames.get(Number(id)) + '.jpg'
+			);
+			const blob = await response.blob();
+			//let photoOut = await response.json();
+
+			//photosURL.push(URL.createObjectURL(blob));
+			photoURL = URL.createObjectURL(blob);
+			console.log(photoURL)
 	});
 </script>
 
@@ -67,7 +96,7 @@
 					</Title>
 				{/if}
 			</div>
-			<img class="only-desktop" src={img} alt="" />
+			<img class="only-desktop" src={photoURL} alt="" />
 		</div>
 		<div class="info-container">
 			
@@ -107,9 +136,11 @@
 					<p>Adresa: {shop.adresa}</p>
 				{/if}
 			</div>
+			{#if deals.length > 0}
 			<div class="deals">
 				<p>Akce a slevy</p>
 				{#each deals as d}
+					
 					<div class="deal">
 						
 						{#if new Date(d.enddate) > new Date()}
@@ -117,8 +148,10 @@
 							<h4>{d.tableText}</h4>
 						{/if}
 					</div>
+					
 				{/each}
 			</div>
+			{/if}
 		</div>
 		<a href="/prodejny"> <button class="secondary-button">Zpět</button></a>
 	</section>

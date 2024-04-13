@@ -35,10 +35,15 @@
 	let modalHeaderText = '';
 	let modalBodyText = '';
 	let shopsToDelete: object[] = [];
-	function ShowModal(shop: object, deal: Deals) {
-		modalHeaderText = 'Akce: ' + shop.name + ', ' + dateStr;
-		modalBodyText = deal.text;
-		showModal = true;
+	function ShowModal(shop: object) {
+		deals.forEach((deal) => {
+			if (deal.dateStr == dateStr && deal.shopId == shop.id) {
+			modalHeaderText = 'Akce: ' + shop.name + ', ' + dateStr + '-' + deal.enddateStr;
+			modalBodyText = deal.text;
+			showModal = true;
+		}
+		})
+		
 	}
 	shops.forEach((shop) => {
 		shop.deal = new Deals(0, new Date(), new Date(), 0, '', 0, '', '');
@@ -74,15 +79,16 @@
 				shop.deal = deal;
 				shop.deal.tableText = deal.tableText;
 				shop.deal.rowSpan = 1;
+				shop.deal.text = deal.text;
 
 				if (diffDays > 1) {
-					shop.deal.rowSpan = diffDays;
+					shop.deal.rowSpan = diffDays + 1;
 				}
 			}
 			if (deal.shopId == shop.id) {
 				//console.log(deal.tableText+'    '+shop.name+'  '+rowDiffDays+'	'+deal.date+'	'+new Date(date.date));
 				//console.log(diffDays + '	' + rowDiffDays + '	' + endRowDiffDays);
-				if (diffDays > rowDiffDays && diffDays > endRowDiffDays) {
+				if (diffDays >= rowDiffDays && diffDays >= endRowDiffDays) {
 					shopsToDelete.push(shop);
 				}
 			}
@@ -99,12 +105,12 @@
 <tr class:weekend-row={weekend}>
 	<th scope="row" class="head-dates">{dateStr}</th>
 	{#each shops as s}
-		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 1 && s.deal !== undefined && spans.length === shops.length}
+		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 1 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 		
 			<td
-				style="background-color: #b6a771; cursor: pointer;"
+				class="deals"
 				rowspan={spans[shops.indexOf(s)]}
-				on:click={ShowModal(s, s.deal)}
+				on:click={() => ShowModal(s, s.deal)}
 			>
 				<h4>{s.deal.tableText}</h4>
 			</td>
@@ -133,4 +139,12 @@
 	.modal-body {
 		padding: 10px;
 	}
+	.deals {
+		background-color: #b6a771; 
+		cursor: pointer;
+		box-sizing: border-box;
+	}
+	.deals:hover {
+		border: $logo-color-dark 2px dashed;
+		}
 </style>

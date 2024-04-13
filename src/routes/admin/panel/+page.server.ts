@@ -26,14 +26,14 @@ export const actions = {
 
         const type: FormDataEntryValue | null = data.get('type');
         const value: FormDataEntryValue | null = data.get('value');
-        const shopId: FormDataEntryValue | null = data.get('shopId');
+        const shops: FormDataEntryValue | null = data.get('shops');
         const date: FormDataEntryValue | null = data.get('date');
         const enddate: FormDataEntryValue | null = data.get('enddate');
         const text: FormDataEntryValue | null = data.get('text');
         
-        if (type != null && shopId != null && date != null && enddate != null && text != null) {
+        if (type != null && shops != null && date != null && enddate != null && text != null) {
             deal.type = Number(type.toString());
-            deal.shopId = Number(shopId);
+            //deal.shopId = Number(shopId);
             deal.date = new Date(date.toString());
             deal.enddate = new Date(enddate.toString());
             deal.text = text.toString();
@@ -44,8 +44,8 @@ export const actions = {
                 deal.value = value.toString();
             }
             
-
-            await post('deals', deal);
+            console.log(shops.toString());
+            //await post('deals', deal);
             return { success: true };
         }
         console.log(type)

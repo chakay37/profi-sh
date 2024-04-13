@@ -2,7 +2,7 @@
 	import { encode, decode } from 'js-base64';
 	import { compress } from 'image-conversion';
 
-	const dontReadThisPls = encode('SF/4OVvE5KvU57QNjYz4y0IlMMx7IhhvFbFSO5WY');
+	const umm = encode('+F5OQwz5l5bmEB2RJfWHduNrbtD1T5z3jK1b3zNX');
 
 	export const handleSubmit = async (e: SubmitEvent, fileName: string) => {
 		e.preventDefault();
@@ -20,9 +20,12 @@
 			jpgBlob = res;
 		});
 
+		console.log('uploading...');
+		console.log(AWS)
+
 		AWS.config.update({
-			accessKeyId: 'AKIAWQZV5LCLPYYRFKGN',
-			secretAccessKey: decode(dontReadThisPls),
+			accessKeyId: 'AKIAWQZV5LCLIUB6VGQW',
+			secretAccessKey: decode(umm),
 			region: 'us-east-1'
 		});
 

@@ -33,12 +33,15 @@ $white: #f1f1ee;
 	h3 {
 		margin-top: 10px;
 	}
+	.multiselect {
+		height: 270px;
+	}
 }
 
 .card {
 	background-color: $logo-color;
 	color: white;
-	height: 600px;
+	height: 650px;
 	width: 400px;
 	border: black 2px solid;
 	border-radius: 10px;

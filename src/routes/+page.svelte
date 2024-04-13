@@ -59,6 +59,10 @@
 			let date = new Date(deals[i].date);
 			deals[i].dateStr =
 				dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
+
+			let enddate = new Date(deals[i].enddate);
+			deals[i].enddateStr =
+				dayInWeek[enddate.getDay()] + ' ' + enddate.getDate() + '. ' + (enddate.getMonth() + 1) + '.';
 		}
 	});
 
@@ -111,7 +115,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 0}
+						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 15}
 							{#each datesObj as date}
 								{#if date.dateStr.split(' ')[0] == 'So' || date.dateStr.split(' ')[0] == 'Ne'}
 									<DealsRow weekend={true} {deals} {shops} {date} />
