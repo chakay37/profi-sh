@@ -1,0 +1,62 @@
+{
+  "version": "34.0.0",
+  "files": {
+    "ff81f891c66903412b3d40f62b1e7fa10554959fbeea2154cf16d04d6a615bb1": {
+      "source": {
+        "path": "asset.ff81f891c66903412b3d40f62b1e7fa10554959fbeea2154cf16d04d6a615bb1",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "448400283798-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
+          "objectKey": "ff81f891c66903412b3d40f62b1e7fa10554959fbeea2154cf16d04d6a615bb1.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-file-publishing-role-448400283798-us-east-1"
+        }
+      }
+    },
+    "1039a174afbf09cd27e3b215f53b9e80b1bd66df24547e5746f0e5bcb9204cf3": {
+      "source": {
+        "path": "asset.1039a174afbf09cd27e3b215f53b9e80b1bd66df24547e5746f0e5bcb9204cf3",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "448400283798-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
+          "objectKey": "1039a174afbf09cd27e3b215f53b9e80b1bd66df24547e5746f0e5bcb9204cf3.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-file-publishing-role-448400283798-us-east-1"
+        }
+      }
+    },
+    "25494365e4127a8d733beaa4d6e6198a378d4bb58dd7b43f090dd40af2c6c81f": {
+      "source": {
+        "path": "asset.25494365e4127a8d733beaa4d6e6198a378d4bb58dd7b43f090dd40af2c6c81f.zip",
+        "packaging": "file"
+      },
+      "destinations": {
+        "448400283798-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
+          "objectKey": "25494365e4127a8d733beaa4d6e6198a378d4bb58dd7b43f090dd40af2c6c81f.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-file-publishing-role-448400283798-us-east-1"
+        }
+      }
+    },
+    "b0596c4d7a16530286110cb13e4d5f7014205f4e3eb32510a34e31ea4ab0b01d": {
+      "source": {
+        "path": "chakay-profi-shsst-Site.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "448400283798-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-448400283798-us-east-1",
+          "objectKey": "b0596c4d7a16530286110cb13e4d5f7014205f4e3eb32510a34e31ea4ab0b01d.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-file-publishing-role-448400283798-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

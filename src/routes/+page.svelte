@@ -104,14 +104,14 @@
 				<table>
 					<thead>
 						<tr>
-							<th class="corner" scope="col" />
+							<th class="corner"  scope="col" />
 							{#each shopsNames as shop}
-								<th scope="col">{shop}</th>
+								<th  scope="col">{shop}</th>
 							{/each}
 						</tr>
 					</thead>
 					<tbody>
-						{#if deals.length > 0}
+						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 0}
 							{#each datesObj as date}
 								{#if date.dateStr.split(' ')[0] == 'So' || date.dateStr.split(' ')[0] == 'Ne'}
 									<DealsRow weekend={true} {deals} {shops} {date} />

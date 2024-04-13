@@ -4,6 +4,7 @@ export async function get(table: string)
 	const response = await fetch(LINK + table)
 	const obj = await response.json();
 	return obj;
+  
 } 
 export async function getId(table: string, id: number)
 {

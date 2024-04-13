@@ -4,21 +4,21 @@
     "id": "App",
     "path": "",
     "children": {
-      "david-profi-shsst-Site": {
-        "id": "david-profi-shsst-Site",
-        "path": "david-profi-shsst-Site",
+      "chakay-profi-shsst-Site": {
+        "id": "chakay-profi-shsst-Site",
+        "path": "chakay-profi-shsst-Site",
         "children": {
           "CustomResourceHandler": {
             "id": "CustomResourceHandler",
-            "path": "david-profi-shsst-Site/CustomResourceHandler",
+            "path": "chakay-profi-shsst-Site/CustomResourceHandler",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "david-profi-shsst-Site/CustomResourceHandler/ServiceRole",
+                "path": "chakay-profi-shsst-Site/CustomResourceHandler/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "david-profi-shsst-Site/CustomResourceHandler/ServiceRole/ImportServiceRole",
+                    "path": "chakay-profi-shsst-Site/CustomResourceHandler/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.95.1"
@@ -26,7 +26,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "david-profi-shsst-Site/CustomResourceHandler/ServiceRole/Resource",
+                    "path": "chakay-profi-shsst-Site/CustomResourceHandler/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -63,7 +63,7 @@
                           },
                           {
                             "key": "sst:stage",
-                            "value": "david"
+                            "value": "chakay"
                           }
                         ]
                       }
@@ -81,11 +81,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "david-profi-shsst-Site/CustomResourceHandler/Code",
+                "path": "chakay-profi-shsst-Site/CustomResourceHandler/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "david-profi-shsst-Site/CustomResourceHandler/Code/Stage",
+                    "path": "chakay-profi-shsst-Site/CustomResourceHandler/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.95.1"
@@ -93,7 +93,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "david-profi-shsst-Site/CustomResourceHandler/Code/AssetBucket",
+                    "path": "chakay-profi-shsst-Site/CustomResourceHandler/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.95.1"
@@ -107,13 +107,13 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "david-profi-shsst-Site/CustomResourceHandler/Resource",
+                "path": "chakay-profi-shsst-Site/CustomResourceHandler/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-                      "s3Key": "12b43c09742b568c50e0566c3103ee2522ae7511d8d702314585e51206c62cdb.zip"
+                      "s3Key": "ff81f891c66903412b3d40f62b1e7fa10554959fbeea2154cf16d04d6a615bb1.zip"
                     },
                     "handler": "index.handler",
                     "memorySize": 1024,
@@ -131,7 +131,7 @@
                       },
                       {
                         "key": "sst:stage",
-                        "value": "david"
+                        "value": "chakay"
                       }
                     ],
                     "timeout": 900
@@ -150,15 +150,15 @@
           },
           "site": {
             "id": "site",
-            "path": "david-profi-shsst-Site/site",
+            "path": "chakay-profi-shsst-Site/site",
             "children": {
               "ServerFunctionRole": {
                 "id": "ServerFunctionRole",
-                "path": "david-profi-shsst-Site/site/ServerFunctionRole",
+                "path": "chakay-profi-shsst-Site/site/ServerFunctionRole",
                 "children": {
                   "ImportServerFunctionRole": {
                     "id": "ImportServerFunctionRole",
-                    "path": "david-profi-shsst-Site/site/ServerFunctionRole/ImportServerFunctionRole",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunctionRole/ImportServerFunctionRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.95.1"
@@ -166,7 +166,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "david-profi-shsst-Site/site/ServerFunctionRole/Resource",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunctionRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -208,7 +208,7 @@
                           },
                           {
                             "key": "sst:stage",
-                            "value": "david"
+                            "value": "chakay"
                           }
                         ]
                       }
@@ -226,15 +226,15 @@
               },
               "ServerFunction": {
                 "id": "ServerFunction",
-                "path": "david-profi-shsst-Site/site/ServerFunction",
+                "path": "chakay-profi-shsst-Site/site/ServerFunction",
                 "children": {
                   "AssetReplacerPolicy": {
                     "id": "AssetReplacerPolicy",
-                    "path": "david-profi-shsst-Site/site/ServerFunction/AssetReplacerPolicy",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunction/AssetReplacerPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/AssetReplacerPolicy/Resource",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/AssetReplacerPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -283,11 +283,11 @@
                   },
                   "AssetReplacer": {
                     "id": "AssetReplacer",
-                    "path": "david-profi-shsst-Site/site/ServerFunction/AssetReplacer",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunction/AssetReplacer",
                     "children": {
                       "Default": {
                         "id": "Default",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/AssetReplacer/Default",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/AssetReplacer/Default",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnResource",
                           "version": "2.95.1"
@@ -301,7 +301,7 @@
                   },
                   "IServerFunctionBucket": {
                     "id": "IServerFunctionBucket",
-                    "path": "david-profi-shsst-Site/site/ServerFunction/IServerFunctionBucket",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunction/IServerFunctionBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.95.1"
@@ -309,11 +309,11 @@
                   },
                   "ServerFunction": {
                     "id": "ServerFunction",
-                    "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction",
+                    "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/Resource",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                           "aws:cdk:cloudformation:props": {
@@ -322,14 +322,14 @@
                             ],
                             "code": {
                               "s3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-                              "s3Key": "8e5affbe9f42f9e667ddfc8f67c208d4effa11d9e04d8acbb26feedc04666876.zip"
+                              "s3Key": "25494365e4127a8d733beaa4d6e6198a378d4bb58dd7b43f090dd40af2c6c81f.zip"
                             },
                             "description": "Server handler placeholder",
                             "environment": {
                               "variables": {
                                 "SST_APP": "profi-shsst",
-                                "SST_STAGE": "david",
-                                "SST_SSM_PREFIX": "/sst/profi-shsst/david/"
+                                "SST_STAGE": "chakay",
+                                "SST_SSM_PREFIX": "/sst/profi-shsst/chakay/"
                               }
                             },
                             "handler": "index.handler",
@@ -348,7 +348,7 @@
                               },
                               {
                                 "key": "sst:stage",
-                                "value": "david"
+                                "value": "chakay"
                               }
                             ],
                             "timeout": 10
@@ -361,11 +361,11 @@
                       },
                       "LogRetention": {
                         "id": "LogRetention",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/LogRetention",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/LogRetention",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/LogRetention/Resource",
+                            "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/LogRetention/Resource",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.CfnResource",
                               "version": "2.95.1"
@@ -379,7 +379,7 @@
                       },
                       "LogGroup": {
                         "id": "LogGroup",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/LogGroup",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/LogGroup",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.95.1"
@@ -387,11 +387,11 @@
                       },
                       "Code": {
                         "id": "Code",
-                        "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/Code",
+                        "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/Code",
                         "children": {
                           "Stage": {
                             "id": "Stage",
-                            "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/Code/Stage",
+                            "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/Code/Stage",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.AssetStaging",
                               "version": "2.95.1"
@@ -399,7 +399,7 @@
                           },
                           "AssetBucket": {
                             "id": "AssetBucket",
-                            "path": "david-profi-shsst-Site/site/ServerFunction/ServerFunction/Code/AssetBucket",
+                            "path": "chakay-profi-shsst-Site/site/ServerFunction/ServerFunction/Code/AssetBucket",
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                               "version": "2.95.1"
@@ -425,18 +425,18 @@
               },
               "Parameter_url": {
                 "id": "Parameter_url",
-                "path": "david-profi-shsst-Site/site/Parameter_url",
+                "path": "chakay-profi-shsst-Site/site/Parameter_url",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "david-profi-shsst-Site/site/Parameter_url/Resource",
+                    "path": "chakay-profi-shsst-Site/site/Parameter_url/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
                       "aws:cdk:cloudformation:props": {
-                        "name": "/sst/profi-shsst/david/SvelteKitSite/site/url",
+                        "name": "/sst/profi-shsst/chakay/SvelteKitSite/site/url",
                         "tags": {
                           "sst:app": "profi-shsst",
-                          "sst:stage": "david"
+                          "sst:stage": "chakay"
                         },
                         "type": "String",
                         "value": "localhost"
@@ -461,15 +461,15 @@
           },
           "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
             "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
-            "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
             "children": {
               "Code": {
                 "id": "Code",
-                "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage",
+                    "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.95.1"
@@ -477,7 +477,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket",
+                    "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.95.1"
@@ -491,11 +491,11 @@
               },
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/ImportServiceRole",
+                    "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.95.1"
@@ -503,7 +503,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
+                    "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -540,7 +540,7 @@
                           },
                           {
                             "key": "sst:stage",
-                            "value": "david"
+                            "value": "chakay"
                           }
                         ]
                       }
@@ -552,11 +552,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
+                    "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
+                        "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -600,7 +600,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "david-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+                "path": "chakay-profi-shsst-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.95.1"
@@ -614,7 +614,7 @@
           },
           "SSTStackOutputSSTMetadata": {
             "id": "SSTStackOutputSSTMetadata",
-            "path": "david-profi-shsst-Site/SSTStackOutputSSTMetadata",
+            "path": "chakay-profi-shsst-Site/SSTStackOutputSSTMetadata",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.95.1"
@@ -622,7 +622,7 @@
           },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
-            "path": "david-profi-shsst-Site/BootstrapVersion",
+            "path": "chakay-profi-shsst-Site/BootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.95.1"
@@ -630,7 +630,7 @@
           },
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
-            "path": "david-profi-shsst-Site/CheckBootstrapVersion",
+            "path": "chakay-profi-shsst-Site/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.95.1"

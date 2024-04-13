@@ -14,7 +14,7 @@ export function load({ setHeaders, cookies }) {
     });
 
     const authenticated = cookies.get('adminLogin');
-    if (authenticated === 'W7CtMKGegq5R6D') {
+    if (authenticated === 'W7CtM*KGegq5R6D') {
         return { authenticated: true };
     }
     return { authenticated: false };
