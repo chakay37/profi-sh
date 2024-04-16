@@ -10,7 +10,8 @@
 	let id = Number($page.params.id);
 	let article: object = {};
 	let articles: object[] = [];
-
+	export let data;
+	
 	function goBack() {
 		articles = [];
 		goto('/editor/articles');
@@ -24,6 +25,10 @@
 	}
 
 	onMount(async () => {
+		if (data.authenticated == false) {
+			goto('/editor');
+		}
+
 		if (id != 0) {
 			articles = await getId('articles', Number(id));
 			article = articles['0'];

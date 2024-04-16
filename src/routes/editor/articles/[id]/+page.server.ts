@@ -2,6 +2,14 @@ import type { Actions } from '@sveltejs/kit';
 let article: object = {};
 import { get, post, put } from '$lib/db';
 
+export function load({ setHeaders, cookies }) {
+    const authenticated = cookies.get('editorLogin');
+    if (authenticated === 'Bbftr89/hbf19') {
+        return { authenticated: true };
+    }
+    return { authenticated: false };
+}
+
 export const actions = {
     articlePost: async ({ request }) => {
         const data = await request.formData();

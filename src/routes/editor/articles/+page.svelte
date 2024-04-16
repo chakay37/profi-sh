@@ -2,10 +2,17 @@
 	import './selectArticle.scss';
 	import { get } from '$lib/db';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+
+	export let data;
 
 	let articles: object[] = [];
 	let datesArrs = [];
 	onMount(async () => {
+		if (data.authenticated == false) {
+			goto('/editor');
+		}
+
 		articles = await get('articles');
 		articles.forEach((a) => datesArrs.push(a.date.split('T')['0'].split('-')));
 		datesArrs.forEach((arr) => arr.reverse().toString());
