@@ -3,7 +3,7 @@
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { scrollto } from 'svelte-scrollto';
 
-	import staticImage from '$lib/main-img/4.jpg';
+	import staticImage from '$lib/main-img/static.jpg';
 	/*const staticImage = new URL(
 		'https://cdn.atomix.vg/wp-content/uploads/2015/07/super-mario-maker-facebook.jpg'
 	);*/
@@ -72,16 +72,14 @@
 				today.getDate()
 			);
 			
-			if (utcToday - utc > 0)
+			if (utcToday - utc > 0 && utcToday - utcEnd <= 0)
 			{
-				let formattedToday: Date = new Date(today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate() + 'T00:00:00.000Z');
-				deals[i].date = formattedToday
+
+				deals[i].date = new Date().toISOString();
 			}
 			
 		}
-		deals.forEach(d => {
-			console.log(d.text + ' ' + d.date);
-		});
+		
 
 		shopsNames = [];
 		shops.forEach((shop) => shopsNames.push(shop.name));
@@ -148,10 +146,10 @@
 					<tbody>
 						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 15}
 							{#each datesObj as date}
-								{#if date.dateStr.split(' ')[0] == 'So' || date.dateStr.split(' ')[0] == 'Ne'}
+								{#if date.dateStr.split(' ')[0] == 'Ne'}
 									<DealsRow weekend={true} {deals} {shops} {date} />
 								{/if}
-								{#if date.dateStr.split(' ')[0] != 'So' && date.dateStr.split(' ')[0] != 'Ne'}
+								{#if date.dateStr.split(' ')[0] != 'Ne'}
 									<DealsRow weekend={false} {deals} {shops} {date} />
 								{/if}
 							{/each}

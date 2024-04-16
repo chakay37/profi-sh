@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import img from '$lib/main-img/2.jpg';
 	import { onMount } from 'svelte';
 	import { getId } from '$lib/db';
 	import Title from '$lib/components/Title.svelte';

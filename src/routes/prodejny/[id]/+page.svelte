@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import img from '$lib/main-img/2.jpg';
 	import { onMount } from 'svelte';
 	import { getId, get } from '$lib/db';
 	import Title from '$lib/components/Title.svelte';
 	import type { Deals } from '$lib/models/models';
 	import './prodejna.scss';
-	import PhotoAdminCard from '$lib/components/Photo-adminCard.svelte';
 
 	let id = $page.params.id;
 	let shop: object = {};

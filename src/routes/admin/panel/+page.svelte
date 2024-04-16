@@ -31,11 +31,16 @@
 		shops = await get('shops');
 		deals = await get('deals');
 		users = await get('users');
-		cities = await get('cities');*/
-
+		cities = await get('cities');
+		console.log(photos);
+		console.log(shops);
+		console.log(deals);
+		console.log(users);
+		console.log(cities);*/
 		let allTables: Promise<any>[] = [];
 		allTables = [get('photos'), get('shops'), get('deals'), get('users'), get('cities')];
 		const res = await Promise.all(allTables);
+		console.log(res);
 		photos = res[0];
 		shops = res[1];
 		deals = res[2];
@@ -112,6 +117,7 @@
 			}
 		}
 		usersTable = 'email;tel.cislo;město' + '\n';
+		console.log(users);
 		users.forEach((u) => {
 			usersTable +=
 				u.email + ';' + u.phone + ';' + cities.find((c) => c.id == u.cityid).name + '\n';
@@ -289,7 +295,7 @@
 					>
 				{/if}
 			</div>
-			{#if photosLoaded}
+			{#if photosLoaded && photos.length > 0}
 				{#each photos as p}
 					<PhotoAdminCard photo={p} />
 				{/each}

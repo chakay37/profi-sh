@@ -78,12 +78,9 @@
 			if (deal.dateStr == dateStr && deal.shopId == shop.id) {
 				shop.deal = deal;
 				shop.deal.tableText = deal.tableText;
-				shop.deal.rowSpan = 1;
+				shop.deal.rowSpan = diffDays + 1;
 				shop.deal.text = deal.text;
-
-				if (diffDays > 1) {
-					shop.deal.rowSpan = diffDays + 1;
-				}
+					
 			}
 			if (deal.shopId == shop.id) {
 				//console.log(deal.tableText+'    '+shop.name+'  '+rowDiffDays+'	'+deal.date+'	'+new Date(date.date));
@@ -99,13 +96,12 @@
 		spans.push(shop.deal.rowSpan);
 	}
 	);
-	
 </script>
 
 <tr class:weekend-row={weekend}>
 	<th scope="row" class="head-dates">{dateStr}</th>
 	{#each shops as s}
-		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 1 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
+		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 		
 			<td
 				class="deals"
@@ -121,7 +117,7 @@
 	{/each}
 </tr>
 
-<Modal bind:showModal warning={false}>
+<Modal bind:showModal warning={false} deals={deals} dealToChange={null}>
 	<h2 slot="header">{modalHeaderText}</h2>
 
 	<p class="modal-body">{modalBodyText}</p>
