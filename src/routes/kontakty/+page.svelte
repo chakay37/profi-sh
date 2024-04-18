@@ -12,20 +12,16 @@
 				<td>Profi Second Hand s.r.o.</td>
 			</tr>
 			<tr>
-				<th>IČO</th>
-				<td>69322431</td>
-			</tr>
-			<tr>
-				<th>DIČ</th>
-				<td>CZ7806220268</td>
-			</tr>
-			<tr>
-				<th>Sídlo firmy</th>
-				<td>Národní obrany 8, 160 00, Praha 6</td>
-			</tr>
-			<tr>
 				<th>e-mail</th>
 				<td>info@profi-sh.cz</td>
+			</tr>
+			<tr>
+				<th>facebook</th>
+				<td><a target="_blank" href="https://www.facebook.com/profisecondhand">www.facebook.com/profisecondhand</a></td>
+			</tr>
+			<tr>
+				<th>instagram</th>
+				<td><a target="_blank" href="https://www.instagram.com/profi_second_hand/">www.instagram.com/profi_second_hand</a></td>
 			</tr>
 		</table>
 	</section>

@@ -9,17 +9,24 @@ $white: #f1f1ee;
 	justify-content: space-between;
 	height: 500px;
 	.title {
+		width: 600px;
 		h1 {
 			font-weight: 100;
 			font-size: 70px;
 		}
 		p {
-			width: 450px;
+			width: 100%;
 		}
 		.buttons {
+			background-color: $logo-color-light;
+			justify-content: center;
 			margin-top: 25px;
 			display: flex;
 			gap: 30px;
+			padding-block: 15px;
+			width: 90%;
+			border: black solid 2px;
+			border-radius: 10px;
 		}
 	}
 	.carousel-bs {
@@ -35,12 +42,12 @@ $white: #f1f1ee;
 	align-items: center;
 
 	.title {
-		padding-top: 100px;
+		padding-top: 50px;
 	}
 
 	.table-container {
-		width: 100%;
 		margin-top: 25px;
+		width: 100%;
 		color: $white;
 		table,td {
 			border-collapse: collapse;
@@ -61,8 +68,8 @@ $white: #f1f1ee;
 			background-color: $logo-color;
 		}
 		td,th {
-			min-width: 120px;
-			padding-block: 4px;
+			min-width: 100px;
+			padding-block: 8px;
 			font-weight: 900;
 			text-align: center;
 		}

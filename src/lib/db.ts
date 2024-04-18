@@ -48,7 +48,7 @@ export async function del(table: string, id: number)
   return await myDBInstance.del(table, id);
 }
 
-const myDBInstance = {
+export const myDBInstance = {
   get: async function (table: string) {
     const response = await fetch(LINK + table)
 	const obj = await response.json();
@@ -88,7 +88,7 @@ const myDBInstance = {
   }
 };
 
-
+/*
 const controller = new AbortController();
 import process from "process";
 process.on('exit', () => {
@@ -100,4 +100,4 @@ process.on('SIGINT', () => {
   controller.abort(); // Abort any ongoing fetch requests
   // Add any additional cleanup logic here
   process.exit(1);
-});
+});*/

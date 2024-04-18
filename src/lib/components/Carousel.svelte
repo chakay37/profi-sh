@@ -21,14 +21,13 @@
 			//let photoOut = await response.json();
 
 			//photosURL.push(URL.createObjectURL(blob));
-			
 			let photo = photos.filter((a) => a.name === i.toString())[0];
+			
 			photo.photoURL = URL.createObjectURL(blob);
 			photosFiltered.push(photo);
 			
 		}
 		photosFilteredLoaded = true;
-		console.log(photosFiltered);
 	});
 	$: photosFilteredLoaded;
 </script>
@@ -38,7 +37,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body style="border-radius: 10px;">
-	{#if photosFilteredLoaded}
+	{#key photosFiltered}
+	{#if photosFilteredLoaded && photosFiltered.length > 0}
 		<div class="carousel-container">
 			<div
 				id="carouselExampleInterval"
@@ -70,7 +70,7 @@
 										class="d-block w-100 img-fluid"
 										alt="obrázek oblečení"
 									/>
-									{#if photo.desc !== undefined && photo.desc !== ''}
+									{#if photo.desc !== undefined && photo.desc !== '' && photo.desc !== null}
 										<div class="carousel-caption d-none d-md-block">
 											<p>
 												{photo.desc}
@@ -103,6 +103,8 @@
 			</div>
 		</div>
 	{/if}
+			
+	{/key}
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

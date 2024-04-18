@@ -22,7 +22,10 @@
 				deals[i].tableText = 'Svátek';
 				break;
 			case 4:
-				deals[i].tableText = 'Jiná akce';
+				deals[i].tableText = deals[i]['text'];
+				break;
+			case 5:
+				deals[i].tableText = 'Zavřeno';
 				break;
 			default:
 				break;
@@ -99,7 +102,7 @@
 </script>
 
 <tr class:weekend-row={weekend}>
-	<th scope="row" class="head-dates">{dateStr}</th>
+	<th scope="row" class="head-dates">{dateStr}{#if date.date.getDate() == new Date().getDate()}(dnes){/if}</th>
 	{#each shops as s}
 		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 		

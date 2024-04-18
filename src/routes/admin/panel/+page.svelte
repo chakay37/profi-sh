@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { get, del } from '$lib/db';
+	import { myDBInstance, get, del } from '$lib/db';
 	import { goto } from '$app/navigation';
 	import process from 'process';
 	import { encode, decode } from 'js-base64';
@@ -38,7 +38,13 @@
 		console.log(users);
 		console.log(cities);*/
 		let allTables: Promise<any>[] = [];
-		allTables = [get('photos'), get('shops'), get('deals'), get('users'), get('cities')];
+		allTables = [
+			myDBInstance.get('photos'),
+			myDBInstance.get('shops'),
+			myDBInstance.get('deals'),
+			myDBInstance.get('users'),
+			myDBInstance.get('cities')
+		];
 		const res = await Promise.all(allTables);
 		console.log(res);
 		photos = res[0];
@@ -160,6 +166,7 @@
 							<option value="2">Sleva (koruny)</option>
 							<option value="3">Svátek</option>
 							<option value="4">Jiné</option>
+							<option value="5">Zavřeno</option>
 						</select>
 					</label>
 					{#if dealType == 0}
@@ -235,6 +242,11 @@
 									<option selected value="4">Jiné</option>
 								{:else}
 									<option value="4">Jiné</option>
+								{/if}
+								{#if Number(dealToChange.type.toString()) === 5}
+									<option selected value="5">Zavřeno</option>
+								{:else}
+									<option value="5">Zavřeno</option>
 								{/if}
 							</select>
 						</label>

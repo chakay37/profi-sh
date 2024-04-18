@@ -25,7 +25,7 @@
 	import { onMount } from 'svelte';
 	import { json } from '@sveltejs/kit';
 
-	import { get, post } from '$lib/db';
+	import { myDBInstance } from '$lib/db';
 	import type { Deals } from '$lib/models/models';
 	import DealsRow from '$lib/components/Deals-row.svelte';
 
@@ -47,9 +47,14 @@
 		'Plzeň'
 	];
 	onMount(async () => {
-		shops = await get('shops');
-		cities = await get('cities');
-		deals = await get('deals');
+		cities = await myDBInstance.get('cities');
+		shops = await myDBInstance.get('shops');
+
+		shopsNames = [];
+		shops.forEach((shop) => shopsNames.push(shop.name));
+
+		deals = await myDBInstance.get('deals');
+
 		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
 
 		for (let i = 0; i < deals.length; i++) {
@@ -81,8 +86,8 @@
 		}
 		
 
-		shopsNames = [];
-		shops.forEach((shop) => shopsNames.push(shop.name));
+		
+		
 
 		for (let i = 0; i < deals.length; i++) {
 			let date = new Date(deals[i].date);
@@ -99,9 +104,11 @@
 	let datesObj: object[] = [];
 	for (let i = 0; i < 21; i++) {
 		let date: Date = new Date();
-		date.setDate(new Date().getDate() + i);
+		date.setDate(new Date().getDate() + i - 7);
 		datesObj.push({dateStr: dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.',
 						date: date});
+		let firstMonday = datesObj.findIndex(date => date.date.getDay() === 1)
+		datesObj = datesObj.slice(firstMonday, 14)
 	}
 </script>
 
@@ -123,8 +130,8 @@
 					ČR. Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
 				</p>
 				<div class="buttons">
-					<button use:scrollto={'#akce'} class="secondary-button">Akce a Slevy</button>
-					<button use:scrollto={'#sms'} class="secondary-button">Dostávejte upozornění SMS</button>
+					<button use:scrollto={'#akce'} class="primary-button">Akce a Slevy</button>
+					<button use:scrollto={'#sms'} class="primary-button">Dostávejte upozornění SMS</button>
 				</div>
 			</div>
 			<div class="carousel-bs"><Carousel /></div>
@@ -144,7 +151,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 15}
+						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 12}
 							{#each datesObj as date}
 								{#if date.dateStr.split(' ')[0] == 'Ne'}
 									<DealsRow weekend={true} {deals} {shops} {date} />
@@ -214,19 +221,19 @@
 			<SectTitle>Sociální sítě</SectTitle>
 			<div class="socials-row" id="only-desktop">
 				<div class="item-container fb">
-					<a href="https://www.facebook.com/profisecondhand">
+					<a target="_blank" href="https://www.facebook.com/profisecondhand">
 						<img src={fb1} alt="facebook profi sh" />
 						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
 				</div>
 				<div class="item-container ig">
-					<a href="https://www.instagram.com/profi_second_hand/">
+					<a target="_blank" href="https://www.instagram.com/profi_second_hand/">
 						<img src={ig1} alt="instagram profi sh" />
 						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
 					</a>
 				</div>
 				<div class="item-container fb">
-					<a href="https://www.facebook.com/profisecondhand">
+					<a target="_blank" href="https://www.facebook.com/profisecondhand">
 						<img src={fb2} alt="facebook profi sh" />
 						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
@@ -234,25 +241,25 @@
 			</div>
 			<div class="socials-row">
 				<div class="item-container ig">
-					<a href="https://www.instagram.com/profi_second_hand/">
+					<a target="_blank" href="https://www.instagram.com/profi_second_hand/">
 						<img src={ig2} alt="facebook profi sh" />
 						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
 					</a>
 				</div>
 				<div class="item-container fb">
-					<a href="https://www.facebook.com/profisecondhand">
+					<a target="_blank" href="https://www.facebook.com/profisecondhand">
 						<img src={fb3} alt="facebook profi sh" />
 						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
 				</div>
 				<div class="item-container ig">
-					<a href="https://www.instagram.com/profi_second_hand/">
+					<a target="_blank" href="https://www.instagram.com/profi_second_hand/">
 						<img src={ig3} alt="facebook profi sh" />
 						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
 					</a>
 				</div>
 				<div class="item-container ig">
-					<a href="https://www.instagram.com/profi_second_hand/">
+					<a target="_blank" href="https://www.instagram.com/profi_second_hand/">
 						<img src={ig4} alt="facebook profi sh" />
 						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
 					</a>

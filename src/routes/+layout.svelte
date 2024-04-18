@@ -65,7 +65,7 @@
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a href="https://www.facebook.com/profisecondhand"
+				<a target="_blank" href="https://www.facebook.com/profisecondhand"
 					><img class="facebook" src={facebookIcon} alt="" /></a
 				>
 			</li>
@@ -73,7 +73,7 @@
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a href="https://www.instagram.com/profi_second_hand/"
+				<a target="_blank" href="https://www.instagram.com/profi_second_hand/"
 					><img class="instagram" src={instagramIcon} alt="" /></a
 				>
 			</li>
@@ -107,10 +107,10 @@
 				</li>
 
 				<li class="nav-item social-container">
-					<a href="https://www.facebook.com/profisecondhand"
+					<a target="_blank" href="https://www.facebook.com/profisecondhand"
 						><img class="facebook" src={facebookIcon} alt="" /></a
 					>
-					<a href="https://www.instagram.com/profi_second_hand/"
+					<a target="_blank" href="https://www.instagram.com/profi_second_hand/"
 						><img class="instagram" src={instagramIcon} alt="" /></a
 					>
 				</li>
@@ -136,10 +136,10 @@
 	<div>
 		<h2><strong>Socialní sítě</strong></h2>
 		<div class="images">
-			<a href="https://www.facebook.com/profisecondhand"
+			<a target="_blank" href="https://www.facebook.com/profisecondhand"
 				><img src={facebookIcon} alt="facebook profi sh" class="facebook" /></a
 			>
-			<a href="https://www.instagram.com/profi_second_hand/"
+			<a target="_blank" href="https://www.instagram.com/profi_second_hand/"
 				><img src={instagramIcon} alt="instagram profi sh" class="instagram" /></a
 			>
 		</div>
