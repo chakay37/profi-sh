@@ -16,7 +16,7 @@ export async function getId(table: string, id: number)
 } 
 export async function post(table: string, body: object) 
 {
-  /*console.log(JSON.stringify(body))
+  /*
 	const response = await fetch(LINK + table, {
     method: 'POST',
     headers: {
@@ -29,7 +29,7 @@ export async function post(table: string, body: object)
 }
 export async function put(table: string, body: object) 
 {
-  /*console.log(JSON.stringify(body))
+  /*
 	const response = await fetch(LINK + table, {
     method: 'PUT',
     headers: {
@@ -60,7 +60,6 @@ export const myDBInstance = {
 	return obj;
   },
   post: async function (table: string, body: object) {
-    console.log(JSON.stringify(body))
     const response = await fetch(LINK + table, {
       method: 'POST',
       headers: {
@@ -71,7 +70,6 @@ export const myDBInstance = {
     });
   },
   put: async function (table: string, body: object) {
-    console.log(JSON.stringify(body))
 	const response = await fetch(LINK + table, {
     method: 'PUT',
     headers: {

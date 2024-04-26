@@ -80,7 +80,6 @@
 
 			//photosURL.push(URL.createObjectURL(blob));
 			photoURL = URL.createObjectURL(blob);
-			console.log(photoURL)
 	});
 </script>
 

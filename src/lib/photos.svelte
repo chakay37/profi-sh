@@ -16,12 +16,9 @@
 			quality: 0.8,
 			type: 'image/jpeg'
 		}).then((res: Blob) => {
-			console.log(res);
 			jpgBlob = res;
 		});
 
-		console.log('uploading...');
-		console.log(AWS)
 
 		AWS.config.update({
 			accessKeyId: 'AKIAWQZV5LCLIUB6VGQW',

@@ -16,6 +16,8 @@
 	import fb1 from '$lib/main-img/fb1.jpg';
 	import fb2 from '$lib/main-img/fb2.jpg';
 	import fb3 from '$lib/main-img/fb3.jpg';
+	import fb4 from '$lib/main-img/fb4.jpg';
+	import fb5 from '$lib/main-img/fb5.jpg';
 	import ig1 from '$lib/main-img/ig1.jpg';
 	import ig2 from '$lib/main-img/ig2.jpg';
 	import ig3 from '$lib/main-img/ig3.jpg';
@@ -80,7 +82,7 @@
 			if (utcToday - utc > 0 && utcToday - utcEnd <= 0)
 			{
 
-				deals[i].date = new Date().toISOString();
+				deals[i].date = date.toISOString();
 			}
 			
 		}
@@ -238,6 +240,12 @@
 						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
 				</div>
+				<div class="item-container fb">
+					<a target="_blank" href="https://www.facebook.com/profisecondhand">
+						<img src={fb3} alt="facebook profi sh" />
+						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
+					</a>
+				</div>
 			</div>
 			<div class="socials-row">
 				<div class="item-container ig">
@@ -248,7 +256,7 @@
 				</div>
 				<div class="item-container fb">
 					<a target="_blank" href="https://www.facebook.com/profisecondhand">
-						<img src={fb3} alt="facebook profi sh" />
+						<img src={fb4} alt="facebook profi sh" />
 						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
 				</div>
@@ -262,6 +270,12 @@
 					<a target="_blank" href="https://www.instagram.com/profi_second_hand/">
 						<img src={ig4} alt="facebook profi sh" />
 						<img src={instagramIcon} alt="instagram profi sh" class="icon" />
+					</a>
+				</div>
+				<div class="item-container fb">
+					<a target="_blank" href="https://www.facebook.com/profisecondhand">
+						<img src={fb5} alt="facebook profi sh" />
+						<img src={facebookIcon} alt="facebook profi sh" class="icon" />
 					</a>
 				</div>
 			</div>

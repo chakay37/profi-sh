@@ -3,6 +3,9 @@ import { Users } from '$lib/models/models';
 let user: Users = new Users('', '', 0);
 import { get, post } from '$lib/db';
 
+
+export const ssr = true;
+
 export const actions = {
     user: async ({ request }) => {
         const data = await request.formData();
@@ -19,9 +22,6 @@ export const actions = {
             await post('users', user);
             return { success: true };
         }
-        console.log(email)
-        console.log(phone)
-        console.log(cityId)
         return { false: true };
         
     }

@@ -31,8 +31,7 @@
 			//let photoOut = await response.json();
 
 			//photosURL.push(URL.createObjectURL(blob));
-			console.log(photos);
-			console.log(shopPhotosNames[i]);
+
 			let photo = photos.filter((a) => a.name === shopPhotosNames[i].toString())[0];
 			photo.photoURL = URL.createObjectURL(blob);
 			orderedPhotos.push(photo);

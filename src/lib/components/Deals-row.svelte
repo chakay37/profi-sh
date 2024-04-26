@@ -86,8 +86,6 @@
 					
 			}
 			if (deal.shopId == shop.id) {
-				//console.log(deal.tableText+'    '+shop.name+'  '+rowDiffDays+'	'+deal.date+'	'+new Date(date.date));
-				//console.log(diffDays + '	' + rowDiffDays + '	' + endRowDiffDays);
 				if (diffDays >= rowDiffDays && diffDays >= endRowDiffDays) {
 					shopsToDelete.push(shop);
 				}
@@ -131,7 +129,9 @@
 	$logo-color-dark: #8f8054;
 	$logo-color-light: #b6a771;
 	$white: #f1f1ee;
-
+	.old {
+		background-color: $logo-color-dark;
+	}
 	.weekend-row {
 		background-color: $logo-color;
 	}

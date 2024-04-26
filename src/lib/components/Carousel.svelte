@@ -38,7 +38,7 @@
 </head>
 <body style="border-radius: 10px;">
 	{#key photosFiltered}
-	{#if photosFilteredLoaded && photosFiltered.length > 0}
+	{#if photosFilteredLoaded && photosFiltered.length > 4}
 		<div class="carousel-container">
 			<div
 				id="carouselExampleInterval"
@@ -113,6 +113,11 @@
 </body>
 
 <style lang="scss">
+	$logo-color: #a7996b;
+	$logo-color-dark: #8f8054;
+	$logo-color-light: #b6a771;
+	$white: #f1f1ee;
+
 	.carousel-container {
 		width: 100%;
 		overflow-y: hidden;
@@ -133,6 +138,14 @@
 		}
 		button {
 			opacity: 1;
+		}
+		.carousel-control-prev-icon {
+			background-color: $logo-color-dark;
+			border-radius: 4px;
+		}
+		.carousel-control-next-icon {
+			background-color: $logo-color-dark;
+			border-radius: 4px;
 		}
 	}
 	@media (max-width: 1400px) {
