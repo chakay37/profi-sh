@@ -9,7 +9,7 @@ $white: #f1f1ee;
 	justify-content: space-between;
 	height: 500px;
 	.title {
-		width: 600px;
+		width: 100%;
 		h1 {
 			font-weight: 100;
 			font-size: 70px;
@@ -328,6 +328,9 @@ $white: #f1f1ee;
 }
 @media (min-width: 800px) {
 	.title-sect {
+		.title {
+			width: 600px;
+		}
 		.carousel-bs {
 			min-height: 300px;
 		}
