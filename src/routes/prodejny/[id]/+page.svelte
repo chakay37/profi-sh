@@ -29,7 +29,8 @@
 
 		deals = await get('deals');
 		deals = deals.filter((deal) => deal.shopId == shop.id);
-
+		deals = deals.sort((a,b) => Date.UTC(new Date(a.date).getFullYear(), new Date(a.date).getMonth(), new Date(a.date).getDate())
+		 - Date.UTC(new Date(b.date).getFullYear(), new Date(b.date).getMonth(), new Date(b.date).getDate()));
 		deals = deals.slice(0, 7);
 
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
@@ -51,6 +52,9 @@
 					break;
 				case 4:
 					deals[i].tableText = 'Jiná akce';
+					break;
+				case 5:
+					deals[i].tableText = 'Zavřeno';
 					break;
 				default:
 					break;

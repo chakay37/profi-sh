@@ -104,13 +104,13 @@
 
 	let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 	let datesObj: object[] = [];
-	for (let i = 0; i < 21; i++) {
+	for (let i = 0; i < 35; i++) {
 		let date: Date = new Date();
 		date.setDate(new Date().getDate() + i - 6);
 		datesObj.push({dateStr: dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.',
 						date: date});
 		let firstMonday = datesObj.findIndex(date => date.date.getDay() === 1)
-		datesObj = datesObj.slice(firstMonday, 14)
+		datesObj = datesObj.slice(firstMonday, 28)
 	}
 </script>
 

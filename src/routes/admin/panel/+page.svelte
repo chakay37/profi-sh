@@ -103,6 +103,8 @@
 		photos = orderedPhotos;
 		photosLoaded = true;
 
+		deals = deals.sort((a,b) => Date.UTC(new Date(a.date).getFullYear(), new Date(a.date).getMonth(), new Date(a.date).getDate())
+		 - Date.UTC(new Date(b.date).getFullYear(), new Date(b.date).getMonth(), new Date(b.date).getDate()));
 		for (let index = 0; index < deals.length; index++) {
 			if (
 				deals[index].date != null &&
