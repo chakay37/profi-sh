@@ -2,12 +2,7 @@
 	import './style.scss';
 	import Carousel from '$lib/components/Carousel.svelte';
 	import { scrollto } from 'svelte-scrollto';
-
 	import staticImage from '$lib/main-img/static.jpg';
-	/*const staticImage = new URL(
-		'https://cdn.atomix.vg/wp-content/uploads/2015/07/super-mario-maker-facebook.jpg'
-	);*/
-	import linkIcon from '$lib/main-img/link-icon.png';
 	import facebookIcon from '$lib/main-img/facebook.svg';
 	import instagramIcon from '$lib/main-img/instagram.svg';
 	import branch1 from '$lib/main-img/branch1.svg';
@@ -25,11 +20,10 @@
 
 	import SectTitle from '$lib/components/Title.svelte';
 	import { onMount } from 'svelte';
-	import { json } from '@sveltejs/kit';
 
 	import { myDBInstance } from '$lib/db';
 	import type { Deals } from '$lib/models/models';
-	import DealsRow from '$lib/components/Deals-row.svelte';
+	import DealsTable from '$lib/components/DealsTable.svelte';
 
 	let shops: object[] = [];
 	let cities: object[] = [];
@@ -50,68 +44,9 @@
 	];
 	onMount(async () => {
 		cities = await myDBInstance.get('cities');
-		shops = await myDBInstance.get('shops');
 
-		shopsNames = [];
-		shops.forEach((shop) => shopsNames.push(shop.name));
-
-		deals = await myDBInstance.get('deals');
-
-		//shopsArr = shops.map((shop: { [x: string]: object; }) => {return shop['name']})
-
-		for (let i = 0; i < deals.length; i++) {
-			let date = new Date(deals[i].date)
-			let enddate = new Date(deals[i].enddate)
-			let today = new Date();
-			let utc = Date.UTC(
-				date.getFullYear(),
-				date.getMonth(),
-				date.getDate()
-			);
-			let utcEnd = Date.UTC(
-				enddate.getFullYear(),
-				enddate.getMonth(),
-				enddate.getDate()
-			);
-			let utcToday = Date.UTC(
-				today.getFullYear(),
-				today.getMonth(),
-				today.getDate()
-			);
-			
-			if (utcToday - utc > 0 && utcToday - utcEnd <= 0)
-			{
-
-				deals[i].date = date.toISOString();
-			}
-			
-		}
-		
-
-		
-		
-
-		for (let i = 0; i < deals.length; i++) {
-			let date = new Date(deals[i].date);
-			deals[i].dateStr =
-				dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
-
-			let enddate = new Date(deals[i].enddate);
-			deals[i].enddateStr =
-				dayInWeek[enddate.getDay()] + ' ' + enddate.getDate() + '. ' + (enddate.getMonth() + 1) + '.';
-		}
 	});
 
-	let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
-	let datesObj: object[] = [];
-	for (let i = 0; i < 35; i++) {
-		let date: Date = new Date();
-		date.setDate(new Date().getDate() + i - 6);
-		datesObj.push({dateStr: dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.',
-						date: date});
-		let firstMonday = datesObj.findIndex(date => date.date.getDay() === 1)
-		datesObj = datesObj.slice(firstMonday, 28)
-	}
 </script>
 
 <body>
@@ -142,41 +77,7 @@
 			<div class="title">
 				<SectTitle>Nové akce</SectTitle>
 			</div>
-			<div class="table-container">
-				<table>
-					<thead>
-						<tr>
-							<th class="corner"  scope="col" />
-							{#each shopsNames as shop}
-								<th  scope="col">{shop}</th>
-							{/each}
-						</tr>
-					</thead>
-					<tbody>
-						{#if deals.length > 0 && shops.length > 0 && datesObj.length > 12}
-							{#each datesObj as date}
-								{#if date.dateStr.split(' ')[0] == 'Ne'}
-									<DealsRow weekend={true} {deals} {shops} {date} />
-								{/if}
-								{#if date.dateStr.split(' ')[0] != 'Ne'}
-									<DealsRow weekend={false} {deals} {shops} {date} />
-								{/if}
-							{/each}
-						{:else}
-							{#each datesObj as date}
-								<tr>
-									<th scope="row" class="head-dates">{date.dateStr}</th>
-									{#each shops as s}
-										<td></td>
-									{/each}
-								</tr>
-							{/each}
-						
-						{/if}
-						
-					</tbody>
-				</table>
-			</div>
+			<DealsTable></DealsTable>
 		</section>
 		<section class="notification-sect" id="sms">
 			<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />

@@ -3,12 +3,7 @@
 	import { onMount } from 'svelte';
 	import './carousel-bs.css';
 
-	let photos = [];
-	let photosFiltered: object[] = [];
-	let photosFilteredLoaded = false;
-	onMount(async () => {
-		photos = await get('photos');
-
+	async function getFilteredPhotos(photos) {
 		for (let i = 1; i < 6; i++) {
 			let response;
 			//if (i == 1) {
@@ -16,20 +11,25 @@
 			/*} else {
 				response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + i + '.jpg?v=' + Math.random()*1000);
 			}*/
-			
+
 			const blob = await response.blob();
 			//let photoOut = await response.json();
 
 			//photosURL.push(URL.createObjectURL(blob));
 			let photo = photos.filter((a) => a.name === i.toString())[0];
-			
+
 			photo.photoURL = URL.createObjectURL(blob);
 			photosFiltered.push(photo);
-			
+
 		}
-		photosFilteredLoaded = true;
+		return photosFiltered;
+	}
+	let photos = [];
+	let photosFiltered: object[] = [];
+	onMount(async () => {
+		photos = await get('photos');
+		photosFiltered = await getFilteredPhotos(photos);
 	});
-	$: photosFilteredLoaded;
 </script>
 
 <head>
@@ -37,8 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body style="border-radius: 10px;">
-	{#key photosFiltered}
-	{#if photosFilteredLoaded && photosFiltered.length > 4}
+	{#if photosFiltered.length > 4}
 		<div class="carousel-container">
 			<div
 				id="carouselExampleInterval"
@@ -102,14 +101,12 @@
 				</button>
 			</div>
 		</div>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			crossorigin="anonymous"
+		></script>
 	{/if}
-			
-	{/key}
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"
-	></script>
 </body>
 
 <style lang="scss">
