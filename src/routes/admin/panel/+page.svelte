@@ -155,6 +155,7 @@
 
 <body>
 	<div class="admin-page">
+		<a href="./panel/dealsTableAdmin" target="_blank"><button class="secondary-button">Tabulka s akcemi</button></a>
 		<section>
 			<div class="card akce">
 				<h1>Akce a slevy</h1>

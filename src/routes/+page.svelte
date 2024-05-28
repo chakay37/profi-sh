@@ -22,26 +22,10 @@
 	import { onMount } from 'svelte';
 
 	import { myDBInstance } from '$lib/db';
-	import type { Deals } from '$lib/models/models';
 	import DealsTable from '$lib/components/DealsTable.svelte';
 
-	let shops: object[] = [];
 	let cities: object[] = [];
-	let deals: Deals[] = [];
 
-	let shopsNames: string[] = [
-		'Děčín - Plzeňská',
-		'Děčín - Průtah',
-		'Mladá Boleslav',
-		'Most',
-		'Pardubice',
-		'Písek',
-		'Praha 8',
-		'Tábor',
-		'Teplice',
-		'Ústí nad Labem',
-		'Plzeň'
-	];
 	onMount(async () => {
 		cities = await myDBInstance.get('cities');
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { get } from '$lib/db';
 	import { onMount } from 'svelte';
-	import './carousel-bs.css';
+	import Carousel from 'svelte-carousel'
 
 	async function getFilteredPhotos(photos) {
 		for (let i = 1; i < 6; i++) {
@@ -36,76 +36,34 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body style="border-radius: 10px;">
+<body>
 	{#if photosFiltered.length > 4}
 		<div class="carousel-container">
-			<div
-				id="carouselExampleInterval"
-				class="carousel slide carousel-fade"
-				data-bs-ride="carousel"
-			>
-				<div class="carousel-inner">
-					{#each photosFiltered as photo}
-						<a href={photo.url} target="_blank">
-							{#if (photo.name = '1')}
-								<div class="carousel-item active" data-bs-interval="4000">
-									<img
-										src={photo.photoURL}
-										class="d-block w-100 img-fluid"
-										alt="obrázek oblečení"
-									/>
-									{#if photo.desc !== undefined && photo.desc !== ''}
-										<div class="carousel-caption d-none d-md-block">
-											<p>
-												{photo.desc}
-											</p>
-										</div>
-									{/if}
+		<Carousel
+			autoplay
+			autoplayDuration={3000}
+		>
+			{#each photosFiltered as photo}
+				<a href={photo.url} target="_blank">
+						<div class="carousel-item">
+							<img
+								src={photo.photoURL}
+								alt="obrázek oblečení"
+							/>
+							{#if photo.desc !== undefined && photo.desc !== '' && photo.desc !== null}
+								<div class="carousel-caption">
+									<p>
+										{photo.desc}
+									</p>
 								</div>
-							{:else}
-								<div class="carousel-item" data-bs-interval="4000">
-									<img
-										src={photo.photoURL}
-										class="d-block w-100 img-fluid"
-										alt="obrázek oblečení"
-									/>
-									{#if photo.desc !== undefined && photo.desc !== '' && photo.desc !== null}
-										<div class="carousel-caption d-none d-md-block">
-											<p>
-												{photo.desc}
-											</p>
-										</div>
-									{/if}
-								</div>
+
 							{/if}
-						</a>
-					{/each}
-				</div>
-				<button
-					class="carousel-control-prev"
-					type="button"
-					data-bs-target="#carouselExampleInterval"
-					data-bs-slide="prev"
-				>
-					<span class="carousel-control-prev-icon" aria-hidden="true" />
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button
-					class="carousel-control-next"
-					type="button"
-					data-bs-target="#carouselExampleInterval"
-					data-bs-slide="next"
-				>
-					<span class="carousel-control-next-icon" aria-hidden="true" />
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
+
+						</div>
+				</a>
+			{/each}
+		</Carousel>
 		</div>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-			crossorigin="anonymous"
-		></script>
 	{/if}
 </body>
 
@@ -119,41 +77,28 @@
 		width: 100%;
 		overflow-y: hidden;
 		height: 400px;
-		div {
-			height: 100%;
-		}
-		.carousel-item {
-			width: 100%;
-		}
+		a {
+      text-decoration: none;
+    }
 		img {
-			height: 100%;
 			width: 100%;
+			height: 350px;
 			object-fit: cover;
 			border: black 2px solid;
 			border-radius: 10px;
 			box-sizing: border-box;
 		}
-		button {
-			opacity: 1;
-		}
-		.carousel-control-prev-icon {
+		.carousel-caption {
 			background-color: $logo-color-dark;
-			border-radius: 4px;
-		}
-		.carousel-control-next-icon {
-			background-color: $logo-color-dark;
-			border-radius: 4px;
+			color: $white;
 		}
 	}
 	@media (max-width: 1400px) {
 		.carousel-container {
 			width: 100%;
 			height: 200px;
-			div {
-				height: 100%;
-			}
 			img {
-				height: 100%;
+				height: 150px;
 			}
 		}
 	}
@@ -161,12 +106,9 @@
 		.carousel-container {
 			width: 100%;
 			height: 350px;
-			div {
-				height: 100%;
-			}
-			img {
-				height: 100%;
-			}
+      img {
+        height: 300px;
+      }
 		}
 	}
 </style>

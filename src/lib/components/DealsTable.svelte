@@ -3,9 +3,10 @@
 	import { myDBInstance } from '$lib/db';
 	import type { Deals } from '$lib/models/models';
 	import DealsRow from '$lib/components/Deals-row.svelte';
+	import './DealsTable.scss';
 
+	export let days = 28;
 	let shops: object[] = [];
-	let cities: object[] = [];
 	let deals: Deals[] = [];
 
 	let shopsNames: string[] = [
@@ -72,13 +73,13 @@
 	});
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 		let datesObj: object[] = [];
-		for (let i = 0; i < 35; i++) {
+		for (let i = 0; i < days+7; i++) {
 			let date: Date = new Date();
 			date.setDate(new Date().getDate() + i - 6);
 			datesObj.push({dateStr: dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.',
 				date: date});
 			let firstMonday = datesObj.findIndex(date => date.date.getDay() === 1)
-			datesObj = datesObj.slice(firstMonday, 28)
+			datesObj = datesObj.slice(firstMonday, days)
 		}
 
 </script>

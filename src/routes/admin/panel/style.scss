@@ -5,7 +5,13 @@ $white: #f1f1ee;
 
 .admin-page { 
 	display: flex;
+	flex-direction: column;
+	margin-left: 10%;
+	margin-top: 50px;
 	justify-content: center;
+	a {
+		width: 300px;
+	}
 	section {
 		display: flex;
 		flex-wrap: wrap;

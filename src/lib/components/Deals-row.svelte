@@ -100,7 +100,7 @@
 </script>
 
 <tr class:weekend-row={weekend}>
-	<th scope="row" class="head-dates">{dateStr}{#if date.date.getDate() == new Date().getDate()}(dnes){/if}</th>
+	<th scope="row" class="head-dates">{dateStr}{#if date.date.getDate() == new Date().getDate() && date.date.getMonth() == new Date().getMonth()}(dnes){/if}</th>
 	{#each shops as s}
 		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 		
