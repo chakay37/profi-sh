@@ -124,11 +124,25 @@
 				}
 			}
 		}
-		usersTable = 'email;tel.cislo;město' + '\n';
+		usersTable = 'email;tel.cislo;město;datum' + '\n';
 		console.log(users);
 		users.forEach((u) => {
+			let dateR = '';
+			if (u.date_registered !== null) {
+				let dateDate = u.date_registered.split('T')[0];
+				let dateTime = u.date_registered.split('T')[1].split('.')[0];
+
+				let year = dateDate.split('-')[0]
+				let month = dateDate.split('-')[1]
+				let day = dateDate.split('-')[2]
+
+				let hour = Number(dateTime.split(':')[0])+3;
+				let minute = dateTime.split(':')[1];
+
+				dateR = day +'.'+ month +'.'+ year +' '+ hour +':'+ minute;
+			}
 			usersTable +=
-				u.email + ';' + u.phone + ';' + cities.find((c) => c.id == u.cityid).name + '\n';
+				u.email + ';' + u.phone + ';' + cities.find((c) => c.id == u.cityid).name + ';' + dateR +'\n';
 		});
 	});
 

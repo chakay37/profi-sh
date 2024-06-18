@@ -2,11 +2,13 @@ export class Users {
     public email: string;
     public phone: string;
     public cityId: number;
+    public date_registered: Date;
 
-    public constructor(email: string, phone: string, cityId: number) {
+    public constructor(email: string, phone: string, cityId: number, date_registered: Date) {
         this.email = email;
         this.phone = phone;
         this.cityId = cityId;
+        this.date_registered = date_registered;
     }
 }
 export class Deals {
