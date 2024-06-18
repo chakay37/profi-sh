@@ -30,6 +30,14 @@
 		photos = await get('photos');
 		photosFiltered = await getFilteredPhotos(photos);
 	});
+
+	let carousel;
+	function goToPrevPage() {
+		carousel.goToPrev()
+	}
+	function goToNextPage() {
+		carousel.goToNext()
+	}
 </script>
 
 <head>
@@ -37,12 +45,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
+	<div class="carousel-wrapper">
 	{#if photosFiltered.length > 4}
 		<div class="carousel-container">
 		<Carousel
+		bind:this={carousel}
 			autoplay
 			autoplayDuration={3000}
 		>
+		<div slot="prev">
+			<div  class="prev-container" on:click={goToPrevPage}>
+			<svg fill="#ffffff" width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<path d="M23.505 0c0.271 0 0.549 0.107 0.757 0.316 0.417 0.417 0.417 1.098 0 1.515l-14.258 14.264 14.050 14.050c0.417 0.417 0.417 1.098 0 1.515s-1.098 0.417-1.515 0l-14.807-14.807c-0.417-0.417-0.417-1.098 0-1.515l15.015-15.022c0.208-0.208 0.486-0.316 0.757-0.316z"></path>
+			</svg></div>
+		  </div>
+		  <div  slot="next">
+			<div class="next-container" on:click={goToNextPage}>
+			<svg fill="#ffffff" width="20px" height="20px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8.489 31.975c-0.271 0-0.549-0.107-0.757-0.316-0.417-0.417-0.417-1.098 0-1.515l14.258-14.264-14.050-14.050c-0.417-0.417-0.417-1.098 0-1.515s1.098-0.417 1.515 0l14.807 14.807c0.417 0.417 0.417 1.098 0 1.515l-15.015 15.022c-0.208 0.208-0.486 0.316-0.757 0.316z"></path>
+			</svg>
+		</div>
+		  </div>
 			{#each photosFiltered as photo}
 				<a href={photo.url} target="_blank">
 						<div class="carousel-item">
@@ -62,9 +85,12 @@
 						</div>
 				</a>
 			{/each}
+			<div slot="dots">
+			  </div>
 		</Carousel>
 		</div>
 	{/if}
+</div>
 </body>
 
 <style lang="scss">
@@ -73,42 +99,78 @@
 	$logo-color-light: #b6a771;
 	$white: #f1f1ee;
 
+	.carousel-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.carousel-container {
-		width: 100%;
+		width: 290px;
 		overflow-y: hidden;
-		height: 400px;
+		height: 300px;
 		a {
       text-decoration: none;
     }
 		img {
-			width: 100%;
-			height: 350px;
+			width: 150px;
+			height: 150px;
 			object-fit: cover;
 			border: black 2px solid;
 			border-radius: 10px;
 			box-sizing: border-box;
 		}
 		.carousel-caption {
+			p {
+			font-size: 16px;
+			}
+			border-radius: 5px;
 			background-color: $logo-color-dark;
 			color: $white;
 		}
+		.prev-container,
+		.next-container {
+			cursor: pointer;
+			margin-top: 65px;
+			margin-inline: 20px;
+			padding: 5px;
+			border-radius: 5px;
+			background-color: $logo-color-dark;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
-	@media (max-width: 1400px) {
+	@media (min-width: 500px) {
 		.carousel-container {
-			width: 100%;
-			height: 200px;
+			width: 420px;
+			height: 420px;
 			img {
-				height: 150px;
+				width: 280px;
+				height: 280px;
+			}
+
+			.prev-container,
+			.next-container {
+				margin-top: 130px;
+			}
+		}
+		
+	}
+	@media (min-width: 1400px) {
+		.carousel-container {
+			width: 500px;
+			height: 500px;
+			img {
+				width: 360px;
+				height: 360px;
+			}
+
+			.prev-container,
+			.next-container {
+				margin-top: 170px;
 			}
 		}
 	}
-	@media (min-width: 800px) {
-		.carousel-container {
-			width: 100%;
-			height: 350px;
-      img {
-        height: 300px;
-      }
-		}
-	}
+	
 </style>

@@ -5,9 +5,9 @@ $white: #f1f1ee;
 
 .title-sect {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 	height: 500px;
+	padding-top: 150px;
 	.title {
 		width: 100%;
 		h1 {
@@ -30,7 +30,7 @@ $white: #f1f1ee;
 		}
 	}
 	.carousel-bs {
-		width: 50%;
+		width: 40%;
 
 	}
 }
@@ -41,7 +41,7 @@ $white: #f1f1ee;
 	align-items: center;
 
 	.title {
-		padding-top: 50px;
+		padding-top: 30px;
 	}
 
 
