@@ -31,7 +31,7 @@
 		deals = deals.filter((deal) => deal.shopId == shop.id);
 		deals = deals.sort((a,b) => Date.UTC(new Date(a.date).getFullYear(), new Date(a.date).getMonth(), new Date(a.date).getDate())
 		 - Date.UTC(new Date(b.date).getFullYear(), new Date(b.date).getMonth(), new Date(b.date).getDate()));
-		deals = deals.slice(0, 7);
+		deals = deals.slice(-7);
 
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 		
@@ -51,7 +51,7 @@
 					deals[i].tableText = 'Svátek';
 					break;
 				case 4:
-					deals[i].tableText = 'Jiná akce';
+					deals[i].tableText = deals[i].text;
 					break;
 				case 5:
 					deals[i].tableText = 'Zavřeno';
@@ -141,15 +141,12 @@
 			<div class="deals">
 				<p>Akce a slevy</p>
 				{#each deals as d}
-					
+					{#if new Date(d.enddate) > new Date()}
 					<div class="deal">
-						
-						{#if new Date(d.enddate) > new Date()}
 							<h3>{d.dateStr} - {d.enddateStr}</h3>
 							<h4>{d.tableText}</h4>
-						{/if}
 					</div>
-					
+					{/if}
 				{/each}
 			</div>
 			{/if}

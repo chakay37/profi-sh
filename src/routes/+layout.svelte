@@ -88,22 +88,22 @@
 		<nav class="nav-container" class:open={isNavOpen}>
 			<ul class="nav-list">
 				<li class="nav-item">
-					<a class="nav-link" href="/">Hlavní stránka</a>
+					<a on:click={closeNav} class="nav-link" href="/">Hlavní stránka</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/prodejny">Prodejny</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" href="/eshop">E-shop</a>
+					<a on:click={closeNav} class="nav-link" href="/prodejny">Prodejny</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="/blog">Blog</a>
+					<a on:click={closeNav} class="nav-link" href="/eshop">E-shop</a>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="/kontakty">Kontakty</a>
+					<a on:click={closeNav} class="nav-link" href="/blog">Blog</a>
+				</li>
+
+				<li class="nav-item">
+					<a on:click={closeNav} class="nav-link" href="/kontakty">Kontakty</a>
 				</li>
 
 				<li class="nav-item social-container">
