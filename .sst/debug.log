@@ -1,21 +1,21 @@
-2024-06-18T14:03:12.366Z  +1899ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"chakay","ssmPrefix":"/sst/profi-shsst/chakay/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1718719390482.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"/home/chakay/Documents/GitHub/profi-sh/sst.config.ts","root":"/home/chakay/Documents/GitHub/profi-sh","out":"/home/chakay/Documents/GitHub/profi-sh/.sst","artifacts":"/home/chakay/Documents/GitHub/profi-sh/.sst/artifacts"}}
-2024-06-18T14:03:13.308Z   +942ms [debug] Using AWS profile 
-2024-06-18T14:03:13.357Z    +49ms [debug] Created AWS client IoTClient
-2024-06-18T14:03:13.357Z     +0ms [debug] Getting IoT endpoint
-2024-06-18T14:03:13.749Z   +392ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
-2024-06-18T14:03:13.749Z     +0ms [debug] Initializing bootstrap context
-2024-06-18T14:03:13.749Z     +0ms [debug] Created AWS client CloudFormationClient
-2024-06-18T14:03:14.537Z   +788ms [debug] Loaded bootstrap status
-2024-06-18T14:03:14.537Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.3","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
-2024-06-18T14:03:14.538Z     +1ms [debug] Created AWS client S3Client
-2024-06-18T14:03:14.609Z    +71ms [debug] Synthesizing stacks...
-2024-06-18T14:03:14.617Z     +8ms [debug] Created AWS client STSClient
-2024-06-18T14:03:15.085Z   +468ms [debug] IoT connected
-2024-06-18T14:03:15.086Z     +1ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
-2024-06-18T14:03:15.220Z   +134ms [debug] Generating types in /home/chakay/Documents/GitHub/profi-sh/.sst/types
-2024-06-18T14:03:15.222Z     +2ms [debug] Running 1 deferred tasks with concurrency: 7
-2024-06-18T14:03:15.337Z   +115ms [debug] 
-2024-06-18T14:03:15.337Z     +0ms [debug] Loading v2 AWS SDK
-2024-06-18T14:03:15.337Z     +0ms [debug] Finished synthesizing
-2024-06-18T14:03:15.717Z   +380ms [debug] Fetching metadata for stack chakay-profi-shsst-Site failed {"name":"NoSuchKey","$fault":"client","$metadata":{"httpStatusCode":404,"requestId":"8XBZB9FTSS92YWWK","extendedRequestId":"wUZakb+vzr45ffcWDZdzXr+4vry0oJ5uae7kp2dQdTZJcRmjZ99eZ/C581zb6fuIyND95w5QqyM=","attempts":1,"totalRetryDelay":0},"Code":"NoSuchKey","Key":"stackMetadata/app.profi-shsst/stage.chakay/stack.chakay-profi-shsst-Site.json","RequestId":"8XBZB9FTSS92YWWK","HostId":"wUZakb+vzr45ffcWDZdzXr+4vry0oJ5uae7kp2dQdTZJcRmjZ99eZ/C581zb6fuIyND95w5QqyM=","message":"The specified key does not exist."}
-2024-06-18T14:03:15.718Z     +1ms [debug] Created AWS client SSMClient
+2024-07-20T14:59:34.676Z  +1903ms [debug] Config loaded {"version":"2.25.6","cdkVersion":"2.95.1","constructsVersion":"10.2.69","config":{"name":"profi-shsst","region":"us-east-1","stage":"chakay","ssmPrefix":"/sst/profi-shsst/chakay/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":223,"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"format":"esm"}},"outputs":{".sst.config.1721487572787.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":151}},"bytes":333}}},"paths":{"config":"/home/chakay/Documents/GitHub/profi-sh/sst.config.ts","root":"/home/chakay/Documents/GitHub/profi-sh","out":"/home/chakay/Documents/GitHub/profi-sh/.sst","artifacts":"/home/chakay/Documents/GitHub/profi-sh/.sst/artifacts"}}
+2024-07-20T14:59:35.617Z   +941ms [debug] Using AWS profile 
+2024-07-20T14:59:35.664Z    +47ms [debug] Created AWS client IoTClient
+2024-07-20T14:59:35.664Z     +0ms [debug] Getting IoT endpoint
+2024-07-20T14:59:36.035Z   +371ms [debug] Using IoT endpoint: a2gukw0kj78dyo-ats.iot.us-east-1.amazonaws.com
+2024-07-20T14:59:36.035Z     +0ms [debug] Initializing bootstrap context
+2024-07-20T14:59:36.036Z     +1ms [debug] Created AWS client CloudFormationClient
+2024-07-20T14:59:36.555Z   +519ms [debug] Loaded bootstrap status
+2024-07-20T14:59:36.555Z     +0ms [debug] Bootstrap context initialized {"status":"ready","version":"7.3","bucket":"sstbootstrap-useast124d14e4b-7lpz19xy7rtj"}
+2024-07-20T14:59:36.556Z     +1ms [debug] Created AWS client S3Client
+2024-07-20T14:59:36.601Z    +45ms [debug] Synthesizing stacks...
+2024-07-20T14:59:36.607Z     +6ms [debug] Created AWS client STSClient
+2024-07-20T14:59:37.075Z   +468ms [debug] Using identity Account: 448400283798 User: AIDAWQZV5LCLNOVFPNGYF
+2024-07-20T14:59:37.232Z   +157ms [debug] Generating types in /home/chakay/Documents/GitHub/profi-sh/.sst/types
+2024-07-20T14:59:37.234Z     +2ms [debug] Running 1 deferred tasks with concurrency: 7
+2024-07-20T14:59:37.345Z   +111ms [debug] 
+2024-07-20T14:59:37.345Z     +0ms [debug] Loading v2 AWS SDK
+2024-07-20T14:59:37.345Z     +0ms [debug] Finished synthesizing
+2024-07-20T14:59:37.353Z     +8ms [debug] IoT connected
+2024-07-20T14:59:37.775Z   +422ms [debug] Fetching metadata for stack chakay-profi-shsst-Site failed {"name":"NoSuchKey","$fault":"client","$metadata":{"httpStatusCode":404,"requestId":"47KF90171K5VXDSV","extendedRequestId":"LV78VIyLxlgAbHXamNil7rolHWvpZBRuMgHUmsCl20ZAZdV+XCmmpD2/8qocnVVVsDkB4CfjDR8=","attempts":1,"totalRetryDelay":0},"Code":"NoSuchKey","Key":"stackMetadata/app.profi-shsst/stage.chakay/stack.chakay-profi-shsst-Site.json","RequestId":"47KF90171K5VXDSV","HostId":"LV78VIyLxlgAbHXamNil7rolHWvpZBRuMgHUmsCl20ZAZdV+XCmmpD2/8qocnVVVsDkB4CfjDR8=","message":"The specified key does not exist."}
+2024-07-20T14:59:37.777Z     +2ms [debug] Created AWS client SSMClient

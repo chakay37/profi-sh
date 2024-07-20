@@ -17,7 +17,7 @@ $white: #f1f1ee;
 		background-color: $logo-color-light;
 		color: white;
 	}
-	
+
 	.shop-name-container,
 	.info-container {
 		display: flex;
@@ -50,7 +50,7 @@ $white: #f1f1ee;
 			color: white;
 		}
 		.opening {
-			width: 20%;
+			min-width: 25%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -58,7 +58,6 @@ $white: #f1f1ee;
 		.map {
 			width: 100%;
 		}
-		
 
 		.name-container {
 			display: flex;
@@ -72,7 +71,7 @@ $white: #f1f1ee;
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
-			text-align: center; 
+			text-align: center;
 			min-width: 200px;
 			.deal {
 				background-color: $logo-color-dark;
@@ -83,6 +82,7 @@ $white: #f1f1ee;
 	table {
 		display: flex;
 		border-collapse: collapse;
+		white-space: nowrap;
 		th,
 		td {
 			background-color: $logo-color;
