@@ -40,6 +40,8 @@ header {
 		top: 0;
 		right: 0;
 		z-index: 1030;
+		border-bottom: black solid 2px;
+		border-left: black solid 2px;
 		ul {
 			list-style-type: none;
 			display: flex;
