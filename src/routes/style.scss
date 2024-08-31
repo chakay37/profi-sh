@@ -5,7 +5,7 @@ $white: #f1f1ee;
 
 .title-sect {
 	display: flex;
-	justify-content: space-between;
+	gap: 120px;
 	height: 500px;
 	padding-top: 150px;
 	.title {
@@ -31,7 +31,6 @@ $white: #f1f1ee;
 	}
 	.carousel-bs {
 		width: 40%;
-
 	}
 }
 
@@ -43,8 +42,6 @@ $white: #f1f1ee;
 	.title {
 		padding-top: 30px;
 	}
-
-
 }
 
 .notification-sect {
@@ -249,12 +246,12 @@ $white: #f1f1ee;
 					left: 0;
 					top: 0;
 				}
-				th,td {
+				th,
+				td {
 					width: 150px;
 				}
 			}
 		}
-		
 	}
 	.about-sect {
 		text-align: center;
@@ -283,7 +280,6 @@ $white: #f1f1ee;
 		}
 	}
 	.socials-sect {
-		
 		.socials-row {
 			flex-wrap: wrap;
 			justify-content: center;
@@ -298,7 +294,6 @@ $white: #f1f1ee;
 }
 @media (min-width: 800px) {
 	.title-sect {
-		
 		.title {
 			width: 600px;
 		}
