@@ -1,5 +1,5 @@
 {
-  "version": "34.0.0",
+  "version": "38.0.1",
   "artifacts": {
     "chakay-profi-shsst-Site.assets": {
       "type": "cdk:asset-manifest",
@@ -14,6 +14,7 @@
       "environment": "aws://448400283798/us-east-1",
       "properties": {
         "templateFile": "chakay-profi-shsst-Site.template.json",
+        "terminationProtection": false,
         "tags": {
           "sst:app": "profi-shsst",
           "sst:stage": "chakay"
@@ -21,7 +22,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-deploy-role-448400283798-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::448400283798:role/cdk-hnb659fds-cfn-exec-role-448400283798-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-448400283798-us-east-1/6f740b1555cde3caf7a64e3968ab77a2a4c06afbbdcd02d80fda38890366ef2a.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-448400283798-us-east-1/ccfcbff7b7857cbba189cf3cbc487da4d264bd97d75f5e037a58d18537848bfe.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [

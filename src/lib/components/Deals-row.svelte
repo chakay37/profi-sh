@@ -11,21 +11,27 @@
 		switch (deals[i].type) {
 			case 0:
 				deals[i].tableText = '-' + deals[i]['value'] + '%';
+				deals[i].typeName = 'sleva-procenta';
 				break;
 			case 1:
 				deals[i].tableText = 'Nové zboží';
+				deals[i].typeName = 'nove';
 				break;
 			case 2:
 				deals[i].tableText = 'Vše za ' + deals[i]['value'] + ',- Kč';
+				deals[i].typeName = 'sleva-koruny';
 				break;
 			case 3:
 				deals[i].tableText = 'Svátek';
+				deals[i].typeName = 'svatek';
 				break;
 			case 4:
 				deals[i].tableText = deals[i]['text'];
+				deals[i].typeName = 'jine';
 				break;
 			case 5:
 				deals[i].tableText = 'Zavřeno';
+				deals[i].typeName = 'zavreno';
 				break;
 			default:
 				break;
@@ -41,12 +47,11 @@
 	function ShowModal(shop: object) {
 		deals.forEach((deal) => {
 			if (deal.dateStr == dateStr && deal.shopId == shop.id) {
-			modalHeaderText = 'Akce: ' + shop.name + ', ' + dateStr + '-' + deal.enddateStr;
-			modalBodyText = deal.text;
-			showModal = true;
-		}
-		})
-		
+				modalHeaderText = 'Akce: ' + shop.name + ', ' + dateStr + '-' + deal.enddateStr;
+				modalBodyText = deal.text;
+				showModal = true;
+			}
+		});
 	}
 	shops.forEach((shop) => {
 		shop.deal = new Deals(0, new Date(), new Date(), 0, '', 0, '', '');
@@ -81,9 +86,9 @@
 			if (deal.dateStr == dateStr && deal.shopId == shop.id) {
 				shop.deal = deal;
 				shop.deal.tableText = deal.tableText;
+				shop.deal.typeName = deal.typeName;
 				shop.deal.rowSpan = diffDays + 1;
 				shop.deal.text = deal.text;
-					
 			}
 			if (deal.shopId == shop.id) {
 				if (diffDays >= rowDiffDays && diffDays >= endRowDiffDays) {
@@ -95,30 +100,25 @@
 	let spans = [];
 	shops.forEach((shop) => {
 		spans.push(shop.deal.rowSpan);
-	}
-	);
+	});
 </script>
 
 <tr class:weekend-row={weekend}>
-	<th scope="row" class="head-dates">{dateStr}{#if date.date.getDate() == new Date().getDate() && date.date.getMonth() == new Date().getMonth()}(dnes){/if}</th>
+	<th scope="row" class="head-dates"
+		>{dateStr}{#if date.date.getDate() == new Date().getDate() && date.date.getMonth() == new Date().getMonth()}(dnes){/if}</th
+	>
 	{#each shops as s}
-		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
-		
-			<td
-				class="deals"
-				rowspan={spans[shops.indexOf(s)]}
-				on:click={() => ShowModal(s, s.deal)}
-			>
+		{#if s.deal.typeName.length > 0 && s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
+			<td class="deals" rowspan={spans[shops.indexOf(s)]} on:click={() => ShowModal(s, s.deal)}>
 				<h4>{s.deal.tableText}</h4>
 			</td>
-			
 		{:else if shopsToDelete.find((a) => a.id === s.id) === undefined}
-			<td></td>
+			<td />
 		{/if}
 	{/each}
 </tr>
 
-<Modal bind:showModal warning={false} deals={deals} dealToChange={null}>
+<Modal bind:showModal warning={false} {deals} dealToChange={null}>
 	<h2 slot="header">{modalHeaderText}</h2>
 
 	<p class="modal-body">{modalBodyText}</p>
@@ -139,11 +139,28 @@
 		padding: 10px;
 	}
 	.deals {
-		background-color: #b6a771; 
+		background-color: #b6a771;
 		cursor: pointer;
 		box-sizing: border-box;
 	}
 	.deals:hover {
 		border: $logo-color-dark 2px dashed;
-		}
+	}
+
+	.sleva-procenta {
+		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #ef6f6c 100%);
+	}
+	.nove {
+	}
+	.sleva-koruny {
+		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #ef6f6c 100%);
+	}
+	.svatek {
+	}
+	.jine {
+		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #465775 100%);
+	}
+	.zavreno {
+		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #564e58 100%);
+	}
 </style>

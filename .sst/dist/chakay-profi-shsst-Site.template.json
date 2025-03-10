@@ -46,7 +46,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "ff81f891c66903412b3d40f62b1e7fa10554959fbeea2154cf16d04d6a615bb1.zip"
+     "S3Key": "2e5bc20edae51543d258052b1469eab3f2d34f02081f0e19b88e42839b900f79.zip"
     },
     "Handler": "index.handler",
     "MemorySize": 1024,
@@ -56,7 +56,7 @@
       "Arn"
      ]
     },
-    "Runtime": "nodejs16.x",
+    "Runtime": "nodejs22.x",
     "Tags": [
      {
       "Key": "sst:app",
@@ -164,7 +164,7 @@
      ]
     },
     "bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-    "key": "5e735cb6758a7c9152324fc1d4aa0f61e8870a45cb2331fe1c6f164bf2d244ec.zip",
+    "key": "c21e053cba1f42bac2f922915684b715695f720a0167a375d35c335ffbff9590.zip",
     "replacements": []
    },
    "DependsOn": [
@@ -181,7 +181,7 @@
     ],
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "5e735cb6758a7c9152324fc1d4aa0f61e8870a45cb2331fe1c6f164bf2d244ec.zip"
+     "S3Key": "c21e053cba1f42bac2f922915684b715695f720a0167a375d35c335ffbff9590.zip"
     },
     "Description": "Server handler placeholder",
     "Environment": {
@@ -324,11 +324,11 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Handler": "index.handler",
-    "Runtime": "nodejs18.x",
+    "Runtime": "nodejs20.x",
     "Timeout": 900,
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-     "S3Key": "1039a174afbf09cd27e3b215f53b9e80b1bd66df24547e5746f0e5bcb9204cf3.zip"
+     "S3Key": "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -359,7 +359,7 @@
     "Fn::Join": [
      "",
      [
-      "{\"app\":\"profi-shsst\",\"stage\":\"chakay\",\"version\":\"2.25.6\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8cb815d18479ec8b13ed4d45d0c7a789458137d0d\",\"stack\":\"chakay-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"placeholder\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"server\":\"",
+      "{\"app\":\"profi-shsst\",\"stage\":\"chakay\",\"version\":\"2.47.3\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c8cb815d18479ec8b13ed4d45d0c7a789458137d0d\",\"stack\":\"chakay-profi-shsst-Site\",\"type\":\"SvelteKitSite\",\"data\":{\"mode\":\"placeholder\",\"path\":\".\",\"runtime\":\"nodejs18.x\",\"server\":\"",
       {
        "Fn::GetAtt": [
         "siteServerFunction6DFA6F1B",

@@ -4,33 +4,33 @@ $logo-color-light: #b6a771;
 $white: #f1f1ee;
 
 .table-container {
-  margin-top: 25px;
-  width: 100%;
-  color: $white;
-  table,td {
-    border-collapse: collapse;
-    border: $logo-color-dark solid 1px;
-  }
-  .head-dates {
-    background-color: $logo-color;
-    width: 100px;
-  }
-  table {
-    background-color: $logo-color-light;
-    width: 100%;
-  }
-  .corner {
-    background-color: $logo-color;
-  }
-  thead {
-    background-color: $logo-color;
-  }
-  td,th {
-    min-width: 100px;
-    padding-block: 2px;
-    font-weight: 900;
-    text-align: center;
-  }
-
-
+	margin-top: 25px;
+	width: 100%;
+	color: $white;
+	table,
+	td {
+		border-collapse: collapse;
+		border: $logo-color-dark solid 1px;
+	}
+	.head-dates {
+		background-color: $logo-color;
+		width: 100px;
+	}
+	table {
+		background-color: $logo-color-light;
+		width: 100%;
+	}
+	.corner {
+		background-color: $logo-color;
+	}
+	thead {
+		background-color: $logo-color;
+	}
+	td,
+	th {
+		min-width: 100px;
+		padding-block: 2px;
+		font-weight: 900;
+		text-align: center;
+	}
 }

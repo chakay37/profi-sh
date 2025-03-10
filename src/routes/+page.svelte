@@ -28,9 +28,8 @@
 
 	onMount(async () => {
 		cities = await myDBInstance.get('cities');
-
+		cities = cities.filter((a) => a.is_displayed == true);
 	});
-
 </script>
 
 <body>
@@ -61,7 +60,7 @@
 			<div class="title">
 				<SectTitle>Nové akce</SectTitle>
 			</div>
-			<DealsTable></DealsTable>
+			<DealsTable />
 		</section>
 		<section class="notification-sect" id="sms">
 			<img class="only-desktop" src={staticImage} alt="obrázek oblečení" />
