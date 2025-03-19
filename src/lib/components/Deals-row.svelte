@@ -108,7 +108,7 @@
 		>{dateStr}{#if date.date.getDate() == new Date().getDate() && date.date.getMonth() == new Date().getMonth()}(dnes){/if}</th
 	>
 	{#each shops as s}
-		{#if s.deal.typeName.length > 0 && s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
+		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 			<td class="deals" rowspan={spans[shops.indexOf(s)]} on:click={() => ShowModal(s, s.deal)}>
 				<h4>{s.deal.tableText}</h4>
 			</td>
@@ -147,20 +147,7 @@
 		border: $logo-color-dark 2px dashed;
 	}
 
-	.sleva-procenta {
+	.pri1 {
 		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #ef6f6c 100%);
-	}
-	.nove {
-	}
-	.sleva-koruny {
-		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #ef6f6c 100%);
-	}
-	.svatek {
-	}
-	.jine {
-		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #465775 100%);
-	}
-	.zavreno {
-		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #564e58 100%);
 	}
 </style>

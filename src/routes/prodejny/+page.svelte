@@ -23,6 +23,8 @@
 		shops = await get('shops');
 		photos = await get('photos');
 
+		shops = shops.sort((a, b) => a.id > b.id);
+
 		for (let i = 0; i < shopPhotosNames.length; i++) {
 			const response = await fetch(
 				'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames[i] + '.jpg'
@@ -46,7 +48,7 @@
 <div class="prodejny-page">
 	<section>
 		{#each shops as shop}
-			<a href="/prodejny/{shop.id}" class="card">
+			<a href="/prodejny/{shop.id}_{shop.urlname}" class="card">
 				<div class="img-container">
 					<img src={shop.photoURL} alt="Obrázek prodejny" />
 					<div class="gradient" />

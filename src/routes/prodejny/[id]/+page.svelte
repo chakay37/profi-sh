@@ -6,7 +6,7 @@
 	import type { Deals } from '$lib/models/models';
 	import './prodejna.scss';
 
-	let id = $page.params.id;
+	let id = $page.params.id.split('_')[0];
 	let shop: object = {};
 	let deals: Deals[] = [];
 	const shopPhotosNames = new Map([
@@ -29,12 +29,22 @@
 
 		deals = await get('deals');
 		deals = deals.filter((deal) => deal.shopId == shop.id);
-		deals = deals.sort((a,b) => Date.UTC(new Date(a.date).getFullYear(), new Date(a.date).getMonth(), new Date(a.date).getDate())
-		 - Date.UTC(new Date(b.date).getFullYear(), new Date(b.date).getMonth(), new Date(b.date).getDate()));
+		deals = deals.sort(
+			(a, b) =>
+				Date.UTC(
+					new Date(a.date).getFullYear(),
+					new Date(a.date).getMonth(),
+					new Date(a.date).getDate()
+				) -
+				Date.UTC(
+					new Date(b.date).getFullYear(),
+					new Date(b.date).getMonth(),
+					new Date(b.date).getDate()
+				)
+		);
 		deals = deals.slice(-7);
 
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
-		
 
 		for (let i = 0; i < deals.length; i++) {
 			switch (deals[i].type) {
@@ -68,22 +78,19 @@
 			deals[i].enddateStr =
 				dayInWeek[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
 
-			if(deals[i].text == null || deals[i].text == undefined) {
+			if (deals[i].text == null || deals[i].text == undefined) {
 				deals[i].text = '';
 			}
-
-			
 		}
 
-		
-			const response = await fetch(
-				'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames.get(Number(id)) + '.jpg'
-			);
-			const blob = await response.blob();
-			//let photoOut = await response.json();
+		const response = await fetch(
+			'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames.get(Number(id)) + '.jpg'
+		);
+		const blob = await response.blob();
+		//let photoOut = await response.json();
 
-			//photosURL.push(URL.createObjectURL(blob));
-			photoURL = URL.createObjectURL(blob);
+		//photosURL.push(URL.createObjectURL(blob));
+		photoURL = URL.createObjectURL(blob);
 	});
 </script>
 
@@ -100,8 +107,6 @@
 			<img class="only-desktop" src={photoURL} alt="" />
 		</div>
 		<div class="info-container">
-			
-
 			<div class="opening">
 				<p>Otevírací doba</p>
 				<table>
@@ -138,17 +143,17 @@
 				{/if}
 			</div>
 			{#if deals.length > 0}
-			<div class="deals">
-				<p>Akce a slevy</p>
-				{#each deals as d}
-					{#if new Date(d.enddate) > new Date()}
-					<div class="deal">
-							<h3>{d.dateStr} - {d.enddateStr}</h3>
-							<h4>{d.tableText}</h4>
-					</div>
-					{/if}
-				{/each}
-			</div>
+				<div class="deals">
+					<p>Akce a slevy</p>
+					{#each deals as d}
+						{#if new Date(d.enddate) > new Date()}
+							<div class="deal">
+								<h3>{d.dateStr} - {d.enddateStr}</h3>
+								<h4>{d.tableText}</h4>
+							</div>
+						{/if}
+					{/each}
+				</div>
 			{/if}
 		</div>
 		<a href="/prodejny"> <button class="secondary-button">Zpět</button></a>
