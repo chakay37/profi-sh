@@ -108,9 +108,15 @@
 		>{dateStr}{#if date.date.getDate() == new Date().getDate() && date.date.getMonth() == new Date().getMonth()}(dnes){/if}</th
 	>
 	{#each shops as s}
-		{#if s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
+		{#if s.deal.priority == 0 && s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
 			<td class="deals" rowspan={spans[shops.indexOf(s)]} on:click={() => ShowModal(s, s.deal)}>
 				<h4>{s.deal.tableText}</h4>
+			</td>
+		{:else if s.deal.priority > 0 && s.deal.rowSpan !== null && s.deal.rowSpan !== undefined && s.deal.rowSpan > 0 && s.deal !== undefined && spans.length === shops.length && s.deal.text.length > 0}
+			<td class="deals" rowspan={spans[shops.indexOf(s)]} on:click={() => ShowModal(s, s.deal)}>
+				<div class="pri1">
+					<h4>{s.deal.tableText}</h4>
+				</div>
 			</td>
 		{:else if shopsToDelete.find((a) => a.id === s.id) === undefined}
 			<td />
@@ -148,6 +154,9 @@
 	}
 
 	.pri1 {
-		background: linear-gradient(45deg, $logo-color-light 0%, $logo-color-light 92%, #ef6f6c 100%);
+		background-color: #6d712ea0;
+		display: inline-block;
+		padding: 5px;
+		border-radius: 8px;
 	}
 </style>

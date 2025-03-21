@@ -20,7 +20,7 @@ export class Deals {
 	public type: number;
 	public text: string;
 	public tableText = '';
-	public typeName: string;
+	public priority = 0;
 
 	public constructor(
 		id: number,
@@ -30,7 +30,7 @@ export class Deals {
 		value: string,
 		type: number,
 		text: string,
-		typeName: string,
+		priority: number,
 		tableText = ''
 	) {
 		this.id = id;
@@ -41,6 +41,6 @@ export class Deals {
 		this.type = type;
 		this.text = text;
 		this.tableText = tableText;
-		this.typeName = typeName;
+		this.priority = priority;
 	}
 }

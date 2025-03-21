@@ -5,108 +5,138 @@ let photo: object = {};
 import { get, post, put } from '$lib/db';
 
 export function load({ setHeaders, cookies }) {
-    setHeaders({
-        "Pragma-directive": "no-cache",
-        "Cache-directive": "no-cache",
-        "Cache-control": "no-cache",
-        "Pragma": "no-cache",
-        "Expires": "0"
-    });
+	setHeaders({
+		'Pragma-directive': 'no-cache',
+		'Cache-directive': 'no-cache',
+		'Cache-control': 'no-cache',
+		Pragma: 'no-cache',
+		Expires: '0'
+	});
 
-    const authenticated = cookies.get('adminLogin');
-    if (authenticated === 'W7CtM*KGegq5R6D') {
-        return { authenticated: true };
-    }
-    return { authenticated: false };
+	const authenticated = cookies.get('adminLogin');
+	if (authenticated === 'W7CtM*KGegq5R6D') {
+		return { authenticated: true };
+	}
+	return { authenticated: false };
 }
 
 export const actions = {
-    dealPost: async ({ request }) => {
-        const data = await request.formData();
+	dealPost: async ({ request }) => {
+		const data = await request.formData();
 
-        const type: FormDataEntryValue | null = data.get('type');
-        const value: FormDataEntryValue | null = data.get('value');
-        const shops: FormDataEntryValue[] | null = data.getAll('shops');
-        const date: FormDataEntryValue | null = data.get('date');
-        const enddate: FormDataEntryValue | null = data.get('enddate');
-        const text: FormDataEntryValue | null = data.get('text');
-        
-        if (type != null && shops != null && date != null && enddate != null && text != null) {
-            deal.type = Number(type.toString());
-            //deal.shopId = Number(shopId);
-            deal.date = new Date(date.toString());
-            deal.enddate = new Date(enddate.toString());
-            deal.text = text.toString();
-            if (deal.type === 0 || deal.type === 2) {
-                if (value === null) {
-                    return { success: false };
-                }
-                deal.value = value.toString();
-            }
-            for (let i = 0; i < shops.length; i++) {
-                deal.shopId = Number(shops[i]);
-                await post('deals', deal);
-            }
-            
-            //await post('deals', deal);
-            return { success: true };
-        }
-        console.log(type)
-        console.log(date)
-        console.log(text)
-        return { false: true };
-        
-    },
-    dealPut: async ({ request }) => {
-        const data = await request.formData();
+		const type: FormDataEntryValue | null = data.get('type');
+		const value: FormDataEntryValue | null = data.get('value');
+		const shops: FormDataEntryValue[] | null = data.getAll('shops');
+		const date: FormDataEntryValue | null = data.get('date');
+		const enddate: FormDataEntryValue | null = data.get('enddate');
+		const priority: FormDataEntryValue | null = data.get('priority');
+		const text: FormDataEntryValue | null = data.get('text');
 
-        const id: FormDataEntryValue | null = data.get('id');
-        const type: FormDataEntryValue | null = data.get('type');
-        const value: FormDataEntryValue | null = data.get('value');
-        const shopId: FormDataEntryValue | null = data.get('shopId');
-        const date: FormDataEntryValue | null = data.get('date');
-        const enddate: FormDataEntryValue | null = data.get('enddate');
-        const text: FormDataEntryValue | null = data.get('text');
-        
-        if (id != null && type != null && value != null && shopId != null && date != null && enddate != null && text != null) {
-            deal.id = Number(id.toString());
-            deal.type = Number(type.toString());
-            deal.value = value.toString();
-            deal.shopId = Number(shopId);
-            deal.date = new Date(date.toString());
-            deal.enddate = new Date(enddate.toString());
-            deal.text = text.toString();
+		let prioritynum = 0;
+		if (priority == 'on') {
+			prioritynum = 1;
+		}
 
-            await put('deals', deal);
-            return { success: true };
-        }
-        console.log(type)
-        console.log(date)
-        console.log(text)
-        return { false: true };
-        
-    },
-    photo: async ({ request }) => {
-        const data = await request.formData();
+		if (type != null && shops != null && date != null && enddate != null && text != null) {
+			deal.type = Number(type.toString());
+			//deal.shopId = Number(shopId);
+			deal.date = new Date(date.toString());
+			deal.enddate = new Date(enddate.toString());
+			deal.priority = prioritynum;
+			deal.text = text.toString();
+			if (deal.type === 0 || deal.type === 2) {
+				if (value === null) {
+					return { success: false };
+				}
+				deal.value = value.toString();
+			}
+			for (let i = 0; i < shops.length; i++) {
+				deal.shopId = Number(shops[i]);
+				await post('deals', deal);
+			}
 
-        const id: FormDataEntryValue | null = data.get('id');
-        const desc: FormDataEntryValue | null = data.get('desc');
-        const url: FormDataEntryValue | null = data.get('url');
-        
-        
-        if (id != null && desc != null && url != null) {
-            photo.id = Number(id.toString());
-            photo.desc = desc.toString();
-            photo.url = url.toString();
-            
-            await put('photos', photo);
-            return { success: true };
-        }
-        console.log(desc)
-        console.log(url)
-        return { false: true };
-        
-    },
-    
+			//await post('deals', deal);
+			return { success: true };
+		}
+		console.log(priority);
+		//console.log(type);
+		//console.log(date);
+		//console.log(text);
+		return { false: true };
+	},
+	dealPut: async ({ request }) => {
+		const data = await request.formData();
+
+		const id: FormDataEntryValue | null = data.get('id');
+		const type: FormDataEntryValue | null = data.get('type');
+		let value: FormDataEntryValue | null = data.get('value');
+		const shopId: FormDataEntryValue | null = data.get('shopId');
+		const date: FormDataEntryValue | null = data.get('date');
+		const enddate: FormDataEntryValue | null = data.get('enddate');
+		const priority: FormDataEntryValue | null = data.get('priority');
+		const text: FormDataEntryValue | null = data.get('text');
+
+		if (value == null) {
+			value = '';
+		}
+
+		let prioritynum = 0;
+		if (priority == 'on') {
+			prioritynum = 1;
+		}
+		console.log(id);
+		console.log(type);
+		console.log(value);
+		console.log(shopId);
+		console.log(date);
+		console.log(enddate);
+		console.log(priority);
+		console.log(text);
+
+		if (
+			id != null &&
+			type != null &&
+			value != null &&
+			shopId != null &&
+			date != null &&
+			enddate != null &&
+			text != null
+		) {
+			deal.id = Number(id.toString());
+			deal.type = Number(type.toString());
+			deal.value = value.toString();
+			deal.shopId = Number(shopId);
+			deal.date = new Date(date.toString());
+			deal.enddate = new Date(enddate.toString());
+			deal.priority = prioritynum;
+			deal.text = text.toString();
+
+			console.log(deal);
+			await put('deals', deal);
+			return { success: true };
+		}
+		//console.log(type);
+		//console.log(date);
+
+		return { false: true };
+	},
+	photo: async ({ request }) => {
+		const data = await request.formData();
+
+		const id: FormDataEntryValue | null = data.get('id');
+		const desc: FormDataEntryValue | null = data.get('desc');
+		const url: FormDataEntryValue | null = data.get('url');
+
+		if (id != null && desc != null && url != null) {
+			photo.id = Number(id.toString());
+			photo.desc = desc.toString();
+			photo.url = url.toString();
+
+			await put('photos', photo);
+			return { success: true };
+		}
+		console.log(desc);
+		console.log(url);
+		return { false: true };
+	}
 } satisfies Actions;
-

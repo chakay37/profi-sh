@@ -103,8 +103,20 @@
 		photos = orderedPhotos;
 		photosLoaded = true;
 
-		deals = deals.sort((a,b) => Date.UTC(new Date(a.date).getFullYear(), new Date(a.date).getMonth(), new Date(a.date).getDate())
-		 - Date.UTC(new Date(b.date).getFullYear(), new Date(b.date).getMonth(), new Date(b.date).getDate()));
+		deals = deals.sort(
+			(a, b) =>
+				Date.UTC(
+					new Date(a.date).getFullYear(),
+					new Date(a.date).getMonth(),
+					new Date(a.date).getDate()
+				) -
+				Date.UTC(
+					new Date(b.date).getFullYear(),
+					new Date(b.date).getMonth(),
+					new Date(b.date).getDate()
+				)
+		);
+		deals = deals.slice(deals.length - 150);
 		for (let index = 0; index < deals.length; index++) {
 			if (
 				deals[index].date != null &&
@@ -132,17 +144,24 @@
 				let dateDate = u.date_registered.split('T')[0];
 				let dateTime = u.date_registered.split('T')[1].split('.')[0];
 
-				let year = dateDate.split('-')[0]
-				let month = dateDate.split('-')[1]
-				let day = dateDate.split('-')[2]
+				let year = dateDate.split('-')[0];
+				let month = dateDate.split('-')[1];
+				let day = dateDate.split('-')[2];
 
-				let hour = Number(dateTime.split(':')[0])+3;
+				let hour = Number(dateTime.split(':')[0]) + 3;
 				let minute = dateTime.split(':')[1];
 
-				dateR = day +'.'+ month +'.'+ year +' '+ hour +':'+ minute;
+				dateR = day + '.' + month + '.' + year + ' ' + hour + ':' + minute;
 			}
 			usersTable +=
-				u.email + ';' + u.phone + ';' + cities.find((c) => c.id == u.cityid).name + ';' + dateR +'\n';
+				u.email +
+				';' +
+				u.phone +
+				';' +
+				cities.find((c) => c.id == u.cityid).name +
+				';' +
+				dateR +
+				'\n';
 		});
 	});
 
@@ -169,7 +188,9 @@
 
 <body>
 	<div class="admin-page">
-		<a href="./panel/dealsTableAdmin" target="_blank"><button class="secondary-button">Tabulka s akcemi</button></a>
+		<a href="./panel/dealsTableAdmin" target="_blank"
+			><button class="secondary-button">Tabulka s akcemi</button></a
+		>
 		<section>
 			<div class="card akce">
 				<h1>Akce a slevy</h1>
@@ -211,6 +232,10 @@
 					<label
 						>Akce DO:
 						<input type="date" name="enddate" required />
+					</label>
+					<label>
+						Důležitá:
+						<input type="checkbox" name="priority" />
 					</label>
 					<label
 						>Pár vět o akci:
@@ -302,6 +327,14 @@
 								name="enddate"
 								value={dealToChange.enddate.toString().split('T')[0]}
 							/>
+						</label>
+						<label>
+							Důležitá:
+							{#if dealToChange.priority == 1}
+								<input type="checkbox" name="priority" checked />
+							{:else}
+								<input type="checkbox" name="priority" />
+							{/if}
 						</label>
 						<label
 							>Pár vět o akci:
