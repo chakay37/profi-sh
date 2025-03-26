@@ -609,7 +609,7 @@
                             ],
                             "code": {
                               "s3Bucket": "cdk-hnb659fds-assets-448400283798-us-east-1",
-                              "s3Key": "1431caac185d2d7a1571e67d577825aa47ebe5c9c8b19030411ba5f357525e57.zip"
+                              "s3Key": "328b89906bfc1cffd04f9a8c2cbe416c2055f5a38eb58ce995b900786fb51c0b.zip"
                             },
                             "description": "Server handler for SvelteKit",
                             "environment": {
