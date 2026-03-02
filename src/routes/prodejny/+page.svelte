@@ -20,10 +20,10 @@
 	let orderedPhotos = [];
 	let photos = [];
 	onMount(async () => {
-		shops = await get('shops');
+		let shopsReq = await get('shops');
 		photos = await get('photos');
 
-		shops = shops.sort((a, b) => a.id > b.id);
+		shops = shopsReq.sort((a, b) => a.name > b.name);
 
 		for (let i = 0; i < shopPhotosNames.length; i++) {
 			const response = await fetch(

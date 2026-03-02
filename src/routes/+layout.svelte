@@ -47,12 +47,6 @@
 				<div class="circle" />
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/eshop">E-shop</a>
-			</li>
-			<li class="nav-item circle-container">
-				<div class="circle" />
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="/blog">Blog</a>
 			</li>
 			<li class="nav-item circle-container">
@@ -92,10 +86,6 @@
 				</li>
 				<li class="nav-item">
 					<a on:click={closeNav} class="nav-link" href="/prodejny">Prodejny</a>
-				</li>
-
-				<li class="nav-item">
-					<a on:click={closeNav} class="nav-link" href="/eshop">E-shop</a>
 				</li>
 
 				<li class="nav-item">

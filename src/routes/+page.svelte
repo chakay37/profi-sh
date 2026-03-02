@@ -46,7 +46,7 @@
 				<h1>Profi Second Hand</h1>
 				<p>
 					Ekologicky smýšlející secondhand s vynikajícím poměrem KVALITA x CENA. Častá OBMĚNA ZBOŽÍ,
-					unikátní systém SLEV A VÝPRODEJŮ. Dlouholetá tradice, česká značka, 11 prodejen pro celé
+					unikátní systém SLEV A VÝPRODEJŮ. Dlouholetá tradice, česká značka, 10 prodejen pro celé
 					ČR. Těšíme se na Vás a přejeme, ať vyberete něco úžasného!
 				</p>
 				<div class="buttons">
