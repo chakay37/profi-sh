@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 $logo-color: #a7996b;
 $logo-color-dark: #8f8054;
 $logo-color-light: #b6a771;
@@ -69,7 +71,6 @@ main {
 	align-items: center;
 	background-color: $white;
 	min-height: 80vh;
-	
 }
 
 section {
@@ -93,7 +94,12 @@ p {
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+	box-shadow:
+		1px 1px 0px 0px,
+		2px 2px 0px 0px,
+		3px 3px 0px 0px,
+		4px 4px 0px 0px,
+		5px 5px 0px 0px;
 }
 .primary-button:hover {
 	background-color: $logo-color;
@@ -116,10 +122,15 @@ p {
 	position: relative;
 	text-align: center;
 	text-decoration: none;
-	box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+	box-shadow:
+		1px 1px 0px 0px,
+		2px 2px 0px 0px,
+		3px 3px 0px 0px,
+		4px 4px 0px 0px,
+		5px 5px 0px 0px;
 }
 .secondary-button:hover {
-	background-color: lighten($color: $logo-color-light, $amount: 30);
+	background-color: color.adjust($logo-color-light, $lightness: 30%);
 }
 .secondary-button:active {
 	box-shadow: 0px 0px 0px 0px;

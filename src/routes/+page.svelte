@@ -1,7 +1,7 @@
 <script lang="ts">
 	import './style.scss';
 	import Carousel from '$lib/components/Carousel.svelte';
-	import { scrollto } from 'svelte-scrollto';
+	import { scrollto } from 'svelte-scrollto-element';
 	import staticImage from '$lib/main-img/static.jpg';
 	import facebookIcon from '$lib/main-img/facebook.svg';
 	import instagramIcon from '$lib/main-img/instagram.svg';
@@ -32,14 +32,13 @@
 	});
 </script>
 
+<head>
+	<meta
+		name="description"
+		content="Profi Second Hand. Ekologicky smýšlející second hand. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem."
+	/>
+</head>
 <body>
-	<head>
-		<meta
-			name="description"
-			content="Profi Second Hand. Ekologicky smýšlející second hand. Second hand nabízí stylová a udržitelná řešení. Podpořte životní prostředí svým výběrem."
-		/>
-	</head>
-
 	<main>
 		<section class="title-sect">
 			<div class="title">

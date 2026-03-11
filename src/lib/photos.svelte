@@ -19,7 +19,6 @@
 			jpgBlob = res;
 		});
 
-
 		AWS.config.update({
 			accessKeyId: 'AKIAWQZV5LCLIUB6VGQW',
 			secretAccessKey: decode(umm),
@@ -68,6 +67,7 @@
     const responses = await Promise.all(promises);*/
 	};
 </script>
+
 <body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1447.0/aws-sdk.min.js"></script>
 </body>
