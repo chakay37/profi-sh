@@ -1,4 +1,4 @@
-const LINK = 'http://localhost:3000/';
+const LINK = '/api/';
 
 export const myDBInstance = {
 	get: async function (table: string) {
