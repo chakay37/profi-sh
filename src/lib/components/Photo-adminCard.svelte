@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { uploadToEnte } from './+server.ts';
 	let aaa: FileList;
 
 	export let photo: any | null;
