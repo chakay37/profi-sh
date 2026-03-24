@@ -119,7 +119,7 @@
 				</div>
 			</td>
 		{:else if shopsToDelete.find((a) => a.id === s.id) === undefined}
-			<td />
+			<td></td>
 		{/if}
 	{/each}
 </tr>
@@ -135,9 +135,6 @@
 	$logo-color-dark: #8f8054;
 	$logo-color-light: #b6a771;
 	$white: #f1f1ee;
-	.old {
-		background-color: $logo-color-dark;
-	}
 	.weekend-row {
 		background-color: $logo-color;
 	}

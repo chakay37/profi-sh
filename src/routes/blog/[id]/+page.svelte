@@ -14,14 +14,13 @@
 	let datesArrs = [];
 	onMount(async () => {
 		if (id != 0) {
-			const articles = await getId('articles', Number(id));
-			articles.forEach((a) => datesArrs.push(a.date.split('T')['0'].split('-')));
+			article = await getId('articles', Number(id));
+			article.forEach((a) => datesArrs.push(a.date.split('T')['0'].split('-')));
 			datesArrs.forEach((arr) => arr.reverse().toString());
 			for (let index = 0; index < datesArrs.length; index++) {
-				articles[index].date = datesArrs[index];
+				article[index].date = datesArrs[index];
 			}
-			articles.forEach((a) => (a.date = a.date.toString().replaceAll(',', '.')));
-			article = articles[0];
+			article.forEach((a) => (a.date = a.date.toString().replaceAll(',', '.')));
 		}
 	});
 </script>

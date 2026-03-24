@@ -23,8 +23,11 @@
 		{#each articles as article}
 			<a href="/blog/{article.id}" class="card">
 				<div class="img-container">
-					<img src="https://source.unsplash.com/random/500x200+{article.id}+/?forest,nature" alt="Obrázek článku" />
-					<div class="gradient" />
+					<img
+						src="https://source.unsplash.com/random/500x200+{article.id}+/?forest,nature"
+						alt="Obrázek článku"
+					/>
+					<div class="gradient"></div>
 				</div>
 				<div class="text">
 					<h3>{article.name}</h3>

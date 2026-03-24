@@ -51,7 +51,7 @@
 			<a href="/prodejny/{shop.id}_{shop.urlname}" class="card">
 				<div class="img-container">
 					<img src={shop.photoURL} alt="Obrázek prodejny" />
-					<div class="gradient" />
+					<div class="gradient"></div>
 				</div>
 				<div class="text">
 					<h3>{shop.name}</h3>

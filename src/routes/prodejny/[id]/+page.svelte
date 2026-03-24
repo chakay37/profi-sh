@@ -7,7 +7,7 @@
 	import './prodejna.scss';
 
 	let id = $page.params.id.split('_')[0];
-	let shop: object = {};
+	let shop = null;
 	let deals: Deals[] = [];
 	const shopPhotosNames = new Map([
 		[1, 'decinPlzenska'],
@@ -24,9 +24,7 @@
 	]);
 	let photoURL = '';
 	onMount(async () => {
-		const shops = await getId('shops', Number(id));
-		shop = shops['0'];
-
+		shop = await getId('shops', Number(id));
 		deals = await get('deals');
 		deals = deals.filter((deal) => deal.shopId == shop.id);
 		deals = deals.sort(
@@ -49,10 +47,10 @@
 		for (let i = 0; i < deals.length; i++) {
 			switch (deals[i].type) {
 				case 0:
-					deals[i].tableText = '-' + deals[i]['value'] + '%';
+					deals[i].tableText = deals[i]['value'] + '% SLEVA!';
 					break;
 				case 1:
-					deals[i].tableText = 'Nové zboží';
+					deals[i].tableText = '!NOVÉ ZBOŽÍ!';
 					break;
 				case 2:
 					deals[i].tableText = 'Vše za ' + deals[i]['value'] + ',- Kč';
@@ -83,14 +81,14 @@
 			}
 		}
 
-		const response = await fetch(
+		/*const response = await fetch(
 			'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames.get(Number(id)) + '.jpg'
 		);
 		const blob = await response.blob();
 		//let photoOut = await response.json();
 
 		//photosURL.push(URL.createObjectURL(blob));
-		photoURL = URL.createObjectURL(blob);
+		photoURL = URL.createObjectURL(blob);*/
 	});
 </script>
 
@@ -98,13 +96,13 @@
 	<section>
 		<div class="shop-name-container">
 			<div class="name-container">
-				{#if shop.id != undefined}
+				{#if shop?.id != undefined}
 					<Title>
 						{shop.name}
 					</Title>
 				{/if}
 			</div>
-			<img class="only-desktop" src={photoURL} alt="" />
+			<img class="only-desktop" alt="" />
 		</div>
 		<div class="info-container">
 			<div class="opening">
@@ -123,7 +121,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							{#if shop.id != undefined}
+							{#if shop?.id != undefined}
 								<td>{shop.Mon}</td>
 								<td>{shop.Tue}</td>
 								<td>{shop.Wed}</td>
@@ -137,8 +135,8 @@
 				</table>
 			</div>
 			<div class="map">
-				{#if shop.id != undefined}
-					<iframe title={shop.name} src={shop.mapsrc} frameborder="0" />
+				{#if shop?.id != undefined}
+					<iframe title={shop.name} src={shop.mapsrc} frameborder="0"></iframe>
 					<p>Adresa: {shop.adresa}</p>
 				{/if}
 			</div>

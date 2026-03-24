@@ -78,7 +78,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th class="corner" scope="col" />
+				<th class="corner" scope="col"></th>
 				{#each shopsNames as shop}
 					<th scope="col">{shop}</th>
 				{/each}
@@ -99,7 +99,7 @@
 					<tr>
 						<th scope="row" class="head-dates">{date.dateStr}</th>
 						{#each shops as s}
-							<td />
+							<td></td>
 						{/each}
 					</tr>
 				{/each}

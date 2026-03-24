@@ -19,7 +19,7 @@
 	}
 </script>
 
-<head>
+<svelte:head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,7 +31,7 @@
 		href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap"
 		rel="stylesheet"
 	/>
-</head>
+</svelte:head>
 <header>
 	<a href="/" class="logo-container"><img src={logo} alt="logo" class="logo" /></a>
 	<nav class="desktop-navbar">
@@ -39,24 +39,24 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/">Hlavní stránka</a>
 			</li>
-			<li class="nav-item circle-container"><div class="circle" /></li>
+			<li class="nav-item circle-container"><div class="circle"></div></li>
 			<li class="nav-item">
 				<a class="nav-link" href="/prodejny">Prodejny</a>
 			</li>
 			<li class="nav-item circle-container">
-				<div class="circle" />
+				<div class="circle"></div>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/blog">Blog</a>
 			</li>
 			<li class="nav-item circle-container">
-				<div class="circle" />
+				<div class="circle"></div>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/kontakty">Kontakty</a>
 			</li>
 			<li class="nav-item circle-container">
-				<div class="circle" />
+				<div class="circle"></div>
 			</li>
 			<li class="nav-item">
 				<a target="_blank" href="https://www.facebook.com/profisecondhand"
@@ -64,7 +64,7 @@
 				>
 			</li>
 			<li class="nav-item circle-container">
-				<div class="circle" />
+				<div class="circle"></div>
 			</li>
 			<li class="nav-item">
 				<a target="_blank" href="https://www.instagram.com/profi_second_hand/"
@@ -107,7 +107,8 @@
 			</ul>
 		</nav>
 		{#if isNavOpen}
-			<div class="backdrop" on:click={closeNav} />
+			<a href={null} class="backdrop" on:click={closeNav} aria-label=" " style="cursor: default"
+			></a>
 		{/if}
 	{/if}
 </header>
