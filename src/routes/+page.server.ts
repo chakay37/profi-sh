@@ -1,28 +1,38 @@
 import type { Actions } from '@sveltejs/kit';
 import { Users } from '$lib/models/models';
+import { error } from '@sveltejs/kit';
 let user: Users = new Users('', '', 0);
-import { get, post } from '$lib/db';
-
+import { myDBInstance } from '$lib/db';
+import { json } from '@sveltejs/kit';
 
 export const ssr = true;
 
 export const actions = {
-    user: async ({ request }) => {
-        const data = await request.formData();
+	user: async ({ request, fetch }) => {
+		const data = await request.formData();
 
-        const email: FormDataEntryValue | null = data.get('email');
-        const phone: FormDataEntryValue | null = data.get('phone');
-        const cityId: FormDataEntryValue | null = data.get('cityId');
-        
-        if (email !== null && phone !== null && cityId !== null) {
-            user.email = email.toString();
-            user.phone = phone.toString();
-            user.cityId = Number(cityId.toString());
+		try {
+			const email: FormDataEntryValue | null = data.get('email');
+			const phone: FormDataEntryValue | null = data.get('phone');
+			const cityid: FormDataEntryValue | null = data.get('cityid');
 
-            await post('users', user);
-            return { success: true };
-        }
-        return { false: true };
-        
-    }
+			if (email !== null && phone !== null && cityid !== null) {
+				user.email = email.toString();
+				user.phone = phone.toString();
+				user.cityid = Number(cityid.toString());
+				user.date_registered = new Date();
+
+				const db = myDBInstance.withFetch(fetch);
+				await db.post('users', user);
+				return {
+					success: true,
+					user: { ...user }
+				};
+			}
+			throw error(400, 'Missing required fields');
+		} catch (err) {
+			console.log(err);
+			throw error(500, 'Failed to create user');
+		}
+	}
 } satisfies Actions;

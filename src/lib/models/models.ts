@@ -1,20 +1,20 @@
 export class Users {
 	public email: string;
 	public phone: string;
-	public cityId: number;
+	public cityid: number;
 	public date_registered: Date;
 
-	public constructor(email: string, phone: string, cityId: number, date_registered: Date) {
+	public constructor(email: string, phone: string, cityid: number, date_registered: Date) {
 		this.email = email;
 		this.phone = phone;
-		this.cityId = cityId;
+		this.cityid = cityid;
 		this.date_registered = date_registered;
 	}
 }
 export class Deals {
 	public id: number;
-	public date: Date;
-	public enddate: Date;
+	public date: string;
+	public enddate: string;
 	public shopId: number;
 	public value: string;
 	public type: number;
@@ -24,8 +24,8 @@ export class Deals {
 
 	public constructor(
 		id: number,
-		date: Date,
-		endDate: Date,
+		date: string,
+		endDate: string,
 		shopId: number,
 		value: string,
 		type: number,

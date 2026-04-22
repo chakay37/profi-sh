@@ -45,6 +45,7 @@
 		"@tinymce/tinymce-svelte": "latest",
 		"axios": "latest",
 		"bootstrap": "latest",
+		"browser-image-compression": "latest",
 		"cors": "latest",
 		"facebook-node-sdk": "latest",
 		"image-conversion": "latest",

@@ -81,14 +81,9 @@
 			}
 		}
 
-		/*const response = await fetch(
-			'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames.get(Number(id)) + '.jpg'
-		);
+		const response = await fetch('/photos?name=' + shopPhotosNames.get(Number(id)) + '.jpg');
 		const blob = await response.blob();
-		//let photoOut = await response.json();
-
-		//photosURL.push(URL.createObjectURL(blob));
-		photoURL = URL.createObjectURL(blob);*/
+		photoURL = URL.createObjectURL(blob);
 	});
 </script>
 
@@ -102,7 +97,7 @@
 					</Title>
 				{/if}
 			</div>
-			<img class="only-desktop" alt="" />
+			<img src={photoURL} class="only-desktop" alt="" />
 		</div>
 		<div class="info-container">
 			<div class="opening">

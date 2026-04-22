@@ -2,7 +2,8 @@ import type { Actions } from '@sveltejs/kit';
 import { Deals } from '$lib/models/models';
 let deal: Deals = new Deals(0, new Date(), new Date(), 0, '', 0, '');
 let photo: object = {};
-import { get, post, put } from '$lib/db';
+import { myDBInstance } from '$lib/db';
+import { env } from '$env/dynamic/private';
 
 export function load({ setHeaders, cookies }) {
 	setHeaders({
@@ -14,14 +15,14 @@ export function load({ setHeaders, cookies }) {
 	});
 
 	const authenticated = cookies.get('adminLogin');
-	if (authenticated === 'W7CtM*KGegq5R6D') {
+	if (authenticated === env.ADMIN_PASSWORD) {
 		return { authenticated: true };
 	}
 	return { authenticated: false };
 }
 
 export const actions = {
-	dealPost: async ({ request }) => {
+	dealPost: async ({ request, fetch }) => {
 		const data = await request.formData();
 
 		const type: FormDataEntryValue | null = data.get('type');
@@ -40,8 +41,9 @@ export const actions = {
 		if (type != null && shops != null && date != null && enddate != null && text != null) {
 			deal.type = Number(type.toString());
 			//deal.shopId = Number(shopId);
-			deal.date = new Date(date.toString());
-			deal.enddate = new Date(enddate.toString());
+			console.log(date.toString());
+			deal.date = date.toString();
+			deal.enddate = enddate.toString();
 			deal.priority = prioritynum;
 			deal.text = text.toString();
 			if (deal.type === 0 || deal.type === 2) {
@@ -52,7 +54,8 @@ export const actions = {
 			}
 			for (let i = 0; i < shops.length; i++) {
 				deal.shopId = Number(shops[i]);
-				await post('deals', deal);
+				const db = myDBInstance.withFetch(fetch);
+				await db.post('deals', deal);
 			}
 
 			//await post('deals', deal);
@@ -64,7 +67,7 @@ export const actions = {
 		//console.log(text);
 		return { false: true };
 	},
-	dealPut: async ({ request }) => {
+	dealPut: async ({ request, fetch }) => {
 		const data = await request.formData();
 
 		const id: FormDataEntryValue | null = data.get('id');
@@ -106,13 +109,14 @@ export const actions = {
 			deal.type = Number(type.toString());
 			deal.value = value.toString();
 			deal.shopId = Number(shopId);
-			deal.date = new Date(date.toString());
-			deal.enddate = new Date(enddate.toString());
+			deal.date = date.toString();
+			deal.enddate = enddate.toString();
 			deal.priority = prioritynum;
 			deal.text = text.toString();
 
 			console.log(deal);
-			await put('deals', deal);
+			const db = myDBInstance.withFetch(fetch);
+			await db.put('deals', deal.id, deal);
 			return { success: true };
 		}
 		//console.log(type);
@@ -120,7 +124,7 @@ export const actions = {
 
 		return { false: true };
 	},
-	photo: async ({ request }) => {
+	photo: async ({ request, fetch }) => {
 		const data = await request.formData();
 
 		const id: FormDataEntryValue | null = data.get('id');
@@ -129,10 +133,12 @@ export const actions = {
 
 		if (id != null && desc != null && url != null) {
 			photo.id = Number(id.toString());
+			photo.name = '';
 			photo.desc = desc.toString();
 			photo.url = url.toString();
 
-			await put('photos', photo);
+			const db = myDBInstance.withFetch(fetch);
+			await db.put('photos', photo.id, photo);
 			return { success: true };
 		}
 		console.log(desc);

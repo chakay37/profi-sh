@@ -1,4 +1,5 @@
 <script lang="ts">
+	import imageCompression from 'browser-image-compression';
 	let aaa: FileList;
 
 	export let photo: any | null;
@@ -9,17 +10,19 @@
 		if (!photo) return;
 
 		const formData = new FormData(e.target as HTMLFormElement);
+		const file = formData.get('file') as File;
 
-		const file = formData.get('file') as Blob;
-
-		const jpgBlob = await compress(file, {
-			quality: 0.8,
-			type: 'image/jpeg'
+		const blob = await imageCompression(file, {
+			maxSizeMB: 0.1,
+			fileType: 'image/jpeg'
 		});
+
+		formData.delete('file');
+		formData.append('file', blob);
 
 		await fetch('/photos', {
 			method: 'POST',
-			body: jpgBlob
+			body: formData
 		});
 
 		photo.photoURL = URL.createObjectURL(file);
@@ -35,6 +38,7 @@
 			<h1>Obrázek obchodu: {photo.name}</h1>
 		{/if}
 		<form on:submit|preventDefault={Submit}>
+			<input type="hidden" name="name" value={photo.name} />
 			<label class="imageSelector primary-button"
 				>{#if aaa == undefined}
 					Změnit obrázek
@@ -50,7 +54,7 @@
 				{#if photo.id != undefined}
 					<form action="?/photo" method="post">
 						<input hidden type="number" name="id" value={photo.id} />
-						<textarea name="desc" maxlength="100" class="desc" value={photo.desc} />
+						<textarea name="desc" maxlength="100" class="desc" value={photo.desc}></textarea>
 						<label
 							>odkaz:
 							<input name="url" type="url" value={photo.url} />

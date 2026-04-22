@@ -26,13 +26,8 @@
 		shops = shopsReq.sort((a, b) => a.name > b.name);
 
 		for (let i = 0; i < shopPhotosNames.length; i++) {
-			const response = await fetch(
-				'https://file-upload-sh.s3.amazonaws.com/' + shopPhotosNames[i] + '.jpg'
-			);
+			const response = await fetch('/photos?name=' + shopPhotosNames[i] + '.jpg');
 			const blob = await response.blob();
-			//let photoOut = await response.json();
-
-			//photosURL.push(URL.createObjectURL(blob));
 
 			let photo = photos.filter((a) => a.name === shopPhotosNames[i].toString())[0];
 			photo.photoURL = URL.createObjectURL(blob);

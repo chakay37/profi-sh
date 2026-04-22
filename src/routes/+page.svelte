@@ -77,7 +77,7 @@
 
 				<label
 					>Město
-					<select name="cityId">
+					<select name="cityid">
 						{#each cities as city}
 							<option value={city.id}>{city.name}</option>
 						{/each}

@@ -10,7 +10,7 @@
 	async function getFilteredPhotos(photos: any[]) {
 		const result = [];
 		for (let i = 1; i < 6; i++) {
-			const response = await fetch('https://file-upload-sh.s3.amazonaws.com/' + i + '.jpg');
+			const response = await fetch('/photos?name=' + i + '.jpg');
 			const blob = await response.blob();
 			const photo = photos.filter((a) => a.name === i.toString())[0];
 			photo.photoURL = URL.createObjectURL(blob);

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { get, del } from "$lib/db";
+	import { onMount } from 'svelte';
+	import { myDBInstance } from '$lib/db';
 
 	export let showModal; // boolean
 
@@ -12,10 +12,10 @@
 	$: if (dialog && showModal) dialog.showModal();
 
 	async function delDeal() {
-		if (deals.length > 0 && dealToChange != null) {		
-
-			deals = deals.filter(a => a.id != dealToChange.id);
-			await del('deals', dealToChange.id);
+		if (deals.length > 0 && dealToChange != null) {
+			deals = deals.filter((a) => a.id != dealToChange.id);
+			const db = myDBInstance.withFetch(fetch);
+			await db.del('deals', dealToChange.id);
 		}
 		dealToChange = null;
 		showModal = false;
@@ -38,11 +38,10 @@
 		<!-- svelte-ignore a11y-autofocus -->
 		<div style="display: flex;">
 			<button class="primary-button" autofocus on:click={() => dialog.close()}>Zavřít</button>
-		{#if warning}
-			<button class="primary-button" on:click={()=> delDeal()}>Potvrdit smazání</button>
-		{/if}
+			{#if warning}
+				<button class="primary-button" on:click={() => delDeal()}>Potvrdit smazání</button>
+			{/if}
 		</div>
-		
 	</div>
 </dialog>
 
