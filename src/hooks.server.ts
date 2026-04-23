@@ -9,7 +9,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		(pathname.startsWith('/api/users') && method === 'GET') ||
 		(pathname.startsWith('/api/photos') && method === 'PUT') ||
 		(pathname.startsWith('/api/deals') && ['POST', 'PUT', 'DELETE'].includes(method)) ||
-		pathname.startsWith('/admin');
+		pathname.startsWith('/admin/panel');
 
 	if (isProtected) {
 		const auth = event.cookies.get('adminLogin');
