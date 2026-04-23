@@ -3,12 +3,16 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 
 export async function GET() {
-	const res = await fetch(env.API_URL + '/users', {
+	console.log('API_URL:', env.API_URL);
+	console.log('API_SECRET:', env.API_SECRET);
+	console.log('SECRET length:', env.API_SECRET?.length);
+	const res = await fetch(env.API_URL + '/photos', {
 		headers: {
 			'Content-Type': 'application/json',
-			'X-API-Key': `${env.API_SECRET}`
+			'X-API-Key': env.API_SECRET
 		}
 	});
+	console.log('Axum status:', res.status);
 	return json(await res.json());
 }
 
