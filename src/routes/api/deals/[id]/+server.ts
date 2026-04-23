@@ -6,7 +6,7 @@ export async function GET({ params }) {
 	const res = await fetch(`${env.API_URL}/deals/${params.id}`, {
 		headers: {
 			'Content-Type': 'application/json',
-			'X-API-Key': `Bearer ${env.API_SECRET}`
+			'X-API-Key': `${env.API_SECRET}`
 		}
 	});
 	return json(await res.json());
@@ -19,7 +19,7 @@ export async function PUT({ params, request }) {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
-			'X-API-Key': `Bearer ${env.API_SECRET}`
+			'X-API-Key': `${env.API_SECRET}`
 		},
 		body: JSON.stringify(body)
 	});
@@ -40,7 +40,7 @@ export async function DELETE({ params }) {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
-			'X-API-Key': `Bearer ${env.API_SECRET}`
+			'X-API-Key': `${env.API_SECRET}`
 		}
 	});
 
