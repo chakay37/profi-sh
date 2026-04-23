@@ -3,7 +3,12 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 
 export async function GET({ params }) {
-	const res = await fetch(`${env.API_URL}/deals/${params.id}`);
+	const res = await fetch(`${env.API_URL}/deals/${params.id}`, {
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-Key': `Bearer ${env.API_SECRET}`
+		}
+	});
 	return json(await res.json());
 }
 
@@ -12,7 +17,10 @@ export async function PUT({ params, request }) {
 
 	const res = await fetch(`${env.API_URL}/deals/${params.id}`, {
 		method: 'PUT',
-		headers: { 'Content-Type': 'application/json' },
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-Key': `Bearer ${env.API_SECRET}`
+		},
 		body: JSON.stringify(body)
 	});
 	const text = await res.text();
@@ -29,7 +37,11 @@ export async function PUT({ params, request }) {
 
 export async function DELETE({ params }) {
 	const res = await fetch(`${env.API_URL}/deals/${params.id}`, {
-		method: 'DELETE'
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-Key': `Bearer ${env.API_SECRET}`
+		}
 	});
 
 	return json(await res.json());

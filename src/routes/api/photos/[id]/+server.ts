@@ -3,7 +3,12 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 
 export async function GET({ params }) {
-	const res = await fetch(`${env.API_URL}/photos/${params.id}`);
+	const res = await fetch(`${env.API_URL}/photos/${params.id}`, {
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-Key': `${env.API_SECRET}`
+		}
+	});
 	return json(await res.json());
 }
 
@@ -12,7 +17,10 @@ export async function PUT({ params, request }) {
 
 	const res = await fetch(`${env.API_URL}/photos/${params.id}`, {
 		method: 'PUT',
-		headers: { 'Content-Type': 'application/json' },
+		headers: {
+			'Content-Type': 'application/json',
+			'X-API-Key': `${env.API_SECRET}`
+		},
 		body: JSON.stringify(body)
 	});
 
