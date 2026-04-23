@@ -16,6 +16,7 @@
 	import ig2 from '$lib/main-img/ig2.jpg';
 	import ig3 from '$lib/main-img/ig3.jpg';
 	import ig4 from '$lib/main-img/ig4.jpg';
+	import { env } from '$env/dynamic/private';
 
 	import SectTitle from '$lib/components/Title.svelte';
 	import { onMount } from 'svelte';
@@ -30,6 +31,7 @@
 	}
 
 	onMount(async () => {
+		console.log('API_URL:', env.API_URL);
 		cities = await myDBInstance.get('cities');
 		cities = cities.filter((a) => a.is_displayed == true);
 	});
