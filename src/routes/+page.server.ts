@@ -4,8 +4,10 @@ import { error } from '@sveltejs/kit';
 let user: Users = new Users('', '', 0);
 import { myDBInstance } from '$lib/db';
 import { json } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 
 export const ssr = true;
+console.log('API_URL:', env.API_URL);
 
 export const actions = {
 	user: async ({ request, fetch }) => {
