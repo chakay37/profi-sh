@@ -7,6 +7,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const isProtected =
 		(pathname.startsWith('/api/users') && method === 'GET') ||
+		(pathname.startsWith('/api/photos') && method === 'PUT') ||
 		(pathname.startsWith('/api/deals') && ['POST', 'PUT', 'DELETE'].includes(method)) ||
 		pathname.startsWith('/admin');
 
