@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.5.4",
 		"@tinymce/tinymce-svelte": "latest",
 		"axios": "latest",
 		"bootstrap": "latest",
