@@ -14,6 +14,7 @@ export function load({ setHeaders, cookies }) {
 		Expires: '0'
 	});
 
+	console.log('API_URL:', env.API_URL);
 	const authenticated = cookies.get('adminLogin');
 	if (authenticated === env.ADMIN_PASSWORD) {
 		return { authenticated: true };
