@@ -66,7 +66,7 @@ export const GET: RequestHandler = async ({ url }) => {
 };
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
-	const auth = event.cookies.get('adminLogin');
+	const auth = cookies.get('adminLogin');
 	if (auth !== env.ADMIN_PASSWORD) {
 		return new Response('Unauthorized', { status: 401 });
 	}
