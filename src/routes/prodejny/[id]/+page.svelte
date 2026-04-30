@@ -27,6 +27,11 @@
 		shop = await getId('shops', Number(id));
 		deals = await get('deals');
 		deals = deals.filter((deal) => deal.shopId == shop.id);
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		deals = deals.filter((deal) => new Date(deal.enddate) >= today);
+		deals = [...new Map(deals.map((deal) => [deal.date, deal])).values()];
+
 		deals = deals.sort(
 			(a, b) =>
 				Date.UTC(
@@ -40,7 +45,7 @@
 					new Date(b.date).getDate()
 				)
 		);
-		deals = deals.slice(-7);
+		deals = deals.slice(0, 7);
 
 		let dayInWeek = ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'];
 
@@ -139,12 +144,10 @@
 				<div class="deals">
 					<p>Akce a slevy</p>
 					{#each deals as d}
-						{#if new Date(d.enddate) > new Date()}
-							<div class="deal">
-								<h3>{d.dateStr} - {d.enddateStr}</h3>
-								<h4>{d.tableText}</h4>
-							</div>
-						{/if}
+						<div class="deal">
+							<h3>{d.dateStr} - {d.enddateStr}</h3>
+							<h4>{d.tableText}</h4>
+						</div>
 					{/each}
 				</div>
 			{/if}
