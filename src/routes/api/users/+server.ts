@@ -3,7 +3,7 @@ import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 
 export async function GET() {
-	const res = await fetch(env.API_URL + '/photos', {
+	const res = await fetch(env.API_URL + '/users', {
 		headers: {
 			'Content-Type': 'application/json',
 			'X-API-Key': env.API_SECRET
