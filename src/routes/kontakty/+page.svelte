@@ -9,10 +9,6 @@
 		<table>
 			<tbody>
 				<tr>
-					<th>Firma</th>
-					<td>Profi Second Hand s.r.o.</td>
-				</tr>
-				<tr>
 					<th>e-mail</th>
 					<td>info@profi-sh.cz</td>
 				</tr>
