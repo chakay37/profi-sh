@@ -10,12 +10,11 @@
 		'mladaBoleslav',
 		'most',
 		'pardubice',
-		'pisek',
 		'praha',
-		'tabor',
+		'pisek',
 		'teplice',
+		'tabor',
 		'ustiNadLabem',
-		'plzen'
 	];
 	let orderedPhotos = [];
 	let photos = [];
