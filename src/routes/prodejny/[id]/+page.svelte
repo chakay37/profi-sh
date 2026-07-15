@@ -138,6 +138,7 @@
 				{#if shop?.id != undefined}
 					<iframe title={shop.name} src={shop.mapsrc} frameborder="0"></iframe>
 					<p>Adresa: {shop.adresa}</p>
+					<p style="font-size: 0.8rem;">Provozuje: {shop.provozovatel}, IČO: {shop.ico}</p>
 				{/if}
 			</div>
 			{#if deals.length > 0}
