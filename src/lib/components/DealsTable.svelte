@@ -20,12 +20,11 @@
 		'Tábor',
 		'Teplice',
 		'Ústí nad Labem',
-		'Plzeň'
 	];
 
 	onMount(async () => {
-		shops = await myDBInstance.get('shops');
-		shops = shops.sort((a, b) => a.name > b.name);
+		let shopsReq = await myDBInstance.get('shops');
+		shops = shopsReq.sort((a, b) => a.name.localeCompare(b.name, 'cs'));
 
 		shopsNames = [];
 		shops.forEach((shop) => shopsNames.push(shop.name));

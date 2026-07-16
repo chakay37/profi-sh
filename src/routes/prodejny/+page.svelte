@@ -10,10 +10,10 @@
 		'mladaBoleslav',
 		'most',
 		'pardubice',
-		'praha',
 		'pisek',
-		'teplice',
+		'praha',
 		'tabor',
+		'teplice',
 		'ustiNadLabem',
 	];
 	let orderedPhotos = [];
@@ -22,7 +22,7 @@
 		let shopsReq = await get('shops');
 		photos = await get('photos');
 
-		shops = shopsReq.sort((a, b) => a.name > b.name);
+		shops = shopsReq.sort((a, b) => a.name.localeCompare(b.name, 'cs'));
 
 		for (let i = 0; i < shopPhotosNames.length; i++) {
 			const response = await fetch('/photos?name=' + shopPhotosNames[i] + '.jpg');
