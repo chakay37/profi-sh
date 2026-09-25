@@ -11,6 +11,7 @@
 		'most',
 		'pardubice',
 		'pisek',
+		'prahaKrc',
 		'praha',
 		'tabor',
 		'teplice',

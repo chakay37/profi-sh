@@ -30,8 +30,9 @@
 	}
 
 	onMount(async () => {
-		cities = await myDBInstance.get('cities');
-		cities = cities.filter((a) => a.is_displayed == true);
+		let citiesReq = await myDBInstance.get('cities');
+		citiesReq = citiesReq.filter((a) => a.is_displayed == true);
+		cities = citiesReq.sort((a, b) => a.name.localeCompare(b.name, 'cs'));
 	});
 </script>
 

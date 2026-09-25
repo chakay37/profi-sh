@@ -60,6 +60,7 @@
 			'pardubice',
 			'pisek',
 			'praha',
+			'prahaKrc',
 			'tabor',
 			'teplice',
 			'ustiNadLabem',

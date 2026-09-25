@@ -20,7 +20,7 @@
 		[9, 'tabor'],
 		[10, 'teplice'],
 		[11, 'ustiNadLabem'],
-		[12, 'plzen']
+		[12, 'prahaKrc']
 	]);
 	let photoURL = '';
 	onMount(async () => {
