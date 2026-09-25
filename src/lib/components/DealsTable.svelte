@@ -16,7 +16,7 @@
 		'Most',
 		'Pardubice',
 		'Písek',
-		'Praha - Modrý Pavilon Krč',
+		'Praha - Krč, Modrý Pavilon',
 		'Praha - Ládví',
 		'Tábor',
 		'Teplice',
