@@ -47,12 +47,6 @@
 				<div class="circle"></div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/blog">Blog</a>
-			</li>
-			<li class="nav-item circle-container">
-				<div class="circle"></div>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="/kontakty">Kontakty</a>
 			</li>
 			<li class="nav-item circle-container">
@@ -89,10 +83,6 @@
 				</li>
 
 				<li class="nav-item">
-					<a on:click={closeNav} class="nav-link" href="/blog">Blog</a>
-				</li>
-
-				<li class="nav-item">
 					<a on:click={closeNav} class="nav-link" href="/kontakty">Kontakty</a>
 				</li>
 
@@ -120,7 +110,6 @@
 			<li><a href="/">Hlavní stránka</a></li>
 			<li><a href="/prodejny">Prodejny </a></li>
 			<li><a href="/eshop">E-shop</a></li>
-			<li><a href="/blog">Blog</a></li>
 			<li><a href="/kontakty">Kontakty</a></li>
 		</ul>
 	</div>

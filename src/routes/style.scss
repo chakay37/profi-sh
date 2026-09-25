@@ -108,6 +108,7 @@ $white: #f1f1ee;
 	background-color: $logo-color;
 	position: relative;
 	display: flex;
+	display: none !important;
 	flex-direction: column;
 	gap: 10px;
 	align-items: center;
